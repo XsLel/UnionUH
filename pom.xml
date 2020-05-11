@@ -88,16 +88,16 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>npm start</id>
+						<id>npm install</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
 						<configuration>
-							<arguments>start</arguments>
+							<arguments>install</arguments>
 						</configuration>
 					</execution>
 					<execution>
-						<id>npm run build</id>
+						<id>npm build</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
