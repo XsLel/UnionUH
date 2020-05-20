@@ -1,0 +1,12 @@
+.restaurante {
+  width: 300px;
+  height: 200px;
+  margin-bottom: 0px;
+  object-fit: cover;
+  filter: brightness(70%);
+  cursor: pointer;
+}
+
+.restaurante:hover {
+  filter: brightness(100%);
+}
