@@ -1,18 +1,20 @@
 import React from "react";
+import "semantic-ui-css/semantic.min.css";
 import { Router, Switch, Route } from "react-router-dom";
 import { history } from "./services";
 import { Admin } from "./Admin/Admin";
-import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
-import { PageNotFound } from "./common";
 import { FoodGallery } from "./Components/FoodGallery";
+import { PageNotFound } from "./common";
 import { RestaurantGallery } from "./Components/RestaurantGallery";
-import "semantic-ui-css/semantic.min.css";
+import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
+import TouristicPlaceForm from "./TouristicPlace/Form";
 
 function App() {
   return (
     <Router history={history}>
       <Switch>
         <Route exact path="/" component={Admin} />
+        <Route exact path="/lugares-turisticos/registro" component={TouristicPlaceForm} />
         <Route exact path="/404" component={PageNotFound} />
         <Route
           exact
