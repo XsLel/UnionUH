@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 @Entity
 public class Foto {
 	  
@@ -12,36 +12,31 @@ public class Foto {
 	    @GeneratedValue(strategy=GenerationType.AUTO)
 	    private int idfoto;
 		
-		private int idRes;
+		@ManyToOne
+		@JoinColumn(name="idRestaurante")
+		Restaurante restaurante;
+		
 	  	private String	urlfoto;
 	  	private boolean carusel;
 	  
 	 
 	  	public Foto() {}
 
-	  	
-	  	
 
-		@Override
-		public String toString() {
-			return "Foto [idfoto=" + idfoto + ", idRes=" + idRes + ", urlfoto=" + urlfoto + ", carusel=" + carusel
-					+ "]";
-		}
-
-		
-		
-
-
-
-		public Foto(int idfoto, int idRes, String urlfoto, boolean carusel) {
+		public Foto(int idfoto, Restaurante restaurante, String urlfoto, boolean carusel) {
 			super();
 			this.idfoto = idfoto;
-			this.idRes = idRes;
+			this.restaurante = restaurante;
 			this.urlfoto = urlfoto;
 			this.carusel = carusel;
 		}
 
 
+		@Override
+		public String toString() {
+			return "Foto [idfoto=" + idfoto + ", restaurante=" + restaurante + ", urlfoto=" + urlfoto + ", carusel="
+					+ carusel + "]";
+		}
 
 
 		public int getIdfoto() {
@@ -49,27 +44,19 @@ public class Foto {
 		}
 
 
-
-
 		public void setIdfoto(int idfoto) {
 			this.idfoto = idfoto;
 		}
 
 
-
-
-		public int getIdRes() {
-			return idRes;
+		public Restaurante getRestaurante() {
+			return restaurante;
 		}
 
 
-
-
-		public void setIdRes(int idRes) {
-			this.idRes = idRes;
+		public void setRestaurante(Restaurante restaurante) {
+			this.restaurante = restaurante;
 		}
-
-
 
 
 		public String getUrlfoto() {
@@ -77,13 +64,9 @@ public class Foto {
 		}
 
 
-
-
 		public void setUrlfoto(String urlfoto) {
 			this.urlfoto = urlfoto;
 		}
-
-
 
 
 		public boolean isCarusel() {
@@ -91,13 +74,9 @@ public class Foto {
 		}
 
 
-
-
 		public void setCarusel(boolean carusel) {
 			this.carusel = carusel;
 		}
-
-
 
 
 		@Override
@@ -105,8 +84,8 @@ public class Foto {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + (carusel ? 1231 : 1237);
-			result = prime * result + idRes;
 			result = prime * result + idfoto;
+			result = prime * result + ((restaurante == null) ? 0 : restaurante.hashCode());
 			result = prime * result + ((urlfoto == null) ? 0 : urlfoto.hashCode());
 			return result;
 		}
@@ -123,9 +102,12 @@ public class Foto {
 			Foto other = (Foto) obj;
 			if (carusel != other.carusel)
 				return false;
-			if (idRes != other.idRes)
-				return false;
 			if (idfoto != other.idfoto)
+				return false;
+			if (restaurante == null) {
+				if (other.restaurante != null)
+					return false;
+			} else if (!restaurante.equals(other.restaurante))
 				return false;
 			if (urlfoto == null) {
 				if (other.urlfoto != null)
@@ -135,7 +117,9 @@ public class Foto {
 			return true;
 		}
 
+	  	
+	  
+		
 
-	  	
-	  	
+
 }
