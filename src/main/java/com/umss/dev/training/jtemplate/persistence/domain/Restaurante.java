@@ -1,18 +1,28 @@
 package com.umss.dev.training.jtemplate.persistence.domain;
 
+<<<<<<< HEAD
 
 import java.util.List;
 
+=======
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+<<<<<<< HEAD
 import javax.persistence.*;
 import javax.persistence.Transient;
 
 
 
 
+=======
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 @Entity
 
 
@@ -20,11 +30,16 @@ public class Restaurante {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+<<<<<<< HEAD
     private int idRestaurante;
     @OneToMany(mappedBy="idfoto")
     List<Foto> fotoslist;
     
     
+=======
+    private int id;
+ 
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
   private String nombre;
   private String  provincia_región;
   private String  Dirección;
@@ -42,10 +57,17 @@ public class Restaurante {
   public Restaurante() {}
 
 
+<<<<<<< HEAD
 public Restaurante(int idRestaurante, String provincia_región, String dirección, String información_adicional, String teléfono,
 		String direccion_web, String correo_electronico, String publicidad_web, String categoría, String descripcion) {
 	super();
 	this.idRestaurante = idRestaurante;
+=======
+public Restaurante(int id, String provincia_región, String dirección, String información_adicional, String teléfono,
+		String direccion_web, String correo_electronico, String publicidad_web, String categoría, String descripcion) {
+	super();
+	this.id = id;
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 	this.provincia_región = provincia_región;
 	Dirección = dirección;
 	this.información_adicional = información_adicional;
@@ -59,6 +81,7 @@ public Restaurante(int idRestaurante, String provincia_región, String direcció
 
 
 public int getId() {
+<<<<<<< HEAD
 	return idRestaurante;
 }
 
@@ -75,6 +98,14 @@ public void setFotoslist(List<Foto> fotoslist) {
 
 public void setId(int idRestaurante) {
 	this.idRestaurante = idRestaurante;
+=======
+	return id;
+}
+
+
+public void setId(int id) {
+	this.id = id;
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 }
 
 
@@ -182,7 +213,11 @@ public void setDescripcion(String descripcion) {
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
+<<<<<<< HEAD
 	result = prime * result + idRestaurante;
+=======
+	result = prime * result + id;
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 	return result;
 }
 
@@ -196,7 +231,11 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	Restaurante other = (Restaurante) obj;
+<<<<<<< HEAD
 	if (idRestaurante != other.idRestaurante)
+=======
+	if (id != other.id)
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 		return false;
 	return true;
 }

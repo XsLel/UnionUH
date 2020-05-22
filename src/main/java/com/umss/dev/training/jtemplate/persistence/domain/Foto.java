@@ -4,7 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.GenerationType;
+<<<<<<< HEAD
 import javax.persistence.*;
+=======
+import javax.persistence.Id;
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 @Entity
 public class Foto {
 	  
@@ -12,17 +16,23 @@ public class Foto {
 	    @GeneratedValue(strategy=GenerationType.AUTO)
 	    private int idfoto;
 		
+<<<<<<< HEAD
 		@ManyToOne
 		@JoinColumn(name="idRestaurante")
 		Restaurante restaurante;
 		
 	  	private String	urlfoto;
 	  	private boolean carusel;
+=======
+		private int idRes;
+	  	private String	urlfoto;
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 	  
 	 
 	  	public Foto() {}
 
 
+<<<<<<< HEAD
 		public Foto(int idfoto, Restaurante restaurante, String urlfoto, boolean carusel) {
 			super();
 			this.idfoto = idfoto;
@@ -36,6 +46,13 @@ public class Foto {
 		public String toString() {
 			return "Foto [idfoto=" + idfoto + ", restaurante=" + restaurante + ", urlfoto=" + urlfoto + ", carusel="
 					+ carusel + "]";
+=======
+		public Foto(int idfoto, int idRes, String direccion) {
+			super();
+			this.idfoto = idfoto;
+			this.idRes = idRes;
+			this.urlfoto = direccion;
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 		}
 
 
@@ -49,6 +66,7 @@ public class Foto {
 		}
 
 
+<<<<<<< HEAD
 		public Restaurante getRestaurante() {
 			return restaurante;
 		}
@@ -60,10 +78,24 @@ public class Foto {
 
 
 		public String getUrlfoto() {
+=======
+		public int getIdRes() {
+			return idRes;
+		}
+
+
+		public void setIdRes(int idRes) {
+			this.idRes = idRes;
+		}
+
+
+		public String getDireccion() {
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 			return urlfoto;
 		}
 
 
+<<<<<<< HEAD
 		public void setUrlfoto(String urlfoto) {
 			this.urlfoto = urlfoto;
 		}
@@ -122,4 +154,14 @@ public class Foto {
 		
 
 
+=======
+		public void setDireccion(String direccion) {
+			this.urlfoto = direccion;
+		}
+		
+	  	
+		
+	  	
+	  	
+>>>>>>> ft/#18_VisualizarInformacionDelRestaurante_nsw_novasw_RequestFrontend_jajt
 }

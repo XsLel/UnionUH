@@ -2,6 +2,7 @@ import React from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { history } from "./services";
 import { Admin } from "./Admin/Admin";
+import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
 import { PageNotFound } from "./common";
 
 function App() {
@@ -10,6 +11,11 @@ function App() {
       <Switch>
         <Route exact path="/" component={Admin} />
         <Route exact path="/404" component={PageNotFound} />
+        <Route
+          exact
+          path="/restaurants/:restaurantId"
+          component={RestaurantInformation}
+        />
         <Route component={PageNotFound} />
       </Switch>
     </Router>
