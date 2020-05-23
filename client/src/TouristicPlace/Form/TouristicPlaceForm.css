@@ -1,14 +1,11 @@
 h1.ui.header {
   font-size: 4rem;
 }
-.error {
+
+p.small {
   font-size: 13px;
-  color: red;
-}
-.inputError {
-  border-color: red;
 }
 
-.divError {
-  border-color: red;
+.ui.modal > .actions {
+  text-align: center;
 }
