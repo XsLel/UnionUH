@@ -12,7 +12,7 @@ const ViewInformation = (props) => {
     direction,
     category,
     website,
-    telephone,
+    phone,
   } = props;
 
   return (
@@ -45,7 +45,7 @@ const ViewInformation = (props) => {
         <b>Dirección Web:</b> {website}
       </p>
       <p>
-        <b>Teléfono:</b> {telephone}
+        <b>Teléfono:</b> {phone}
       </p>
     </Segment>
   );

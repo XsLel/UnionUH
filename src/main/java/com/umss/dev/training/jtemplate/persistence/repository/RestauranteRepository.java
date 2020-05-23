@@ -6,5 +6,4 @@ import com.umss.dev.training.jtemplate.persistence.domain.Restaurante;
 
 
 public interface RestauranteRepository  extends JpaRepository<Restaurante,Integer>{
-
 }

@@ -24,30 +24,39 @@ class Home extends Component {
     Promise.resolve(http.request({ url: `/restaurantes/${id}` }))
       .then(
         ({
-          nombre,
-          provincia_región,
-          información_adicional,
-          correo_electronico,
-          publicidad_web,
-          descripcion,
-          dirección,
-          categoría,
-          direccion_web,
-          teléfono,
+          name,
+          province,
+          information,
+          email,
+          commercial,
+          description,
+          direction,
+          category,
+          website,
+          phone,
+          photos,
         }) => {
-          this.setState({ found: true });
+          const home = photos
+            .filter(({ home }) => home)
+            .map(({ url }) => ({ url }));
+          const carousel = photos
+            .filter(({ carousel }) => carousel)
+            .map(({ url }) => url);
           this.setState({
-            name: nombre,
-            province: provincia_región,
-            information: información_adicional,
-            email: correo_electronico,
-            commercial: publicidad_web,
-            description: descripcion,
-            direction: dirección,
-            category: categoría,
-            website: direccion_web,
-            telephone: teléfono,
+            name: name,
+            province: province,
+            information: information,
+            email: email,
+            commercial: commercial,
+            description: description,
+            direction: direction,
+            category: category,
+            website: website,
+            phone: phone,
+            home: home,
+            carousel: carousel,
           });
+          this.setState({ found: true });
         }
       )
       .catch((error) => {
@@ -70,12 +79,14 @@ class Home extends Component {
       direction,
       category,
       website,
-      telephone,
+      phone,
+      carousel,
+      home,
     } = this.state;
     return (
       <Container>
         <Segment loading={loading}>
-          <Carrusel />
+          <Carrusel carousel={carousel} />
           <ViewInformation
             name={name}
             province={province}
@@ -86,7 +97,8 @@ class Home extends Component {
             direction={direction}
             category={category}
             website={website}
-            telephone={telephone}
+            phone={phone}
+            linkPhotos={home}
           />
           {!found && <Redirect to="/404" />}
         </Segment>
