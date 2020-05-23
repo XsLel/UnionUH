@@ -1,12 +1,18 @@
 import React from "react";
 import { Button, Container, Form, Icon } from "semantic-ui-react";
 import "./TouristicPlaceForm.css";
+import useForm from "./useForm";
+import validate from "./validate";
 
 export default function TouristicPlaceForm() {
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [address, setAddress] = React.useState("");
-  const [schedules, setSchedules] = React.useState("");
+  const { handleSubmit, handleChange, values, errors } = useForm(
+    submit,
+    validate
+  );
+
+  function submit() {
+    console.log("Aun nada");
+  }
 
   return (
     <Container>
@@ -15,57 +21,65 @@ export default function TouristicPlaceForm() {
         Los campos marcados con <span style={{ color: "#db2828" }}>*</span> son
         obligatorios
       </p>
-      <Form autoComplete="off" size="large">
+      <Form autoComplete="off" size="large" onSubmit={handleSubmit} noValidate>
         <Form.Input
+          required
+          error={errors.name !== undefined}
           type="text"
           label="Nombre"
           id="name"
+          name="name"
           placeholder="Nombre del lugar turístico"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
+          value={values.name}
+          onChange={handleChange}
         />
+        {errors.name && <p className="error">{errors.name}</p>}
         <Form.TextArea
+          error={errors.description !== undefined}
           label="Descripción"
           id="description"
+          name="description"
           rows="2"
           placeholder="Descripción del lugar turístico"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={values.description}
+          onChange={handleChange}
           required
         />
+        {errors.description && <p className="error">{errors.description}</p>}
         <Form.Group widths="equal">
           <Form.TextArea
+            error={errors.address !== undefined}
             label="Dirección"
             id="address"
+            name="address"
             rows="1"
             placeholder="Dirección del lugar turístico"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            value={values.address}
+            onChange={handleChange}
             required
           />
           <Button icon>
             <Icon name="map marker alternate" />
           </Button>
         </Form.Group>
+        {errors.address && <p className="error">{errors.address}</p>}
         <Form.TextArea
+          error={errors.schedules !== undefined}
           label="Horarios"
           id="schedules"
+          name="schedules"
           rows="3"
           placeholder="Horarios del lugar turístico"
-          value={schedules}
-          onChange={(e) => setSchedules(e.target.value)}
+          value={values.schedules}
+          onChange={handleChange}
           required
         />
+        {errors.schedules && <p className="error">{errors.schedules}</p>}
         <div>
           <Button floated="left" size="large" negative>
             Cancelar
           </Button>
-          <Button
-            type="submit"
-            floated="right"
-            size="large"
-            positive>
+          <Button type="submit" floated="right" size="large" positive>
             Aceptar
           </Button>
         </div>
