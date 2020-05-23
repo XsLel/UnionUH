@@ -1,10 +1,14 @@
 pipeline {
     agent none
     stages {
+        stage('Clone Repo') {
+            git branch: env.BRANCH_NAME,
+            credentialsId: 'github-official-credentials',
+            url: 'https://github.com/ingSoftwareUmss/turismo-umss.git'
+        }
         stage('Example Compile') {
             agent { docker 'maven:3-alpine' }
             steps {
-                git branch: env.BRANCH_NAME, url: 'https://github.com/ingSoftwareUmss/turismo-umss.git'
                 echo 'Hello, Maven at "${env.BRANCH_NAME}" ===== ' + env.BRANCH_NAME
                 sh "ls -a"
                 sh 'mvn --version'
