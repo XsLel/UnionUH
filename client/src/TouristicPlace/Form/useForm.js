@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
-import { name, description, address, schedules } from "./TouristicPlaceForm";
+import React from "react";
 
 const useForm = (callback, validate) => {
-  const [values, setValues] = useState({
+  const [values, setValues] = React.useState({
     name: "",
     description: "",
     address: "",
     schedules: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = React.useState({});
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,11 +26,11 @@ const useForm = (callback, validate) => {
     });
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       callback();
     }
-  }, [errors]);
+  }, [errors, isSubmitting, callback]);
 
   return {
     handleSubmit,
