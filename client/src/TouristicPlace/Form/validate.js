@@ -1,34 +1,35 @@
 export default function validate(values) {
-  let errors = {};
-  const alfanumericoMax255 = /^[a-z0-9\s*]{2,254}$/s;
-  const alfanumerico = /^[A-Za-z0-9\s+]+$/m;
-  const vacio = /^\s+$/m;
-  if (!values.name || vacio.test(values.name)) {
-    errors.name = "El siguiente campo es requerido, intruduzca un valor valido";
-  } else if (!alfanumericoMax255.test(values.name)) {
+  const errors = {};
+  const alphanumericMax225 = /^[a-z0-9\s*]{2,254}$/s;
+  const alphanumeric = /^[A-Za-z0-9\s+]+$/m;
+  const isWhitespace = /^\s+$/m;
+
+  if (!values.name || isWhitespace.test(values.name)) {
+    errors.name = "El nombre es requerido, introduce un valor válido.";
+  } else if (!alphanumericMax225.test(values.name)) {
     errors.name =
-      "Solo se acepta caracteres alfanumericos y una cadena menos a 255";
+      "Solo se aceptan números y letras. Solo se aceptan hasta 255 caracteres.";
   }
 
-  if (!values.description || vacio.test(values.description)) {
+  if (!values.description || isWhitespace.test(values.description)) {
     errors.description =
-      "El siguiente campo es requerido, intruduzca un valor valido";
-  } else if (!alfanumerico.test(values.description)) {
-    errors.description = "Solo se acepta caracteres alfanumericos";
+      "La descripción es requerida, introduce un valor válido.";
+  } else if (!alphanumeric.test(values.description)) {
+    errors.description = "Solo se aceptan números y letras.";
   }
 
-  if (!values.address || vacio.test(values.address)) {
+  if (!values.address || isWhitespace.test(values.address)) {
     errors.address =
-      "El siguiente campo es requerido, intruduzca un valor valido";
-  } else if (!alfanumerico.test(values.address)) {
-    errors.address = "Solo se acepta caracteres alfanumericos";
+      "La dirección es requerida, introduce un valor válido.";
+  } else if (!alphanumeric.test(values.address)) {
+    errors.address = "Solo se aceptan números y letras.";
   }
 
-  if (!values.schedules || vacio.test(values.schedules)) {
+  if (!values.schedules || isWhitespace.test(values.schedules)) {
     errors.schedules =
-      "El siguiente campo es requerido, intruduzca un valor valido";
-  } else if (!alfanumerico.test(values.schedules)) {
-    errors.schedules = "Solo se acepta caracteres alfanumericos";
+      "Los horarios son requeridos, introduce valores válidos.";
+  } else if (!alphanumeric.test(values.schedules)) {
+    errors.schedules = "Solo se aceptan números y letras.";
   }
 
   return errors;
