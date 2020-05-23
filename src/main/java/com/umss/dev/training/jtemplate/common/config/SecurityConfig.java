@@ -36,10 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         // 1. FIRST VERSION
-//        auth.inMemoryAuthentication()
-//                .withUser("franco").password("{noop}password").roles("USER")
-//                .and()
-//                .withUser("admin").password("{noop}password").roles("USER", "ADMIN");
+       // auth.inMemoryAuthentication()
+         //       .withUser("franco").password("{noop}password").roles("USER")
+           //     .and()
+             //   .withUser("admin").password("{noop}password").roles("USER", "ADMIN");
 
         // 2. SECOND VERSION
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);

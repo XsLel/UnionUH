@@ -86,4 +86,12 @@ public class UserRestController {
 
         return new ResponseEntity<Object>(entities, HttpStatus.OK);
     }
+
+    @GetMapping("/hola")
+    @ResponseBody
+    public String hola() {
+ 
+        return "has hecho una peticion get";
+ 
+    }
 }
