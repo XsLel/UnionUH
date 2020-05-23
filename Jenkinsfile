@@ -4,7 +4,9 @@ pipeline {
         stage('Example Compile') {
             agent { docker 'maven:3-alpine' }
             steps {
+                git branch: env.BRANCH_NAME, url: 'https://github.com/ingSoftwareUmss/turismo-umss.git'
                 echo 'Hello, Maven at "${env.BRANCH_NAME}" ===== ' + env.BRANCH_NAME
+                sh "ls -a"
                 sh 'mvn --version'
             }
         }
@@ -12,6 +14,7 @@ pipeline {
             agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Hello UMSS'
+                sh "ls -a"
                 sh 'mvn --version'
             }
         }
