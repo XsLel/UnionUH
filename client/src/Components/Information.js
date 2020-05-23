@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import {
   Grid,
   GridRow,
@@ -11,6 +12,7 @@ import {
   Divider,
   Image,
 } from "semantic-ui-react";
+import { Link, Redirect } from "react-router-dom";
 
 const Inforestaurant = () => (
   <>
@@ -29,19 +31,12 @@ const Inforestaurant = () => (
             </List>
           </Card>
         </GridColumn>
-
         <GridColumn>
-          <Card centered>
-            aqui ira las fotos de la galeria de comida
-            <a href="#">ver mas</a>
-          </Card>
+          <Link to="/galeria-comida">Galeria Comida</Link>
         </GridColumn>
-
         <GridColumn>
-          <Card centered>
-            aqui ira las fotos del restaurante
-            <a href="#">ver mas</a>
-          </Card>
+          {" "}
+          <Link to="/galeria-restaurante"> Galeria Restaurante</Link>{" "}
         </GridColumn>
       </GridRow>
     </Grid>
