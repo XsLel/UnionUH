@@ -4,7 +4,7 @@ pipeline {
         stage('Example Compile') {
             agent { docker 'maven:3-alpine' }
             steps {
-                echo 'Hello, Maven'
+                echo "Hello, Maven at env.BRANCH_NAME"
                 sh 'mvn --version'
             }
         }
