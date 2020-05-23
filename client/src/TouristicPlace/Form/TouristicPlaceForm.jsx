@@ -1,27 +1,26 @@
 import React from "react";
-import { Button, Container, Form, Icon } from "semantic-ui-react";
-import "./TouristicPlaceForm.css";
+import { useHistory } from "react-router-dom";
+import { Form, Icon, Modal, Button } from "semantic-ui-react";
 import useForm from "./useForm";
 import validate from "./validate";
+import "./TouristicPlaceForm.css";
 
 export default function TouristicPlaceForm() {
-  const { handleSubmit, handleChange, values, errors } = useForm(
-    submit,
-    validate
-  );
+  const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
+  const [openModal, setOpenModal] = React.useState(false);
+  const history = useHistory();
 
   function submit() {
     console.log("Aun nada");
   }
 
   return (
-    <Container>
+    <div className="container mt-5">
       <h1 className="ui header aligned center">Lugar turístico</h1>
       <p className="ui large form">
-        Los campos marcados con <span style={{ color: "#db2828" }}>*</span> son
-        obligatorios
+        Los campos marcados con <span className="text-red">*</span> son obligatorios
       </p>
-      <Form autoComplete="off" size="large" onSubmit={handleSubmit} noValidate>
+      <Form noValidate autoComplete="off" size="large" onSubmit={handleSubmit}>
         <Form.Input
           required
           error={errors.name !== undefined}
@@ -33,7 +32,7 @@ export default function TouristicPlaceForm() {
           value={values.name}
           onChange={handleChange}
         />
-        {errors.name && <p className="error">{errors.name}</p>}
+        {errors.name && <p className="text-red small">{errors.name}</p>}
         <Form.TextArea
           error={errors.description !== undefined}
           label="Descripción"
@@ -45,8 +44,8 @@ export default function TouristicPlaceForm() {
           onChange={handleChange}
           required
         />
-        {errors.description && <p className="error">{errors.description}</p>}
-        <Form.Group widths="equal">
+        {errors.description && <p className="text-red small">{errors.description}</p>}
+        <Form.Group>
           <Form.TextArea
             error={errors.address !== undefined}
             label="Dirección"
@@ -54,15 +53,16 @@ export default function TouristicPlaceForm() {
             name="address"
             rows="1"
             placeholder="Dirección del lugar turístico"
+            width="15"
             value={values.address}
             onChange={handleChange}
             required
           />
-          <Button icon>
+          <Form.Button icon disabled>
             <Icon name="map marker alternate" />
-          </Button>
+          </Form.Button>
         </Form.Group>
-        {errors.address && <p className="error">{errors.address}</p>}
+        {errors.address && <p className="text-red small">{errors.address}</p>}
         <Form.TextArea
           error={errors.schedules !== undefined}
           label="Horarios"
@@ -74,16 +74,48 @@ export default function TouristicPlaceForm() {
           onChange={handleChange}
           required
         />
-        {errors.schedules && <p className="error">{errors.schedules}</p>}
-        <div>
-          <Button floated="left" size="large" negative>
-            Cancelar
-          </Button>
-          <Button type="submit" floated="right" size="large" positive>
+        {errors.schedules && <p className="text-red small">{errors.schedules}</p>}
+        <Form.Group widths="equal">
+          <Modal
+            size="mini"
+            dimmer="inverted"
+            open={openModal}
+            trigger={
+              <Form.Button
+                fluid
+                negative
+                floated="left"
+                size="large"
+                onClick={(_e, _d) => setOpenModal(true)}>
+                Cancelar
+              </Form.Button>
+            }>
+            <Modal.Content>
+              <p className="text-align-center">¿Estás seguro de cancelar el registro?</p>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button
+                negative
+                content="Cancelar"
+                onClick={(_e, _d) => setOpenModal(false)}
+              />
+              <Button
+                positive
+                content="Aceptar"
+                onClick={(_e, _d) => history.push("/lugares-turisticos")}
+              />
+            </Modal.Actions>
+          </Modal>
+          <Form.Button
+            fluid
+            positive
+            type="submit"
+            floated="right"
+            size="large">
             Aceptar
-          </Button>
-        </div>
+          </Form.Button>
+        </Form.Group>
       </Form>
-    </Container>
+    </div>
   );
 }
