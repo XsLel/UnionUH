@@ -2,9 +2,11 @@ pipeline {
     agent none
     stages {
         stage('Clone Repo') {
+            steps {
             git branch: env.BRANCH_NAME,
-            credentialsId: 'github-official-credentials',
-            url: 'https://github.com/ingSoftwareUmss/turismo-umss.git'
+                credentialsId: 'github-official-credentials',
+                url: 'https://github.com/ingSoftwareUmss/turismo-umss.git'
+            }
         }
         stage('Example Compile') {
             agent { docker 'maven:3-alpine' }
