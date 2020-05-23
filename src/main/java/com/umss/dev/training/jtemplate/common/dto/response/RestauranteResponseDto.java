@@ -18,20 +18,6 @@ public class RestauranteResponseDto {
 	private String description;
 	private List<FotoResponseDto> photos;
 	
-	public void addRestaurantSQL(RestauranteQuerySQL restaurantSQL) {
-		this.id = restaurantSQL.getId();
-		this.name = restaurantSQL.getName();
-		this.province = restaurantSQL.getProvince();
-		this.direction = restaurantSQL.getDirection();
-		this.information = restaurantSQL.getInformation();
-		this.phone = restaurantSQL.getPhone();
-		this.website = restaurantSQL.getWebsite();
-		this.email = restaurantSQL.getEmail();
-		this.commercial = restaurantSQL.getCommercial();
-		this.category = restaurantSQL.getCategory();
-		this.description = restaurantSQL.getDescription();
-	}
-	
 	public void addListFotoSQL(List<FotoQuerySQL> listFotoSQL) {
 		photos = new ArrayList<FotoResponseDto>();
 		FotoResponseDto item;

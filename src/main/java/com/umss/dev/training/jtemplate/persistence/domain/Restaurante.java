@@ -1,7 +1,5 @@
 package com.umss.dev.training.jtemplate.persistence.domain;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,10 +23,6 @@ public class Restaurante {
 	private String commercial;
 	private String category;
 	private String description;
-	
-	/*@OneToMany(targetEntity = Foto.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "restaurantId", referencedColumnName = "id")
-	private List<Foto> photos;*/
 
 	public int getId() {
 		return id;
@@ -117,12 +111,4 @@ public class Restaurante {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	/*public List<Foto> getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(List<Foto> photos) {
-		this.photos = photos;
-	}*/
 }

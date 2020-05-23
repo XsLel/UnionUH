@@ -8,7 +8,7 @@ import Carrusel from "../Carrusel/Carrusel";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true, found: true };
+    this.state = { loading: true, found: true, carousel: [], home: [] };
   }
 
   componentDidMount() {
@@ -36,9 +36,7 @@ class Home extends Component {
           phone,
           photos,
         }) => {
-          const home = photos
-            .filter(({ home }) => home)
-            .map(({ url }) => ({ url }));
+          const home = photos.filter(({ home }) => home).map(({ url }) => url);
           const carousel = photos
             .filter(({ carousel }) => carousel)
             .map(({ url }) => url);
@@ -83,6 +81,7 @@ class Home extends Component {
       carousel,
       home,
     } = this.state;
+
     return (
       <Container>
         <Segment loading={loading}>
