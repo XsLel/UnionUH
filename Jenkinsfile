@@ -4,24 +4,25 @@ pipeline {
         stage('Clone Repo') {
             agent { label 'devops' }
             steps {
-            git branch: env.BRANCH_NAME,
+                git branch: env.BRANCH_NAME,
                 credentialsId: 'github-official-credentials',
                 url: 'https://github.com/ingSoftwareUmss/turismo-umss.git'
             }
         }
-        stage('Example Compile') {
+        stage('Compile') {
             agent { docker 'maven:3-alpine' }
             steps {
-                echo 'Hello, Maven at "${env.BRANCH_NAME}" ===== ' + env.BRANCH_NAME
-                sh "ls -a"
+                echo 'Compile Stage'
+                sh 'ls -a'
                 sh 'mvn --version'
+                sh 'mvn compile'
             }
         }
-        stage('Example Build') {
+        stage('Build') {
             agent { docker 'maven:3-alpine' }
             steps {
-                echo 'Hello UMSS'
-                sh "ls -a"
+                echo 'Build Stage'
+                sh 'ls -a'
                 sh 'mvn --version'
             }
         }
