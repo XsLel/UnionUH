@@ -2,7 +2,7 @@ pipeline {
     agent none
     stages {
         stage('Clone Repo') {
-            agent { 'devops-slave' }
+            agent { label 'devops' }
             steps {
             git branch: env.BRANCH_NAME,
                 credentialsId: 'github-official-credentials',
