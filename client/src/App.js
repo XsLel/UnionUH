@@ -10,11 +10,7 @@ function App() {
     <Router history={history}>
       <Switch>
         <Route exact path="/" component={Admin} />
-        <Route
-          exact
-          path="/registerRestaurant"
-          component={registerRestaurant}
-        />
+        <Route exact path="/registerRestaurant" component={registerRestaurant} />
         <Route exact path="/404" component={PageNotFound} />
         <Route component={PageNotFound} />
       </Switch>
