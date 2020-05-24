@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import { http } from "../../services";
 import { Container, Segment } from "semantic-ui-react";
@@ -83,9 +83,12 @@ class Home extends Component {
     } = this.state;
 
     return (
+      <Fragment>
+      <Carrusel carousel={carousel} />
       <Container>
+    
         <Segment loading={loading}>
-          <Carrusel carousel={carousel} />
+          
           <ViewInformation
             name={name}
             province={province}
@@ -102,6 +105,7 @@ class Home extends Component {
           {!found && <Redirect to="/404" />}
         </Segment>
       </Container>
+      </Fragment>
     );
   }
 }

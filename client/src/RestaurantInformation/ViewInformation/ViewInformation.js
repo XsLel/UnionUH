@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Segment } from "semantic-ui-react";
+import { Carousel } from "react-responsive-carousel";
 
 function showLink(list) {
   return (
