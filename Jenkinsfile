@@ -1,8 +1,8 @@
 pipeline {
-    agent none
+    agent { label 'devops' }
     stages {
         stage('Clone Repo') {
-            agent { label 'devops' }
+            //agent { label 'devops' }
             steps {
                 git branch: env.BRANCH_NAME,
                 credentialsId: 'github-official-credentials',
@@ -10,16 +10,16 @@ pipeline {
             }
         }
         stage('Compile') {
-            agent { docker 'maven:3-alpine' }
+            //agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Compile Stage'
-                sh 'ls -a'
-                sh 'mvn --version'
-                sh 'mvn compile'
+                sh 'chmod +x ./mvnw'
+                sh './mvnw --version'
+                sh './mvnw clean compile'
             }
         }
         stage('Build') {
-            agent { docker 'maven:3-alpine' }
+            //agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Build Stage'
                 sh 'ls -a'
