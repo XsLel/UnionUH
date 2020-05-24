@@ -26,12 +26,23 @@ pipeline {
                 sh './mvnw package'
             }
         }
-        //stage('Example Test') {
-        //    agent { docker 'openjdk:8-jre' }
-        //    steps {
-        //        echo 'Hello, JDK'
-        //        sh 'java -version'
-        //    }
-        //}
+
+        when {
+            branch 'dev'
+            environment name: 'DEPLOY_TO', value: 'development'
+            stage('Deploy in Dev') {
+                steps {
+                    echo 'Deploying'
+                    sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
+                }
+            }
+        }
+
+        stage('Deploy in Branch') {
+            steps {
+                echo 'Deploying'
+                sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
+            }
+        }
     }
 }
