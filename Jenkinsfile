@@ -37,12 +37,13 @@ pipeline {
                 sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
             }
         }
-        post {
-            always {
-                echo 'I will always say Hello again!'
-                emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                    subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: 'caleb.espinoza@outlook.com'
-            }
+    }
+
+    post {
+        always {
+            echo 'I will always say Hello again!'
+            emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: 'caleb.espinoza@outlook.com'
         }
     }
 }
