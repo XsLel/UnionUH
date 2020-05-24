@@ -27,18 +27,11 @@ pipeline {
             }
         }
 
-        when {
-            branch 'dev'
-            environment name: 'DEPLOY_TO', value: 'development'
-            stage('Deploy in Dev') {
-                steps {
-                    echo 'Deploying'
-                    sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
-                }
+        stage('Deploy') {
+            when {
+                branch 'dev'
+                environment name: 'DEPLOY_TO', value: 'development'
             }
-        }
-
-        stage('Deploy in Branch') {
             steps {
                 echo 'Deploying'
                 sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
