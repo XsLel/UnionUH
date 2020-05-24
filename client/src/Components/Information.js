@@ -32,11 +32,14 @@ const Inforestaurant = () => (
           </Card>
         </GridColumn>
         <GridColumn>
-          <Link to="/galeria-comida">Galeria Comida</Link>
+          <Link to="/restaurants/1/galeria-comida">Galeria Comida</Link>
         </GridColumn>
         <GridColumn>
           {" "}
-          <Link to="/galeria-restaurante"> Galeria Restaurante</Link>{" "}
+          <Link to="/restaurants/1/galeria-restaurante">
+            {" "}
+            Galeria Restaurante
+          </Link>{" "}
         </GridColumn>
       </GridRow>
     </Grid>
