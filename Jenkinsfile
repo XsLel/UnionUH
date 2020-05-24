@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo 'Build Stage'
                 sh 'ls -a'
-                sh 'mvn --version'
+                sh './mvnw package'
             }
         }
         //stage('Example Test') {
