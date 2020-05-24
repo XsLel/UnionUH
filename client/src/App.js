@@ -19,12 +19,6 @@ function App() {
           path="/restaurants/:restaurantId"
           component={RestaurantInformation}
         />
-        <Route exact path="/galeria-comida" component={GaleriaComida} />
-        <Route
-          exact
-          path="/galeria-restaurante"
-          component={GaleriaRestaurante}
-        />
         <Route exact path="/restaurante" component={Restaurante} />{" "}
         //Incorporarse con '/restaurants/:restaurantId'
         <Route
