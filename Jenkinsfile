@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy') {
             when {
                 branch 'dev'
-                environment name: 'DEPLOY_TO', value: 'development'
+                //environment name: 'DEPLOY_TO', value: 'development'
             }
             steps {
                 echo 'Deploying'
