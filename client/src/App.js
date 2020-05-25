@@ -7,6 +7,7 @@ import { PageNotFound } from "./common";
 import { GaleriaComida } from "./Components/GaleriaComida";
 import { Restaurante } from "./Components/Restaurante";
 import { GaleriaRestaurante } from "./Components/GaleriaRestaurante";
+import "semantic-ui-css/semantic.min.css";
 
 function App() {
   return (
