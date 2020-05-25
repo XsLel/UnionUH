@@ -7,11 +7,10 @@ import {
   Input,
   TextArea,
   Image,
+  submit,
 } from "semantic-ui-react";
-import useForm from "./Validations/useForm";
-
+import UseForm from "./Validations/useForm";
 import validate from "./Validations/validateForm";
-import "./index.css";
 
 const genderOptions = [
   { key: "m", text: "male", value: "male" },
@@ -20,8 +19,8 @@ const genderOptions = [
   { key: "o", text: "other", value: "other" },
 ];
 
-const registerRestaurant = () => {
-  const { handleChange, handleSubmit, values, errors } = useForm(
+const RegisterRestaurant = () => {
+  const { handleChange, handleSubmit, values, errors } = UseForm(
     submit,
     validate
   );
@@ -31,6 +30,7 @@ const registerRestaurant = () => {
   }
   return (
     <CenteredLayout>
+      <label>="Registro del Restaurante"</label>
       <Form onSubmit={handleSubmit} noValidate>
         <Form.Field
           control={Input}
@@ -73,6 +73,7 @@ const registerRestaurant = () => {
             placeholder="Tell us more about you..."
             value={values.informacionAdicional}
             onChange={handleChange}
+            style={{ resize: "none" }}
           />
           <Form.Field
             control={Input}
@@ -146,11 +147,11 @@ const registerRestaurant = () => {
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field control={Button}>Cancelar</Form.Field>
-          <Form.Field control={submit}>Guardar</Form.Field>
+          <Form.Field control={Button}>Guardar</Form.Field>
         </Form.Group>
       </Form>
     </CenteredLayout>
   );
 };
 
-export default registerRestaurant;
+export default RegisterRestaurant;
