@@ -20,7 +20,7 @@ const Commentrestaurant = () => (
     <Divider />
     <CommentGroup>
       <Comment>
-        <CommentAvatar as="a" />
+        <CommentAvatar src="/images/avatar/small/matt.jpg" />
         <CommentContent>
           <CommentAuthor>nick del autor</CommentAuthor>
           <CommentMetadata>
