@@ -20,7 +20,6 @@ function App() {
           path="/restaurants/:restaurantId"
           component={RestaurantInformation}
         />
-        <Route exact path="/restaurante" component={Restaurante} />{" "}
         //Incorporarse con '/restaurants/:restaurantId'
         <Route
           exact
