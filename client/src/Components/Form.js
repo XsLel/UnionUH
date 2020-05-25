@@ -1,201 +1,156 @@
-import React from "react";
+import React, { useState } from "react";
 import CenteredLayout from "../common/centeredLayout";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Select,
+  Input,
+  TextArea,
+  Image,
+} from "semantic-ui-react";
+import useForm from "./Validations/useForm";
+
+import validate from "./Validations/validateForm";
+import "./index.css";
+
+const genderOptions = [
+  { key: "m", text: "male", value: "male" },
+  { key: "j", text: "female", value: "female" },
+  { key: "k", text: "kale", value: "kale" },
+  { key: "o", text: "other", value: "other" },
+];
 
 const registerRestaurant = () => {
+  const { handleChange, handleSubmit, values, errors } = useForm(
+    submit,
+    validate
+  );
+
+  function submit() {
+    console.log("Submitted Succesfully");
+  }
   return (
     <CenteredLayout>
-      <div class="container">
-        <h4>REGISTRO DE RESTAURANTE</h4>
-        <form class="ui form" method="" id="formulario">
-          <div class="Field">
-            <label>Nombre Restaurante*</label>
-            <input
-              type="text"
-              size="6"
-              maxlength="50"
-              name="Nombre Restaurante"
-              placeholder="Nombre Restaurante"
-            ></input>
-          </div>
-          <div class="field">
-            <div class="two fields">
-              <div class="field">
-                <label>Dirección del Restaurante*</label>
-                <input
-                  type="text"
-                  size="6"
-                  maxlength="50"
-                  name="Direccion del Restaurante"
-                  placeholder="Direccion del Restaurante"
-                ></input>
-              </div>
-              <div class="field">
-                <label>Provincia*</label>
-
-                <select name="Provincia">
-                  <option>Arani</option>
-                  <option>Arque</option>
-                  <option>Ayopaya</option>
-                  <option>Bolivar</option>
-                  <option>Campero</option>
-                  <option>Capinota</option>
-                  <option>Cercado</option>
-                  <option>Chapare</option>
-                  <option>Esteban Arze</option>
-                  <option>German Jordan</option>
-                  <option>Jose Carrasco</option>
-                  <option>Mizque</option>
-                  <option>Punata</option>
-                  <option>Quillacollo</option>
-                  <option>Tapacari</option>
-                  <option>Tiraque</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <div class="two fields">
-              <div class="field">
-                <label>Información adicional sobre la dirección</label>
-                <input
-                  resize="none"
-                  maxlength="100"
-                  name="comentarios"
-                  rows="5"
-                  cols="10"
-                  placeholder="Escribe un comentario"
-                ></input>
-              </div>
-              <div class="field">
-                <label>Correo Electrónico</label>
-                <input
-                  type="email"
-                  maxlength="50"
-                  name="email"
-                  placeholder="email"
-                ></input>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <div class="two fields">
-              <div class="field">
-                <label>Dirección de su sitio web</label>
-                <input
-                  type="text"
-                  maxlength="100"
-                  name="Direccion Web"
-                  placeholder="Dirección sitio web"
-                ></input>
-              </div>
-              <div class="field">
-                <label>Teléfono *</label>
-                <input
-                  type="number"
-                  maxlength="50"
-                  name="Telefono"
-                  placeholder="Teléfono"
-                ></input>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <div class="two fields">
-              <div class="field">
-                <label>Dirección Página de Publicidad </label>
-                <input
-                  type="text"
-                  maxlength="100"
-                  name="Dirreccion Publicidad"
-                  placeholder="Dirección Página de Publicidad"
-                ></input>
-              </div>
-              <div class="field">
-                <label>Categoría del restaurante*</label>
-                <input
-                  type="text"
-                  name="Categoria"
-                  placeholder="Categoría"
-                ></input>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <div class="two fields">
-              <div class="field">
-                <label>fotografía del logo del restaurante</label>
-                <br></br>
-                <input
-                  name="archivo"
-                  id="archivo"
-                  type="file"
-                  accept="image/*"
-                ></input>
-                <br></br>
-                <br></br>
-                <input type="submit" value="Registrar"></input>
-              </div>
-              <div class="field">
-                <label>Descripción del Restaurante</label>
-                <input
-                  type="text"
-                  maxlength="600"
-                  name="Descripcion"
-                  placeholder="Descripción del Restaurante"
-                ></input>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+      <Form onSubmit={handleSubmit} noValidate>
+        <Form.Field
+          control={Input}
+          label="Nombre del Restaurante"
+          name="nombreRestaurante"
+          maxLength="50"
+          placeholder="Nombre del Restaurante"
+          value={values.nombreRestaurante}
+          onChange={handleChange}
+        />
+        <Form.Group widths="equal">
+          <Form.Field
+            control={Input}
+            label="Dirección del Restaurante"
+            name="direccionRestaurante"
+            maxLength="50"
+            placeholder="DirecciÓn del Restaurante"
+            value={values.direccionRestaurante}
+            onChange={handleChange}
+          />
+          <Form.Field
+            control={Select}
+            options={genderOptions}
+            label={{
+              children: "Provincia",
+              htmlFor: "form-select-control-gender",
+            }}
+            name="provincia"
+            placeholder="Provincia"
+            search
+            searchInput={{ id: "form-select-control-gender" }}
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.Field
+            control={TextArea}
+            label="Información adicional del restaurante"
+            name="informacionAdicional"
+            maxLength="50"
+            placeholder="Tell us more about you..."
+            value={values.informacionAdicional}
+            onChange={handleChange}
+          />
+          <Form.Field
+            control={Input}
+            label="Correo Electrónico"
+            name="email"
+            type="email"
+            maxLength="50"
+            placeholder="Correo Electrónico"
+            value={values.email}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.Field
+            control={Input}
+            label="Dirección de su sitio web"
+            name="direccionWeb"
+            maxLength="50"
+            placeholder="Dirección de su sitio web"
+            value={values.direccionWeb}
+            onChange={handleChange}
+          />
+          <Form.Field
+            control={Input}
+            label="Teléfono"
+            name="telefono"
+            maxLength="50"
+            placeholder="Teléfono"
+            value={values.telefono}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.Field
+            control={Input}
+            label="Dirección página de publicidad"
+            name="publicidad"
+            maxLength="50"
+            placeholder="Dirección página de publicidad"
+            value={values.publicidad}
+            onChange={handleChange}
+          />
+          <Form.Field
+            control={Input}
+            label="Categoría del Restaurante"
+            name="categoria"
+            maxLength="50"
+            placeholder="Categoría del Restaurante"
+            value={values.categoria}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.Field>
+            <label>Fotografía del logo del Restaurante"</label>
+            <Image
+              src="https://react.semantic-ui.com/images/wireframe/square-image.png"
+              size="small"
+              circular
+            />
+          </Form.Field>
+          <Form.Field
+            control={TextArea}
+            label="Descripción del Restaurante"
+            name="descripción"
+            maxLength="50"
+            placeholder="Descripción del Restaurante"
+            value={values.descripción}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.Field control={Button}>Cancelar</Form.Field>
+          <Form.Field control={submit}>Guardar</Form.Field>
+        </Form.Group>
+      </Form>
     </CenteredLayout>
   );
 };
-
-//onsubmit="return validateForm()" ==>    usar con guardar acrhivos
-
-//validar tamaño de la foto
-//<input type="submit" value="Cargar" name="crear" ></input> USAR PARA BOTON GUARDAR
-var form = document.getElementById("root");
-
-form.addEventListener("submit", validar);
-
-function validar(event) {
-  var o = document.getElementById("archivo");
-  var email = document.forms["formulario"]["email"].value;
-
-  var foto = o.files[0];
-  var c = 0;
-
-  if (email === "") {
-    alert("Llene el campo Email");
-  } else {
-    if (o.files.length === 0) {
-      c = 1;
-      alert(
-        "Ingrese una imagen con alguno de los siguientes formatos: .jpeg/.jpg/.png/.bpm/ etc"
-      );
-    } else {
-      var img = new Image();
-      img.onload = function () {
-        if (this.width.toFixed(0) != 144 && this.height.toFixed(0) != 144) {
-          c = 1;
-          alert("Las medidas deben ser: 144 x 144");
-          //alert(c);
-        } else {
-          alert("Imagen correcta :)");
-        }
-      };
-
-      img.src = URL.createObjectURL(foto);
-    }
-  }
-  if (c === 1) event.preventDefault();
-}
-
-//function validarLetras(){
-//return /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-//}
 
 export default registerRestaurant;

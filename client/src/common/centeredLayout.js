@@ -1,6 +1,6 @@
 import React from "react";
 
 export const CenteredLayout = (props) => (
-  <div style={{ width: 500 }}>{props.children}</div>
+  <div style={{ width: 1000 }}>{props.children}</div>
 );
 export default CenteredLayout;
