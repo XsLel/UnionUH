@@ -3,7 +3,7 @@ import { Button, Menu, MenuItem, MenuMenu, Search } from "semantic-ui-react";
 
 const Navbar = (props) => (
   <div>
-    <Menu inverted attached="top">
+    <Menu attached="top">
       <MenuMenu position="right">
         <MenuItem>
           <Search></Search>

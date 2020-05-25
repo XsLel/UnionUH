@@ -2,8 +2,11 @@ import React, { Component, Fragment } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import { http } from "../../services";
 import { Container, Segment } from "semantic-ui-react";
-import ViewInformation from "../ViewInformation/ViewInformation";
 import Carrusel from "../Carrusel/Carrusel";
+import Information from "../../Components/Information";
+import Menu from "../../Components/Menu";
+import Comments from "../../Components/Comments";
+import Footer from "../../Components/Footer";
 
 class Home extends Component {
   constructor(props) {
@@ -83,29 +86,34 @@ class Home extends Component {
     } = this.state;
 
     return (
+
       <Fragment>
+      <Menu />
       <Carrusel carousel={carousel} />
       <Container>
     
         <Segment loading={loading}>
           
-          <ViewInformation
-            name={name}
-            province={province}
-            information={information}
-            email={email}
-            commercial={commercial}
-            description={description}
-            direction={direction}
-            category={category}
-            website={website}
-            phone={phone}
-            linkPhotos={home}
-          />
+          <Information
+              name={name}
+              province={province}
+              information={information}
+              email={email}
+              commercial={commercial}
+              description={description}
+              direction={direction}
+              category={category}
+              website={website}
+              phone={phone}
+              linkPhotos={home}
+            />
           {!found && <Redirect to="/404" />}
         </Segment>
+        <Comments />
       </Container>
+      <Footer />
       </Fragment>
+
     );
   }
 }
