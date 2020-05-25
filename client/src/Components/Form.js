@@ -1,150 +1,155 @@
 import React from "react";
+import CenteredLayout from "../common/centeredLayout";
+import { Button, Checkbox, Form } from "semantic-ui-react";
 
 const registerRestaurant = () => {
   return (
-    <div class="container">
-      <h4>REGISTRO DE RESTAURANTE</h4>
-      <form class="ui form" method="" id="formulario">
-        <div class="Field">
-          <label>Nombre Restaurante*</label>
-          <input
-            type="text"
-            size="6"
-            maxlength="50"
-            name="Nombre Restaurante"
-            placeholder="Nombre Restaurante"
-          ></input>
-        </div>
-        <div class="field">
-          <div class="two fields">
-            <div class="field">
-              <label>Dirección del Restaurante*</label>
-              <input
-                type="text"
-                size="6"
-                maxlength="50"
-                name="Direccion del Restaurante"
-                placeholder="Direccion del Restaurante"
-              ></input>
-            </div>
-            <div class="field">
-              <label>Provincia*</label>
-              <select name="Provincia">
-                <option>Arani</option>
-                <option>Arque</option>
-                <option>Ayopaya</option>
-                <option>Bolivar</option>
-                <option>Campero</option>
-                <option>Capinota</option>
-                <option>Cercado</option>
-                <option>Chapare</option>
-                <option>Esteban Arze</option>
-                <option>German Jordan</option>
-                <option>Jose Carrasco</option>
-                <option>Mizque</option>
-                <option>Punata</option>
-                <option>Quillacollo</option>
-                <option>Tapacari</option>
-                <option>Tiraque</option>
-              </select>
+    <CenteredLayout>
+      <div class="container">
+        <h4>REGISTRO DE RESTAURANTE</h4>
+        <form class="ui form" method="" id="formulario">
+          <div class="Field">
+            <label>Nombre Restaurante*</label>
+            <input
+              type="text"
+              size="6"
+              maxlength="50"
+              name="Nombre Restaurante"
+              placeholder="Nombre Restaurante"
+            ></input>
+          </div>
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label>Dirección del Restaurante*</label>
+                <input
+                  type="text"
+                  size="6"
+                  maxlength="50"
+                  name="Direccion del Restaurante"
+                  placeholder="Direccion del Restaurante"
+                ></input>
+              </div>
+              <div class="field">
+                <label>Provincia*</label>
+
+                <select name="Provincia">
+                  <option>Arani</option>
+                  <option>Arque</option>
+                  <option>Ayopaya</option>
+                  <option>Bolivar</option>
+                  <option>Campero</option>
+                  <option>Capinota</option>
+                  <option>Cercado</option>
+                  <option>Chapare</option>
+                  <option>Esteban Arze</option>
+                  <option>German Jordan</option>
+                  <option>Jose Carrasco</option>
+                  <option>Mizque</option>
+                  <option>Punata</option>
+                  <option>Quillacollo</option>
+                  <option>Tapacari</option>
+                  <option>Tiraque</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="field">
-          <div class="two fields">
-            <div class="field">
-              <label>Información adicional sobre la dirección</label>
-              <input
-                resize="none"
-                maxlength="100"
-                name="comentarios"
-                rows="5"
-                cols="10"
-                placeholder="Escribe un comentario"
-              ></input>
-            </div>
-            <div class="field">
-              <label>Correo Electrónico</label>
-              <input
-                type="email"
-                maxlength="50"
-                name="email"
-                placeholder="email"
-              ></input>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <div class="two fields">
-            <div class="field">
-              <label>Dirección de su sitio web</label>
-              <input
-                type="text"
-                maxlength="100"
-                name="Direccion Web"
-                placeholder="Dirección sitio web"
-              ></input>
-            </div>
-            <div class="field">
-              <label>Teléfono *</label>
-              <input
-                type="number"
-                maxlength="50"
-                name="Telefono"
-                placeholder="Teléfono"
-              ></input>
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label>Información adicional sobre la dirección</label>
+                <input
+                  resize="none"
+                  maxlength="100"
+                  name="comentarios"
+                  rows="5"
+                  cols="10"
+                  placeholder="Escribe un comentario"
+                ></input>
+              </div>
+              <div class="field">
+                <label>Correo Electrónico</label>
+                <input
+                  type="email"
+                  maxlength="50"
+                  name="email"
+                  placeholder="email"
+                ></input>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="field">
-          <div class="two fields">
-            <div class="field">
-              <label>Dirección Página de Publicidad </label>
-              <input
-                type="text"
-                maxlength="100"
-                name="Dirreccion Publicidad"
-                placeholder="Dirección Página de Publicidad"
-              ></input>
-            </div>
-            <div class="field">
-              <label>Categoría del restaurante*</label>
-              <input
-                type="text"
-                name="Categoria"
-                placeholder="Categoría"
-              ></input>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <div class="two fields">
-            <div class="field">
-              <label>fotografía del logo del restaurante</label>
-              <br></br>
-              <input
-                name="archivo"
-                id="archivo"
-                type="file"
-                accept="image/*"
-              ></input>
-              <br></br>
-              <br></br>
-              <input type="submit" value="Registrar"></input>
-            </div>
-            <div class="field">
-              <label>Descripción del Restaurante</label>
-              <input
-                type="text"
-                maxlength="600"
-                name="Descripcion"
-                placeholder="Descripción del Restaurante"
-              ></input>
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label>Dirección de su sitio web</label>
+                <input
+                  type="text"
+                  maxlength="100"
+                  name="Direccion Web"
+                  placeholder="Dirección sitio web"
+                ></input>
+              </div>
+              <div class="field">
+                <label>Teléfono *</label>
+                <input
+                  type="number"
+                  maxlength="50"
+                  name="Telefono"
+                  placeholder="Teléfono"
+                ></input>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-    </div>
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label>Dirección Página de Publicidad </label>
+                <input
+                  type="text"
+                  maxlength="100"
+                  name="Dirreccion Publicidad"
+                  placeholder="Dirección Página de Publicidad"
+                ></input>
+              </div>
+              <div class="field">
+                <label>Categoría del restaurante*</label>
+                <input
+                  type="text"
+                  name="Categoria"
+                  placeholder="Categoría"
+                ></input>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label>fotografía del logo del restaurante</label>
+                <br></br>
+                <input
+                  name="archivo"
+                  id="archivo"
+                  type="file"
+                  accept="image/*"
+                ></input>
+                <br></br>
+                <br></br>
+                <input type="submit" value="Registrar"></input>
+              </div>
+              <div class="field">
+                <label>Descripción del Restaurante</label>
+                <input
+                  type="text"
+                  maxlength="600"
+                  name="Descripcion"
+                  placeholder="Descripción del Restaurante"
+                ></input>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </CenteredLayout>
   );
 };
 
