@@ -86,15 +86,12 @@ class Home extends Component {
     } = this.state;
 
     return (
-
       <Fragment>
-      <Menu />
-      <Carrusel carousel={carousel} />
-      <Container>
-    
-        <Segment loading={loading}>
-          
-          <Information
+        <Menu />
+        <Carrusel carousel={carousel} />
+        <Container>
+          <Segment loading={loading}>
+            <Information
               name={name}
               province={province}
               information={information}
@@ -107,13 +104,11 @@ class Home extends Component {
               phone={phone}
               linkPhotos={home}
             />
-          {!found && <Redirect to="/404" />}
-        </Segment>
-        <Comments />
-      </Container>
-      <Footer />
+            {!found && <Redirect to="/404" />}
+          </Segment>
+        </Container>
+        <Footer />
       </Fragment>
-
     );
   }
 }

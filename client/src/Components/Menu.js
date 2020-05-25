@@ -6,10 +6,6 @@ const Navbar = (props) => (
     <Menu attached="top">
       <MenuMenu position="right">
         <MenuItem>
-          <Search></Search>
-        </MenuItem>
-
-        <MenuItem>
           <Button primary>inicar sesion</Button>
         </MenuItem>
       </MenuMenu>
