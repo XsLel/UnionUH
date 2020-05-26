@@ -34,6 +34,7 @@ public Iterable<ComentarioResponse> getAll(){//get//read
 			.stream()
 			.sorted(Comparator.comparing(Comentario::getIdcomentario))
 			.map(comnt->{
+				
 				System.out.println(comnt.toString());
 				
 				ComentarioResponse response = modelMapper.map(comnt, ComentarioResponse.class);
@@ -41,6 +42,7 @@ public Iterable<ComentarioResponse> getAll(){//get//read
 				System.out.println(response.toString());
 				
 				response.setIdComentario(comnt.getIdcomentario());
+				
 				//response.setIdLugarTuristico(comnt.);
 				return response;
 	})    
@@ -67,6 +69,7 @@ public ComentarioResponse getById(Integer comntId) {//get//read
 }
 
 public ComentarioResponse save(ComentarioResponse comnt) {//post//create
+	
 	System.out.println(comnt.toString());
 	
 	 Comentario converted = modelMapper.map(comnt,Comentario.class);
