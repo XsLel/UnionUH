@@ -1,8 +1,9 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { Form, Icon, Modal, Button } from "semantic-ui-react";
 import useForm from "./useForm";
 import validate from "./validate";
+import { useHistory } from "react-router-dom";
+import { Form, Icon, Modal, Button } from "semantic-ui-react";
+import { http } from "../../services";
 import "./TouristicPlaceForm.css";
 
 export default function TouristicPlaceForm() {
@@ -10,8 +11,13 @@ export default function TouristicPlaceForm() {
   const [openModal, setOpenModal] = React.useState(false);
   const history = useHistory();
 
-  function submit() {
-    console.log("Aun nada");
+  async function submit() {
+    try {
+      await http.request({ url: "/touristic-places", method: "POST", data: values });
+      history.push("/lugares-turisticos");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -106,12 +112,7 @@ export default function TouristicPlaceForm() {
               />
             </Modal.Actions>
           </Modal>
-          <Form.Button
-            fluid
-            positive
-            type="submit"
-            floated="right"
-            size="large">
+          <Form.Button fluid positive type="submit" floated="right" size="large">
             Aceptar
           </Form.Button>
         </Form.Group>
