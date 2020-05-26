@@ -18,8 +18,7 @@ const useForm = (callback, validate) => {
     setIsSubmitting(true);
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = ({ target: { name, value } }) => {
     setValues({
       ...values,
       [name]: value,
