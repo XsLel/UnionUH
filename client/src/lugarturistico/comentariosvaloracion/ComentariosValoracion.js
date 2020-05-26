@@ -19,8 +19,8 @@ const ComentariosValoracion = () => {
         usuarioAct: null,
         idLugarTuristico: 1,
         lugarTuristicoAct: null,
-        tituloComentario: "Bienvenidos a Berger",
-        descripcionComentario: "Fifii",
+        tituloComentario: "",
+        descripcionComentario: "",
         respuesta1: "si",
         respuesta2: "no",
         respuesta3: "si",
@@ -75,7 +75,7 @@ const ComentariosValoracion = () => {
                 
                 </div>
             </div>
-            <Enviar/>
+            <Enviar resultado={resultado}/>
         </div>
     )
 }
