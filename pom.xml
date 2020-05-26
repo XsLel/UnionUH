@@ -9,14 +9,14 @@
     <relativePath/>
   </parent>
   <groupId>com.umss.dev.training</groupId>
-  <artifactId>llajta-tours-server</artifactId>
+  <artifactId>llajta-tours</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Llajta Tours</name>
-  <description>&#xD;
-	Por la gran información turística que se podría proporcionar de Cochabamba,&#xD;
-	Bolivia nace la intención de crear una plataforma que permita acceder de&#xD;
-	forma fácil y rápida a dicha información que será solicitada por turistas,&#xD;
-	o incluso por los mismos ciudadanos que no conocen todo de Cochabamba.&#xD;
+  <description>
+	Por la gran información turística que se podría proporcionar de Cochabamba,
+	Bolivia nace la intención de crear una plataforma que permita acceder de
+	forma fácil y rápida a dicha información que será solicitada por turistas,
+	o incluso por los mismos ciudadanos que no conocen todo de Cochabamba.
   </description>
   <properties>
     <java.version>14</java.version>
@@ -58,6 +58,11 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
       <scope>runtime</scope>
     </dependency>
   </dependencies>
