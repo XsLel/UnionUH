@@ -49,14 +49,12 @@ class Listado extends Component {
   render() {
     return (
       <div>
-        {this.state.lugaresTuristicos &&
-          console.log(this.state.lugaresTuristicos)}
         <Main titulo={this.state.titulo} />
         <Segment>
           <Grid columns={3} divided>
             {this.state.lugaresTuristicos &&
               this.state.lugaresTuristicos.map((it) => (
-                <Grid.Row>
+                <Grid.Row key={it.IDLugarTuristico}>
                   <Grid.Column>
                     <Image src={image} size="medium" />
                   </Grid.Column>
@@ -65,10 +63,7 @@ class Listado extends Component {
                     <Header as="h3">Calificacion : {it.promedio}</Header>
                   </Grid.Column>
                   <Grid.Column>
-                    <Dropdown
-                      text="califique"
-                      onChange={(event) => this.valueToState(event.target)}
-                    >
+                    <Dropdown>
                       <Dropdown.Menu>
                         <Dropdown.Item text="1" />
                         <Dropdown.Item text="2" />

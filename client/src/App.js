@@ -1,22 +1,10 @@
 import React from "react";
-import { Router, Switch, Route } from "react-router-dom";
-import { history } from "./services";
-import Footer from "./footer";
-import Listado from "./listado";
-import Header from "./header";
-import Mosaico from "./mosaico";
+import Start from "./start";
 function App() {
   return (
-    <Router history={history}>
-      <div className="App">
-        <Header />
-        <Switch>
-          <Route path="/" exact component={Listado} />
-          <Route path="/mosaico" exact component={Mosaico} />
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
+    <div className="App">
+      <Start />
+    </div>
   );
 }
 

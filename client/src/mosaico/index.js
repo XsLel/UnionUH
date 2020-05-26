@@ -28,7 +28,11 @@ class Mosaico extends Component {
         <div className="ui two column grid">
           {this.state.lugaresTuristicos &&
             this.state.lugaresTuristicos.map((it) => (
-              <Item titulo={it.NombreLugarTuristico} rank={it.promedio} />
+              <Item
+                key={it.IDLugarTuristico}
+                titulo={it.NombreLugarTuristico}
+                rank={it.promedio}
+              />
             ))}
         </div>
       </div>
