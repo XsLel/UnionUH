@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Menu, MenuItem, MenuMenu, Search } from "semantic-ui-react";
+import { Button, Menu, MenuItem, MenuMenu } from "semantic-ui-react";
 
 const Navbar = (props) => (
   <div>

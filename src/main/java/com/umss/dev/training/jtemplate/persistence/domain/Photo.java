@@ -7,9 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Foto {
+@Table(name = "photos")
+public class Photo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,23 +19,36 @@ public class Foto {
 	
 	@ManyToOne
 	@JoinColumn(name = "restaurant_id")
-	private Restaurante restaurant;
+	private Restaurant restaurant;
 	
 	private String url;
 	private boolean carousel;
 	private boolean food;
 	private boolean home;
 	
+	public Photo() {
+		super();
+	}
+	
+	public Photo(int id, String url, boolean carousel, boolean food, boolean home) {
+		super();
+		this.id = id;
+		this.url = url;
+		this.carousel = carousel;
+		this.food = food;
+		this.home = home;
+	}
+
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Restaurante getRestaurant() {
+	public Restaurant getRestaurant() {
 		return restaurant;
 	}
-	public void setRestaurant(Restaurante restaurant) {
+	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}
 	public String getUrl() {

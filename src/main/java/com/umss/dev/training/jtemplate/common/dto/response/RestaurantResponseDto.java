@@ -1,9 +1,8 @@
 package com.umss.dev.training.jtemplate.common.dto.response;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class RestauranteResponseDto {
+public class RestaurantResponseDto {
 	
 	private int id;
 	private String name;
@@ -16,16 +15,7 @@ public class RestauranteResponseDto {
 	private String commercial;
 	private String category;
 	private String description;
-	private List<FotoResponseDto> photos;
-	
-	public void addListFotoSQL(List<FotoQuerySQL> listFotoSQL) {
-		photos = new ArrayList<FotoResponseDto>();
-		FotoResponseDto item;
-		while(!listFotoSQL.isEmpty()) {
-			item = listFotoSQL.remove(0).getResponse();
-			photos.add(item);
-		}
-	}
+	private List<PhotoResponseDto> photos;
 	
 	public int getId() {
 		return id;
@@ -93,10 +83,10 @@ public class RestauranteResponseDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public List<FotoResponseDto> getPhotos() {
+	public List<PhotoResponseDto> getPhotos() {
 		return photos;
 	}
-	public void setPhotos(List<FotoResponseDto> photos) {
+	public void setPhotos(List<PhotoResponseDto> photos) {
 		this.photos = photos;
 	}
 }

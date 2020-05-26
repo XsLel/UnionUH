@@ -1,16 +1,13 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import {
   Grid,
   GridRow,
   GridColumn,
   ListContent,
   Divider,
-  Image,
-  ListItem,
-  ListIcon,
 } from "semantic-ui-react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Inforestaurant = (props) => {
   const {
@@ -24,8 +21,9 @@ const Inforestaurant = (props) => {
     category,
     website,
     phone,
-    linkPhotos,
   } = props;
+
+  let { url } = useRouteMatch();
 
   return (
     <>
@@ -68,12 +66,12 @@ const Inforestaurant = (props) => {
           </GridColumn>
 
           <GridColumn>
-            <Link to="/restaurants/1/galeria-comida">Galeria Comida</Link>
+            <Link to={`${url}/food-gallery`}>Galeria Comida</Link>
           </GridColumn>
 
           <GridColumn>
             {" "}
-            <Link to="/restaurants/1/galeria-restaurante">
+            <Link to={`${url}/restaurant-gallery`}>
               {" "}
               Galeria Restaurante
             </Link>{" "}

@@ -1,6 +1,6 @@
 package com.umss.dev.training.jtemplate.common.dto.response;
 
-public class FotoQuerySQL {
+public class PhotoResponseDto {
 
 	private int id;
 	private String url;
@@ -8,23 +8,17 @@ public class FotoQuerySQL {
 	private boolean food;
 	private boolean home;
 	
-	public FotoQuerySQL(int id, String url, boolean carousel, boolean food, boolean home) {
+	public PhotoResponseDto() {
+		super();
+	}
+	
+	public PhotoResponseDto(int id, String url, boolean carousel, boolean food, boolean home) {
 		super();
 		this.id = id;
 		this.url = url;
 		this.carousel = carousel;
 		this.food = food;
 		this.home = home;
-	}
-	
-	public FotoResponseDto getResponse() {
-		FotoResponseDto res = new FotoResponseDto();
-		res.setId(id);
-		res.setUrl(url);
-		res.setCarousel(carousel);
-		res.setFood(food);
-		res.setHome(home);
-		return res;
 	}
 
 	public int getId() {
@@ -54,7 +48,7 @@ public class FotoQuerySQL {
 	public boolean isFood() {
 		return food;
 	}
-
+	
 	public void setFood(boolean food) {
 		this.food = food;
 	}
@@ -84,7 +78,7 @@ public class FotoQuerySQL {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		FotoQuerySQL other = (FotoQuerySQL) obj;
+		PhotoResponseDto other = (PhotoResponseDto) obj;
 		if (id != other.id)
 			return false;
 		if (url == null) {

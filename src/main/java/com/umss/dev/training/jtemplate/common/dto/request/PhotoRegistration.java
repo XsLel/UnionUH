@@ -1,49 +1,38 @@
-package com.umss.dev.training.jtemplate.common.dto.response;
+package com.umss.dev.training.jtemplate.common.dto.request;
 
-public class FotoResponseDto {
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-	private int id;
-	private String url;
-	private boolean carousel;
-	private boolean food;
-	private boolean home;
+public class PhotoRegistration {
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	@NotBlank(message = "El campo URL no puede estar vacío")
+	private String url;
+	private boolean carousel = false;
+	@NotNull(message = "El campo Food no puede estar vacío")
+	private boolean food;
+	private boolean home = false;
+	
 	public String getUrl() {
 		return url;
 	}
-
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
 	public boolean isCarousel() {
 		return carousel;
 	}
-
 	public void setCarousel(boolean carousel) {
 		this.carousel = carousel;
 	}
-
 	public boolean isFood() {
 		return food;
 	}
-	
 	public void setFood(boolean food) {
 		this.food = food;
 	}
-
 	public boolean isHome() {
 		return home;
 	}
-
 	public void setHome(boolean home) {
 		this.home = home;
 	}

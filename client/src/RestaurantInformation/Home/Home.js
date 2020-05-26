@@ -5,7 +5,6 @@ import { Container, Segment } from "semantic-ui-react";
 import Carrusel from "../Carrusel/Carrusel";
 import Information from "../../Components/Information";
 import Menu from "../../Components/Menu";
-import Comments from "../../Components/Comments";
 import Footer from "../../Components/Footer";
 
 class Home extends Component {

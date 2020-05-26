@@ -4,9 +4,8 @@ import { history } from "./services";
 import { Admin } from "./Admin/Admin";
 import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
 import { PageNotFound } from "./common";
-import { GaleriaComida } from "./Components/GaleriaComida";
-import { Restaurante } from "./Components/Restaurante";
-import { GaleriaRestaurante } from "./Components/GaleriaRestaurante";
+import { FoodGallery } from "./Components/FoodGallery";
+import { RestaurantGallery } from "./Components/RestaurantGallery";
 import "semantic-ui-css/semantic.min.css";
 
 function App() {
@@ -20,16 +19,15 @@ function App() {
           path="/restaurants/:restaurantId"
           component={RestaurantInformation}
         />
-        //Incorporarse con '/restaurants/:restaurantId'
         <Route
           exact
-          path="/restaurants/:restaurantId/galeria-comida"
-          component={GaleriaComida}
+          path="/restaurants/:restaurantId/food-gallery"
+          component={FoodGallery}
         />
         <Route
           exact
-          path="/restaurants/:restaurantId/galeria-restaurante"
-          component={GaleriaRestaurante}
+          path="/restaurants/:restaurantId/restaurant-gallery"
+          component={RestaurantGallery}
         />
         <Route component={PageNotFound} />
       </Switch>
