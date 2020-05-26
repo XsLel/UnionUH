@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import { http } from "../../services";
 import { Container, Segment } from "semantic-ui-react";
-import Carousel from "../carousel/carousel";
+import Carousel from "../carousel/carousel"; //// carrusel >>Carousel
 import Information from "../../Components/Information";
 import Menu from "../../Components/Menu";
 import Footer from "../../Components/Footer";
@@ -10,7 +10,7 @@ import Footer from "../../Components/Footer";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true, found: true, carousel: [], home: [] };
+    this.state = { loading: true, found: true, carousel: [], home: [] }; //// carrusel >>Carousel
   }
 
   componentDidMount() {
@@ -80,7 +80,7 @@ class Home extends Component {
       category,
       website,
       phone,
-      carousel,
+      carousel, //// carrusel >>Carousel
       home,
     } = this.state;
 

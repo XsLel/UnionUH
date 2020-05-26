@@ -17,7 +17,8 @@ function showUrl(list) {
 }
 
 export default function carousel(props) {
-  const { carousel } = props;
+  //// carrusel >>Carousel
+  const { carousel } = props; //// carrusel >>Carousel
 
   return (
     <Fragment>
