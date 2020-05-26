@@ -16,7 +16,7 @@ function showUrl(list) {
   );
 }
 
-export default function Carrusel(props) {
+export default function carousel(props) {
   const { carousel } = props;
 
   return (
