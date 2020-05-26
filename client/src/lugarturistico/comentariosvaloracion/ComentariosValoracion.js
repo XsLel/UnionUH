@@ -38,7 +38,7 @@ const ComentariosValoracion = () => {
     
     const calificacion =(Cali)=>{
         resultado.calificacionGeneral=Cali;
-        console.log('esto es de state',resultado);
+        console.log('esto es el resultado',resultado);
          ServicioComentario.getAll().then(response => {
             console.log(response.data);
           })

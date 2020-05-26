@@ -12,9 +12,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Admin} />
         <Route exact path="/comentariosvaloracion" component={ComentariosValoracion}/>
-        
-        <Route exact path="/404" component={PageNotFound} />
         <Route component={PageNotFound} />
+        <Route exact path="/404" component={PageNotFound} />
        
       </Switch>
     </Router>
