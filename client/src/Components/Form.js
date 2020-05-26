@@ -133,6 +133,7 @@ const RegisterRestaurant = () => {
               src="https://react.semantic-ui.com/images/wireframe/square-image.png"
               size="small"
               circular
+              name="fotoRestaurante"
             />
           </Form.Field>
           <Form.Field

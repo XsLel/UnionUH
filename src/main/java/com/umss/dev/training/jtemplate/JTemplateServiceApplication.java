@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan({"com.umss.dev.training.controller"})
+//@ComponentScan({"com.umss.dev.training.controller"})
 @SpringBootApplication
 public class JTemplateServiceApplication {
 
