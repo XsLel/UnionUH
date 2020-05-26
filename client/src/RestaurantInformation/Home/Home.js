@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import { http } from "../../services";
 import { Container, Segment } from "semantic-ui-react";
-import Carrusel from "../Carrusel/Carrusel";
+import Carrusel from "../carousel/carousel";
 import Information from "../../Components/Information";
 import Menu from "../../Components/Menu";
 import Footer from "../../Components/Footer";
