@@ -23,7 +23,10 @@ handleSubmit(event) {
  }
 
 componentDidMount() { 
-  Axios.get("http://localhost:8585/comentario").then(res=>this.setState({dates:res.data}))
+  Axios.get("http://localhost:8585/comentario/fechas").then(res=>this.setState({dates:res.data}))
+}
+actualizar(month){
+  console.log(month);
 }
 
 render(){
@@ -32,9 +35,9 @@ return(
       <form onSubmit={this.handleSubmit}>
         <select value={this.state.value} onChange={this.handleChange}>
             <option date="titulo">Seleccione una fecha</option>
-              {this.state.dates.map((obj=>(<option date={obj.month}>{obj.month_text}   {obj.year}</option>)))}
+              {this.state.dates.map((obj=>(<option date={obj.month} 
+              onAnimationEnd={this.actualizar(obj.month_text)}>{obj.month_text}   {obj.year}</option>)))}
         </select>
-        <input type="submit" value="Enviar"/>
         </form> 
       )
     }
