@@ -1,19 +1,10 @@
 import React from "react";
-import { Router, Switch, Route } from "react-router-dom";
-import { history } from "./services";
-import { Admin } from "./Admin/Admin";
-import { PageNotFound } from "./common";
-import "semantic-ui-css/semantic.min.css";
-
+import Start from "./start";
 function App() {
   return (
-    <Router history={history}>
-      <Switch>
-        <Route exact path="/" component={Admin} />
-        <Route exact path="/404" component={PageNotFound} />
-        <Route component={PageNotFound} />
-      </Switch>
-    </Router>
+    <div className="App">
+      <Start />
+    </div>
   );
 }
 
