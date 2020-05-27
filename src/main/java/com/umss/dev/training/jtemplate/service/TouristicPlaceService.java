@@ -1,7 +1,11 @@
 package com.umss.dev.training.jtemplate.service;
 
+import java.sql.SQLException;
+
+import org.hibernate.JDBCException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.umss.dev.training.jtemplate.common.dto.request.TouristicPlaceRegistrationDto;
@@ -21,10 +25,13 @@ public class TouristicPlaceService {
         this.modelMapper = modelMapper;
     }
 
-    public TouristicPlaceResponseDto save(TouristicPlaceRegistrationDto touristicPlaceReq) {
+    public TouristicPlaceResponseDto save(TouristicPlaceRegistrationDto touristicPlaceReq) throws SQLException {
         TouristicPlace touristicPlace = modelMapper.map(touristicPlaceReq, TouristicPlace.class);
-        touristicPlace = repository.save(touristicPlace);
-        TouristicPlaceResponseDto touristicPlaceRes = modelMapper.map(touristicPlace, TouristicPlaceResponseDto.class);
-        return touristicPlaceRes;
+        try {
+            touristicPlace = repository.save(touristicPlace);
+        } catch (DataIntegrityViolationException ex) {
+            throw ((JDBCException) ex.getCause()).getSQLException();
+        }
+        return modelMapper.map(touristicPlace, TouristicPlaceResponseDto.class);
     }
 }
