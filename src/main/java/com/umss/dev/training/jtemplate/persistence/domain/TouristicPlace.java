@@ -11,20 +11,12 @@ public class TouristicPlace {
     private Long id;
     @Column(nullable = false, unique = true, length = 255)
     private String name;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String address;
     @Column(nullable = false)
     private String schedules;
-
-    // public TouristicPlace(Long id, String name, String description, String address, String schedules) {
-    //     this.id = id;
-    //     this.name = name;
-    //     this.description = description;
-    //     this.address = address;
-    //     this.schedules = schedules;
-    // }
 
     public Long getId() {
         return id;
