@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Rating,Grid,GridRow,GridColumn } from 'semantic-ui-react';
-const PuntuacionFactores = () => {
+const FactorRating = () => {
     return ( 
        <Fragment>
             <h2>Puntuacion de factores</h2>
@@ -37,4 +37,4 @@ const PuntuacionFactores = () => {
   );
 }
  
-export default PuntuacionFactores;
+export default FactorRating;

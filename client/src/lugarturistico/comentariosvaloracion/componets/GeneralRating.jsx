@@ -1,9 +1,9 @@
-import React, { Fragment,useState } from 'react'
+import React, { Fragment } from 'react'
 import { Rating } from 'semantic-ui-react';
-const PuntuacionGeneral = ({calificacion}) => {
+const GeneralRating = ({qualificationG}) => {
     
     const handleRate = (e, { rating, maxRating }) =>{
-       calificacion(rating);
+        qualificationG(rating);
     }
     return (  
        <Fragment>
@@ -14,4 +14,4 @@ const PuntuacionGeneral = ({calificacion}) => {
     );
 }
  
-export default PuntuacionGeneral
+export default GeneralRating

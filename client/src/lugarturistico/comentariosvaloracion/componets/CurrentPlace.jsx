@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header,Image } from 'semantic-ui-react'
-const LugarActual = () => {
+const CurrentPlace = () => {
     return ( 
         <Header as='h2'>
         <Image src='./img/img1.jpg' size='small' wrapped />
@@ -12,4 +12,4 @@ const LugarActual = () => {
      );
 }
  
-export default LugarActual;
+export default CurrentPlace;

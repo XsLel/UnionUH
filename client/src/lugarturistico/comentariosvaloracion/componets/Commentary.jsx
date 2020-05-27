@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import { Comment, Form , Grid, GridColumn, Input } from 'semantic-ui-react'
+import { Comment, Form , GridColumn, Input } from 'semantic-ui-react'
 import './css/Comentario.css';
-class Comentario extends Component{
+class Commentary extends Component{
      constructor(props){
 	 	super(props);
 	 	this.state = {
              count: 0,
-             titulo:"",
-             comentario:""
+            
 	 	} 
      }
      updateCount(event){
@@ -16,12 +15,13 @@ class Comentario extends Component{
 	    });
     }
     handleChangeTitle=(event) => {
-        this.setState({titulo: event.target.value});	
+        this.props.Outcome.tituloComentario=event.target.value;
+        console.log(this.props.Outcome.tituloComentario)
     }
     onInputComen=(event,{value}) => {
-        this.setState({comentario:value});
-        this.props.comentar(this.state.titulo,this.state.comentario);
-        this.props.estados.contador=this.state.count;
+        this.props.states.count=this.state.count;
+        this.props.Outcome.descripcionComentario=value;
+        console.log(this.props.Outcome.descripcionComentario)
     }
    
     render() {
@@ -50,4 +50,4 @@ class Comentario extends Component{
      
 }
  
-export default Comentario;
+export default Commentary;

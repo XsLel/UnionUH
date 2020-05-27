@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Grid,GridRow, GridColumn } from 'semantic-ui-react'
 
-const Cuestionario = () => {
+const Questionnaire = () => {
     return ( 
        <GridColumn>
            <h2>Cuestionario(opcional)</h2>
@@ -34,4 +34,4 @@ const Cuestionario = () => {
      );
 }
  
-export default Cuestionario;
+export default Questionnaire;
