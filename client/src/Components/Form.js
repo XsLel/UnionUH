@@ -30,7 +30,7 @@ const RegisterRestaurant = () => {
   }
   return (
     <CenteredLayout>
-      <label>="Registro del Restaurante"</label>
+      <label>"Registro del Restaurante"</label>
       <Form onSubmit={handleSubmit} noValidate>
         <Form.Field
           control={Input}
@@ -85,6 +85,7 @@ const RegisterRestaurant = () => {
             value={values.email}
             onChange={handleChange}
           />
+          {errors.email && <p className="error">{errors.email}</p>}
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field
@@ -144,11 +145,14 @@ const RegisterRestaurant = () => {
             placeholder="Descripción del Restaurante"
             value={values.descripción}
             onChange={handleChange}
+            style={{ resize: "none" }}
           />
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field control={Button}>Cancelar</Form.Field>
-          <Form.Field control={Button}>Guardar</Form.Field>
+          <Form.Field control={Button} type="submit">
+            Guardar
+          </Form.Field>
         </Form.Group>
       </Form>
     </CenteredLayout>
