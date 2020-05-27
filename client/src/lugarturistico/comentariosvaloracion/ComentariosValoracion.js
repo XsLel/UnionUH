@@ -8,8 +8,10 @@ import Cuestionario from './componets/Cuestionario'
 import Politica from './componets/Politica'
 import Enviar from './componets/Enviar'
 import Comentarios from './componets/Comentarios'
+
 import './ComentariosValoracion.css'
 import ServicioComentario from './servicios/comentario'
+import Fech from './fech'
 
 const ComentariosValoracion = () => {
 
@@ -46,6 +48,13 @@ const ComentariosValoracion = () => {
             console.log(e);
           });
     }
+    const estados={
+        terminopolitica: false,
+        contador:0 
+    }
+    const aceptarPolica=(estado)=>{
+        estados.terminopolitica=estado;
+    }
    
     const comentar =(titulo,descripcion)=>{
         resultado.tituloComentario=titulo;
@@ -59,12 +68,13 @@ const ComentariosValoracion = () => {
                 <LugarActual/>
                 <div className="container">
                     <section className="preguntas">
-                        <Politica/>
+                        <Politica aceptarPolica={aceptarPolica}/>
                         <PuntuacionGeneral calificacion={calificacion}/>
                         <div className="puntuacion">
                             <PuntuacionFactores/>
                         </div>
-                        <Comentario comentar={comentar}/>
+                        <Comentario comentar={comentar} estados={estados}/>
+                        <Fech/>
                         <FechaVisita/>
                         <Cuestionario/>
                     </section>
@@ -75,7 +85,7 @@ const ComentariosValoracion = () => {
                 
                 </div>
             </div>
-            <Enviar resultado={resultado}/>
+            <Enviar resultado={resultado} estados={estados}/>
         </div>
     )
 }

@@ -14,6 +14,7 @@ class Politica extends Component {
     this.setState({
       [e.target.name] : e.target.checked
     })
+    this.props.aceptarPolitica(this.state.check1);
   }
   render(){
   return (

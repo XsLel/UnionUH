@@ -21,6 +21,7 @@ class Comentario extends Component{
     onInputComen=(event,{value}) => {
         this.setState({comentario:value});
         this.props.comentar(this.state.titulo,this.state.comentario);
+        this.props.estados.contador=this.state.count;
     }
    
     render() {

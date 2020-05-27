@@ -3,13 +3,13 @@ import { Button,Grid } from 'semantic-ui-react'
 import './css/Enviar.css'
 import axios from 'axios';
 
-const Enviar = ({resultado}) => {
+const Enviar = (props) => {
 
     const hacerPost=()=>{
         axios({
             method: 'POST' ,
             url:'http://localhost:8585/comentario', 
-            data:resultado
+            data:props.resultado
         }).then(res=>console.log(res.data))
     }
     return ( 
