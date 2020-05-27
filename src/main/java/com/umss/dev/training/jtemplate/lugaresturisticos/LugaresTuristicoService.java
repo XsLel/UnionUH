@@ -43,4 +43,11 @@ public class LugaresTuristicoService {
 	  return allResponse;
 		
 	}
+	
+	public LugaresTuristicoResponse save(LugaresTuristicoResponse ltRes) {
+		LugaresTuristico aux = modelMapper.map(ltRes, LugaresTuristico.class);
+		aux = repo.save(aux);
+		LugaresTuristicoResponse response = modelMapper.map(aux, LugaresTuristicoResponse.class);
+        return response;
+    }
 }
