@@ -13,22 +13,29 @@ public class LugaresTuristicoService {
 
 	@Autowired
 	private LugaresTuristicoRepository repo;
+	private CalificacionService service;
 	private ModelMapper modelMapper;
 	
-	public LugaresTuristicoService(LugaresTuristicoRepository repo, ModelMapper modelMapper) {
+	public LugaresTuristicoService(LugaresTuristicoRepository repo, CalificacionService service, ModelMapper modelMapper) {
 		
 		this.repo = repo;
+		this.service = service;
 		this.modelMapper = modelMapper;
 	}
 	
-	public Iterable<LugaresTuristicoResponse> getAll(){//get//read
-		List<LugaresTuristicoResponse> allResponse = repo.findAll()
+	public Iterable<CalLTResponse> getAll(){//get//read
+		List<CalLTResponse> allResponse = repo.findAll()
 				.stream()
 				.sorted(Comparator.comparing(LugaresTuristico::getIdlugarturistico))
 				.map(lt ->{
 					
-					LugaresTuristicoResponse response = modelMapper.map(lt, LugaresTuristicoResponse.class);
+					CalLTResponse response = new CalLTResponse();
 					response.setIdlugarturistico(lt.getIdlugarturistico());
+					response.setDescripcionlugarturistico(lt.getDescripcionlugarturistico());
+					response.setDireccionlugarturistico(lt.getDireccionlugarturistico());
+					response.setFoto(lt.getFoto());
+					response.setNombrelugarturistico(lt.getNombrelugarturistico());
+					response.setPromedio(service.getPromedio(lt.getIdlugarturistico()));
 					return response;
 		})    
 	      		.collect(Collectors.toList());
@@ -36,5 +43,4 @@ public class LugaresTuristicoService {
 	  return allResponse;
 		
 	}
-	
 }

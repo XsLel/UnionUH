@@ -16,7 +16,7 @@ public class LugaresTuristicoController {
 	}
 	
 	@GetMapping()
-	public Iterable<LugaresTuristicoResponse> getLugares(){
+	public Iterable<CalLTResponse> getLugares(){
 		return service.getAll();
 	}
 }

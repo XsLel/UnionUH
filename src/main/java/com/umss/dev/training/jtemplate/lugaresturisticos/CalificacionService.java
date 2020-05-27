@@ -36,4 +36,17 @@ public class CalificacionService {
 	  return allResponse;
 		
 	}
+	
+	public Long getPromedio(Long id) {
+		Long res = 0L;
+		Long cont = 0L;
+		List<Calificacion> lista = repo.findAll();
+		for(Calificacion item : lista) {
+			if(item.getIdlugarturistico() == id) {
+				res += item.getScore();
+				cont++;
+			}
+		}
+		return res/cont;
+	}
 }
