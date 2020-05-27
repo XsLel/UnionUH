@@ -8,26 +8,26 @@ import javax.validation.constraints.NotNull;
 
 public class RestaurantRegistration {
 	
-	@NotBlank(message = "El campo no debe estar vacío")
+	@NotBlank(message = "The NAME field cannot be empty")
 	private String name;
-	@NotBlank(message = "El campo no debe estar vacío")
+	@NotBlank(message = "The PROVINCE field cannot be empty")
 	private String province;
-	@NotBlank(message = "El campo no debe estar vacío")
+	@NotBlank(message = "The DIRECTION field cannot be empty")
 	private String direction;
-	@NotBlank(message = "El campo no debe estar vacío")
+	@NotBlank(message = "The INFORMATION field cannot be empty")
 	private String information;
-	@NotNull(message = "El campo no debe estar vacío")
+	@NotNull(message = "The PHONE field cannot be empty")
 	private long phone;
-	@NotBlank(message = "El campo no debe estar vacío")
+	@NotBlank(message = "The WEBSITE field cannot be empty")
 	private String website;
-	@Email(message = "Este campo debe ser un email")
-	@NotBlank(message = "El campo no debe estar vacío")
+	@Email(message = "This field must be an EMAIL")
+	@NotBlank(message = "The EMAIL field cannot be empty")
 	private String email;
-	@NotBlank(message = "El campo no debe estar vacío")
+	@NotBlank(message = "The COMMERCIAL field cannot be empty")
 	private String commercial;
-	@NotBlank(message = "El campo no debe estar vacío")
+	@NotBlank(message = "The CATEGORY field cannot be empty")
 	private String category;
-	@NotBlank(message = "El campo no debe estar vacío")
+	@NotBlank(message = "The DESCRIPTION field cannot be empty")
 	private String description;
 	
 	private List<PhotoRegistration> photos;

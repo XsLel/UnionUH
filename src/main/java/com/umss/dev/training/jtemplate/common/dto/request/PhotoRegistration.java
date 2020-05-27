@@ -5,10 +5,10 @@ import javax.validation.constraints.NotNull;
 
 public class PhotoRegistration {
 	
-	@NotBlank(message = "El campo URL no puede estar vacío")
+	@NotBlank(message = "The URL field cannot be empty")
 	private String url;
 	private boolean carousel = false;
-	@NotNull(message = "El campo Food no puede estar vacío")
+	@NotNull(message = "The FOOD field cannot be empty")
 	private boolean food;
 	private boolean home = false;
 	
