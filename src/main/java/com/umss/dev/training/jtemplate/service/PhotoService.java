@@ -1,6 +1,5 @@
 package com.umss.dev.training.jtemplate.service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +37,6 @@ public class PhotoService {
 	public List<PhotoResponseDto> saveAll(List<PhotoRegistration> listRequestPhoto, Restaurant restaurant) {
 		List<Photo> photos = listRequestPhoto
 				.stream()
-				.sorted(Comparator.comparing(PhotoRegistration::getUrl))
 				.map( request -> {
 					Photo photo = modelMapper.map(request, Photo.class);
 					photo.setRestaurant(restaurant);
@@ -48,7 +46,6 @@ public class PhotoService {
 		photos = photoRepository.saveAll(photos);
 		List<PhotoResponseDto> response = photos
 				.stream()
-				.sorted(Comparator.comparing(Photo::getUrl))
 				.map( photo -> {
 					PhotoResponseDto res = modelMapper.map(photo, PhotoResponseDto.class);
 					return res;
