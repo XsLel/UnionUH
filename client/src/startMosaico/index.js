@@ -1,13 +1,13 @@
 import React from "react";
 import Footer from "../footer";
-import Listado from "../listado";
 import Header from "../header";
+import Mosaico from "../mosaico";
 
 function start() {
   return (
     <div>
       <Header />
-      <Listado />
+      <Mosaico />
       <Footer />
     </div>
   );
