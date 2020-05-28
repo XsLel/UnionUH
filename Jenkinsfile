@@ -2,7 +2,6 @@ pipeline {
     agent { label 'devops' }
     stages {
         stage('Clone Repo') {
-            //agent { label 'devops' }
             steps {
                 git branch: env.BRANCH_NAME,
                 credentialsId: 'github-official-credentials',
@@ -10,7 +9,6 @@ pipeline {
             }
         }
         stage('Compile') {
-            //agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Compile Stage'
                 sh 'chmod +x ./mvnw'
@@ -19,7 +17,6 @@ pipeline {
             }
         }
         stage('Build') {
-            //agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Build Stage'
                 sh 'ls -a'
@@ -28,27 +25,32 @@ pipeline {
         }
 
         stage('Build Docker Image') {
+            when {
+                branch 'dev'
+            }
             steps {
-                sh "docker build -t 192.168.88.11:8083/turismo-umss-dev:${env.BUILD_NUMBER} ."
+                sh "docker build -t ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER} ."
             }
         }
 
         stage('Push Docker Image') {
+            when {
+                branch 'dev'
+            }
             steps {
-                sh "docker push 192.168.88.11:8083/turismo-umss-dev:${env.BUILD_NUMBER}"
+                sh "docker push ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
         }
 
         stage('Deploy') {
             agent { label 'deploy' }
             when {
-                branch 'devops'
+                branch 'dev'
             }
             steps {
                 echo 'Deploying'
-                //sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
-                sh "docker pull 192.168.88.11:8083/turismo-umss-dev:${env.BUILD_NUMBER}"
-                sh "docker run --name turismo-umss-dev -d -p 9001:8585 192.168.88.11:8083/turismo-umss-dev:${env.BUILD_NUMBER}"
+                sh "docker pull ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
+                sh "docker run --name turismo-umss-dev -d -p 9001:8585 ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
         }
     }
