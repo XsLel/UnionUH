@@ -1,8 +1,0 @@
-{
-  "server": {
-    "host": "http://localhost:8585",
-    "urls": {
-      "touristicPlaces": "/touristic-places"
-    }
-  }
-}
