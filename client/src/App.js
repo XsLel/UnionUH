@@ -1,6 +1,6 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
-import { Router, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import { history } from "./services";
 import { Admin } from "./Admin/Admin";
 import { FoodGallery } from "./Components/FoodGallery";
@@ -11,11 +11,10 @@ import TouristicPlaceForm from "./TouristicPlace/Form";
 
 function App() {
   return (
-    <Router history={history}>
+    <HashRouter history={history}>
       <Switch>
         <Route exact path="/" component={Admin} />
         <Route exact path="/lugares-turisticos/registro" component={TouristicPlaceForm} />
-        <Route exact path="/404" component={PageNotFound} />
         <Route
           exact
           path="/restaurants/:restaurantId"
@@ -31,9 +30,10 @@ function App() {
           path="/restaurants/:restaurantId/restaurant-gallery"
           component={RestaurantGallery}
         />
+        <Route exact path="/404" component={PageNotFound} />
         <Route component={PageNotFound} />
       </Switch>
-    </Router>
+    </HashRouter>
   );
 }
 
