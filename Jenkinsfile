@@ -28,11 +28,15 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            sh "docker build -t 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER ."
+            steps {
+                sh "docker build -t 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER ."
+            }
         }
 
         stage('Push Docker Image') {
-            sh "docker push 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER"
+            steps {
+                sh "docker push 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER"
+            }
         }
 
         stage('Deploy') {
