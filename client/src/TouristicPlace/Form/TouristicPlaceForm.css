@@ -5,7 +5,3 @@ h1.ui.header {
 p.small {
   font-size: 13px;
 }
-
-.ui.modal > .actions {
-  text-align: center;
-}
