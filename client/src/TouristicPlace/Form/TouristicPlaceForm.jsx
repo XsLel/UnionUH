@@ -1,14 +1,15 @@
 import React from "react";
+import MessageBox from "../../components/MessageBox";
 import useForm from "./useForm";
 import validate from "./validate";
 import { useHistory } from "react-router-dom";
-import { Form, Icon, Modal, Button } from "semantic-ui-react";
+import { Form, Icon } from "semantic-ui-react";
 import { http } from "../../services";
 import "./TouristicPlaceForm.css";
 
 export default function TouristicPlaceForm() {
   const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
-  const [openModal, setOpenModal] = React.useState(false);
+  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(false);
   const history = useHistory();
 
   async function submit() {
@@ -82,36 +83,26 @@ export default function TouristicPlaceForm() {
         />
         {errors.schedules && <p className="text-red small">{errors.schedules}</p>}
         <Form.Group widths="equal">
-          <Modal
-            size="mini"
-            dimmer="inverted"
-            open={openModal}
+          <MessageBox
+            centeredContent
+            open={openConfirmationModal}
             trigger={
               <Form.Button
                 fluid
                 negative
                 floated="left"
                 size="large"
-                onClick={(_e, _d) => setOpenModal(true)}>
+                onClick={(_e, _d) => setOpenConfirmationModal(true)}>
                 Cancelar
               </Form.Button>
-            }>
-            <Modal.Content>
-              <p className="text-align-center">¿Estás seguro de cancelar el registro?</p>
-            </Modal.Content>
-            <Modal.Actions>
-              <Button
-                negative
-                content="Cancelar"
-                onClick={(_e, _d) => setOpenModal(false)}
-              />
-              <Button
-                positive
-                content="Aceptar"
-                onClick={(_e, _d) => history.push("/lugares-turisticos")}
-              />
-            </Modal.Actions>
-          </Modal>
+            }
+            content="¿Estás seguro de cancelar el registro?"
+            onCancel={() => setOpenConfirmationModal(false)}
+            onOK={() => {
+              setOpenConfirmationModal(false);
+              history.push("/lugares-turisticos");
+            }}
+          />
           <Form.Button fluid positive type="submit" floated="right" size="large">
             Aceptar
           </Form.Button>
