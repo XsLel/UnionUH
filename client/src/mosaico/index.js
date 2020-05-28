@@ -16,7 +16,7 @@ class Mosaico extends Component {
 
   componentDidMount() {
     this.setState({ titulo: "Mosaico" });
-    fetch("http://localhost:8585/api/lugaresturisticos")
+    fetch("/api/lugaresturistico")
       .then((res) => res.json())
       .then((lt) => this.setState({ lugaresTuristicos: Object.values(lt) }));
   }
@@ -29,8 +29,8 @@ class Mosaico extends Component {
           {this.state.lugaresTuristicos &&
             this.state.lugaresTuristicos.map((it) => (
               <Item
-                key={it.IDLugarTuristico}
-                titulo={it.NombreLugarTuristico}
+                key={it.idlugarturistico}
+                titulo={it.nombrelugarturistico}
                 rank={it.promedio}
               />
             ))}

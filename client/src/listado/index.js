@@ -41,7 +41,7 @@ class Listado extends Component {
 
   componentDidMount() {
     this.setState({ titulo: "Listado" });
-    fetch("http://localhost:8585/api/lugaresturisticos")
+    fetch("/api/lugaresturistico", { method: "GET", mode: "no-cors" })
       .then((res) => res.json())
       .then((lt) => this.setState({ lugaresTuristicos: Object.values(lt) }));
   }
@@ -54,12 +54,12 @@ class Listado extends Component {
           <Grid columns={3} divided>
             {this.state.lugaresTuristicos &&
               this.state.lugaresTuristicos.map((it) => (
-                <Grid.Row key={it.IDLugarTuristico}>
+                <Grid.Row key={it.idlugarturistico}>
                   <Grid.Column>
                     <Image src={image} size="medium" />
                   </Grid.Column>
                   <Grid.Column>
-                    <Header as="h2">{it.NombreLugarTuristico}</Header>
+                    <Header as="h2">{it.nombrelugarturistico}</Header>
                     <Header as="h3">Calificacion : {it.promedio}</Header>
                   </Grid.Column>
                   <Grid.Column>
