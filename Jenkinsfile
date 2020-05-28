@@ -2,7 +2,6 @@ pipeline {
     agent { label 'devops' }
     stages {
         stage('Clone Repo') {
-            //agent { label 'devops' }
             steps {
                 git branch: env.BRANCH_NAME,
                 credentialsId: 'github-official-credentials',
@@ -10,7 +9,6 @@ pipeline {
             }
         }
         stage('Compile') {
-            //agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Compile Stage'
                 sh 'chmod +x ./mvnw'
@@ -19,7 +17,6 @@ pipeline {
             }
         }
         stage('Build') {
-            //agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Build Stage'
                 sh 'ls -a'
@@ -27,14 +24,33 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Build Docker Image') {
             when {
                 branch 'dev'
-                //environment name: 'DEPLOY_TO', value: 'development'
+            }
+            steps {
+                sh "docker build -t ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER} ."
+            }
+        }
+
+        stage('Push Docker Image') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                sh "docker push ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
+            }
+        }
+
+        stage('Deploy') {
+            agent { label 'deploy' }
+            when {
+                branch 'dev'
             }
             steps {
                 echo 'Deploying'
-                sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
+                sh "docker pull ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
+                sh "docker run --name turismo-umss-dev -d -p 9001:8585 ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
         }
     }
@@ -43,7 +59,7 @@ pipeline {
         always {
             echo 'I will always say Hello again!'
             emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: 'caleb.espinoza@outlook.com'
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: '$ADMIN_EMAIL'
         }
     }
 }
