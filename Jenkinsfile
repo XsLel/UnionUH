@@ -29,26 +29,26 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER ."
+                sh "docker build -t 192.168.88.11:8083/turismo-umss-dev:${env.BUILD_NUMBER} ."
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                sh "docker push 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER"
+                sh "docker push 192.168.88.11:8083/turismo-umss-dev:${env.BUILD_NUMBER}"
             }
         }
 
         stage('Deploy') {
-            agent { label 'master' }
+            agent { label 'deploy' }
             when {
                 branch 'devops'
             }
             steps {
                 echo 'Deploying'
                 //sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
-                sh "docker pull 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER"
-                sh "docker run --name turismo-umss-dev -d -p 9001:8585 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER"
+                sh "docker pull 192.168.88.11:8083/turismo-umss-dev:${env.BUILD_NUMBER}"
+                sh "docker run --name turismo-umss-dev -d -p 9001:8585 192.168.88.11:8083/turismo-umss-dev:${env.BUILD_NUMBER}"
             }
         }
     }
