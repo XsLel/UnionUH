@@ -27,14 +27,24 @@ pipeline {
             }
         }
 
+        stage('Build Docker Image') {
+            sh "docker build -t 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER ."
+        }
+
+        stage('Push Docker Image') {
+            sh "docker push 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER"
+        }
+
         stage('Deploy') {
+            agent { label 'master' }
             when {
-                branch 'dev'
-                //environment name: 'DEPLOY_TO', value: 'development'
+                branch 'devops'
             }
             steps {
                 echo 'Deploying'
-                sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
+                //sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
+                sh "docker pull 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER"
+                sh "docker run --name turismo-umss-dev -d -p 9001:8585 192.168.88.11:8083/turismo-umss-dev:BUILD_NUMBER"
             }
         }
     }
@@ -43,7 +53,7 @@ pipeline {
         always {
             echo 'I will always say Hello again!'
             emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: 'caleb.espinoza@outlook.com'
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: '$ADMIN_EMAIL'
         }
     }
 }
