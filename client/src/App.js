@@ -3,9 +3,9 @@ import "semantic-ui-css/semantic.min.css";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import { history } from "./services";
 import { Admin } from "./Admin/Admin";
-import { FoodGallery } from "./Components/FoodGallery";
+import { FoodGallery } from "./components/FoodGallery";
 import { PageNotFound } from "./common";
-import { RestaurantGallery } from "./Components/RestaurantGallery";
+import { RestaurantGallery } from "./components/RestaurantGallery";
 import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
 import TouristicPlaceForm from "./TouristicPlace/Form";
 

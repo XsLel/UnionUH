@@ -3,9 +3,9 @@ import { Redirect, withRouter } from "react-router-dom";
 import { http } from "../../services";
 import { Container, Segment } from "semantic-ui-react";
 import Carousel from "../carousel/carousel"; //// carrusel >>Carousel
-import Information from "../../Components/Information";
-import Menu from "../../Components/Menu";
-import Footer from "../../Components/Footer";
+import Information from "../../components/Information";
+import Menu from "../../components/Menu";
+import Footer from "../../components/Footer";
 
 class Home extends Component {
   constructor(props) {
