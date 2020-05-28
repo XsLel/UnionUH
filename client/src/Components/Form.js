@@ -10,7 +10,7 @@ import {
 } from "semantic-ui-react";
 import UseForm from "./Validations/useForm";
 import validate from "./Validations/validateForm";
-//Hola Mundo
+
 
 const genderOptions = [
   { key: "a", text: "Araní", value: "Arani" },
