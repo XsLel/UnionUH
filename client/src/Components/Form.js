@@ -10,6 +10,7 @@ import {
 } from "semantic-ui-react";
 import UseForm from "./Validations/useForm";
 import validate from "./Validations/validateForm";
+//Hola Mundo
 
 const genderOptions = [
   { key: "a", text: "Araní", value: "Arani" },
@@ -38,7 +39,7 @@ const genderOptionsCategoria = [
   { key: "c", text: "para llevar", value: "para llevar" },
 ];
 
-  const RegisterRestaurant = () => {
+const RegisterRestaurant = () => {
   const { handleChange, handleSubmit, values, errors } = UseForm(
     submit,
     validate
@@ -62,7 +63,9 @@ const genderOptionsCategoria = [
           onChange={handleChange}
           style={{ width: 595 }}
         />
-         {errors.nombreRestaurante && <p className="error">{errors.nombreRestaurante}</p>}
+        {errors.nombreRestaurante && (
+          <p className="error">{errors.nombreRestaurante}</p>
+        )}
         <Form.Group widths="equal">
           <Form.Field
             control={Input}
@@ -142,7 +145,7 @@ const genderOptionsCategoria = [
             placeholder="Dirección página de publicidad"
             value={values.publicidad}
             onChange={handleChange}
-          />         
+          />
           <Form.Field
             control={Select}
             options={genderOptionsCategoria}
@@ -179,12 +182,14 @@ const genderOptionsCategoria = [
             style={{ resize: "none" }}
           />
         </Form.Group>
-        <Form.Input type="file" style={{ width: 160 }}> 
-
-        </Form.Input>
+        <Form.Input type="file" style={{ width: 160 }}></Form.Input>
         <Form.Group widths="equal">
-          <Form.Field control={Button} type="">Cancelar</Form.Field>
-          <Form.Field control={Button} type="submit">Guardar</Form.Field>
+          <Form.Field control={Button} type="">
+            Cancelar
+          </Form.Field>
+          <Form.Field control={Button} type="submit">
+            Guardar
+          </Form.Field>
         </Form.Group>
       </Form>
     </CenteredLayout>
