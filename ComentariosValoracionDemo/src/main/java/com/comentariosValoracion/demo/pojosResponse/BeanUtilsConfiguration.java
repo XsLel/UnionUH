@@ -15,9 +15,7 @@ public class BeanUtilsConfiguration {
 
         return modelMapper;
     }
-	
-
-    @Bean
+	@Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override

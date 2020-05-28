@@ -1,10 +1,12 @@
 package com.comentariosValoracion.demo.pojosService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.comentariosValoracion.demo.exception.DtoNoEncontradoException;
 import com.comentariosValoracion.demo.pojos.Comentario;
 import com.comentariosValoracion.demo.pojosRepository.ComentarioDaoRepository;
 import com.comentariosValoracion.demo.pojosResponse.ComentarioResponse;
+import com.comentariosValoracion.demo.pojos.FechaVisita;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -34,7 +36,6 @@ public Iterable<ComentarioResponse> getAll(){//get//read
 			.stream()
 			.sorted(Comparator.comparing(Comentario::getIdcomentario))
 			.map(comnt->{
-				
 				System.out.println(comnt.toString());
 				
 				ComentarioResponse response = modelMapper.map(comnt, ComentarioResponse.class);
@@ -42,7 +43,6 @@ public Iterable<ComentarioResponse> getAll(){//get//read
 				System.out.println(response.toString());
 				
 				response.setIdComentario(comnt.getIdcomentario());
-				
 				//response.setIdLugarTuristico(comnt.);
 				return response;
 	})    
@@ -69,21 +69,36 @@ public ComentarioResponse getById(Integer comntId) {//get//read
 }
 
 public ComentarioResponse save(ComentarioResponse comnt) {//post//create
-	
 	System.out.println(comnt.toString());
 	
 	 Comentario converted = modelMapper.map(comnt,Comentario.class);
 	 
 	 System.out.println(converted.toString());
 	 
+	 
+	 
+	 
+	 System.out.println("*****************fecha actual*******************");
+	 
+	 Date actDate = new Date();
+     System.out.println(actDate.toString());
+     converted.setFechaAct(actDate.toString());
+     
+     
+     
      Comentario persistedUser = comentarioRepository.save(converted);
     
      ComentarioResponse comentarioResponse = modelMapper.map(persistedUser, ComentarioResponse.class);
-   
+     
      return comentarioResponse;
 }
 
 
-
+	@Transactional(readOnly = true)
+	public FechaVisita[] getResponsesDates() {
+   	FechaVisita f = new FechaVisita();
+   	return f.generateDates();
+	
+   }
  
 }

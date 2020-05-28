@@ -15,9 +15,10 @@ import javax.validation.Valid;
 import com.comentariosValoracion.demo.pojos.Comentario;
 import com.comentariosValoracion.demo.pojosResponse.ComentarioResponse;
 import com.comentariosValoracion.demo.pojosService.*;
+import com.comentariosValoracion.demo.pojos.FechaVisita;
 
 @RestController
-@RequestMapping("/comentario")
+@RequestMapping("/api/comentario")
 public class ComentarioController {
 	//@Autowired
 	
@@ -49,7 +50,13 @@ public class ComentarioController {
 	
 	
 	
-	
+	  @PermitAll
+	    @GetMapping("/fechas")
+	    public FechaVisita[] getFechas() {
+	    	
+	    	return comentServ.getResponsesDates();
+	    	
+	    }
 	
 
 }

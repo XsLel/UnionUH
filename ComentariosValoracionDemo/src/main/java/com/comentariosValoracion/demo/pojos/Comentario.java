@@ -11,7 +11,7 @@ public class Comentario {
 	
 	@Id 
     @Column(name="idComentario",nullable=false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int idComentario;
 	
 	@Column(name="idUsuario",nullable = false)
