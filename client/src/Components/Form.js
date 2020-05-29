@@ -63,9 +63,7 @@ const RegisterRestaurant = () => {
           onChange={handleChange}
           style={{ width: 595 }}
         />
-        {errors.nombreRestaurante && (
-          <p className="error">{errors.nombreRestaurante}</p>
-        )}
+        {errors.nombreRestaurante && <p className="error">{errors.nombreRestaurante}</p>}
         <Form.Group widths="equal">
           <Form.Field
             control={Input}
@@ -76,7 +74,7 @@ const RegisterRestaurant = () => {
             placeholder="DirecciÓn del Restaurante"
             value={values.direccionRestaurante}
             onChange={handleChange}
-          />
+          />{errors.direccionRestaurante && <p className="error">{errors.direccionRestaurante}</p>}
           <Form.Field
             control={Select}
             options={genderOptions}
@@ -88,7 +86,7 @@ const RegisterRestaurant = () => {
             placeholder="seleccione una provincia"
             search
             searchInput={{ id: "form-select-control-gender" }}
-          />
+          />{errors.provincia && <p className="error">{errors.provincia}</p>}
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field
@@ -101,7 +99,7 @@ const RegisterRestaurant = () => {
             value={values.informacionAdicional}
             onChange={handleChange}
             style={{ resize: "none" }}
-          />
+          />{errors.informacionAdicional && <p className="error">{errors.informacionAdicional}</p>}
           <Form.Field
             control={Input}
             label="Correo Electrónico"
@@ -111,8 +109,7 @@ const RegisterRestaurant = () => {
             placeholder="Correo Electrónico"
             value={values.email}
             onChange={handleChange}
-          />
-          {errors.email && <p className="error">{errors.email}</p>}
+          />{errors.email && <p className="error">{errors.email}</p>}
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field
@@ -123,7 +120,7 @@ const RegisterRestaurant = () => {
             placeholder="Dirección de su sitio web"
             value={values.direccionWeb}
             onChange={handleChange}
-          />
+          />{errors.direccionWeb && <p className="error">{errors.direccionWeb}</p>}
           <Form.Field
             control={Input}
             label="Teléfono"
@@ -145,7 +142,7 @@ const RegisterRestaurant = () => {
             placeholder="Dirección página de publicidad"
             value={values.publicidad}
             onChange={handleChange}
-          />
+          />{errors.publicidad && <p className="error">{errors.publicidad}</p>}
           <Form.Field
             control={Select}
             options={genderOptionsCategoria}
@@ -157,7 +154,7 @@ const RegisterRestaurant = () => {
             placeholder="seleccione una categoria"
             search
             searchInput={{ id: "form-select-control-gender" }}
-          />
+          />{errors.categoria && <p className="error">{errors.categoria}</p>}
         </Form.Group>
         <Form.Group widths="equal">
           <Form.Field>
@@ -180,7 +177,7 @@ const RegisterRestaurant = () => {
             value={values.descripción}
             onChange={handleChange}
             style={{ resize: "none" }}
-          />
+          />{errors.descripción && <p className="error">{errors.descripción}</p>}
         </Form.Group>
         <Form.Input type="file" style={{ width: 160 }}></Form.Input>
         <Form.Group widths="equal">

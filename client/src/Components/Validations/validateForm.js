@@ -1,29 +1,34 @@
 export default function validateForm(values) {
   let errors = {};
-  
-  if(values.email=== ""){
-    errors.email = "campo vacio";
-  }else{
+
+  if (values.nombreRestaurante === "") {
+    errors.nombreRestaurante = "campo vacio";
+  } 
+
     if (!values.email) {
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      errors.email = "Correo invalido";
+      errors.email = "Email address is invalid";
     }
-  } 
-  if(values.telefono ===""){
-    errors.telefono = "campo vacio";
-  }else{
+  
+
+  
     if (!values.telefono) {
     } else if (!/([0-9]){8}/.test(values.telefono)) {
-      errors.telefono = "El numero no existe";
+      errors.telefono = "El numero de no existe";
     }
+  
+
+  if (values.direccionRestaurante === "") {
+    errors.direccionRestaurante = "campo vacio";
   }
-  if(values.nombreRestaurante=== ""){
-    errors.nombreRestaurante = "campo vacio";
-  }else{
-    if (!values.nombreRestaurante) {
-    } else if (!/[A-Z]\S [a-z]+/.test(values.nombreRestaurante)) {
-      errors.nombreRestaurante = "Caracter no valido: use solo letras y numeros";
-    }
-  } 
+
+  if (values.provincia === "") {
+    errors.provincia = "Seleccione una provincia";
+  }
+
+  if (values.categoria === "") {
+    errors.categoria = "Seleccione una categoria";
+  }
+
   return errors;
 }

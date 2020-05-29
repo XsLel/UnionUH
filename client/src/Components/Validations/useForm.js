@@ -11,6 +11,7 @@ const useForm = (callback, validate) => {
     publicidad: "",
     categoria: "",
     descripción: "",
+    provincia:""
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
