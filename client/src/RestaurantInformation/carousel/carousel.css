@@ -1,0 +1,44 @@
+.carousel {
+  width: 100%;
+}
+
+@media only screen and (max-width: 400px) {
+  .carousel {
+    height: 100px;
+  }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 800px) {
+  .carousel {
+    height: 200px;
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1200px) {
+  .carousel {
+    height: 300px;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  .carousel {
+    height: 400px;
+  }
+}
+.group {
+  position: relative;
+}
+.data {
+  top: calc(100% / 2);
+  transform: translateY(-50%);
+
+  position: absolute;
+}
+
+.title {
+  font-size: 6em;
+}
+
+.description {
+  font-size: 1.6em;
+}

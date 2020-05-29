@@ -27,41 +27,57 @@ const Inforestaurant = (props) => {
 
   return (
     <>
-      <Divider />
-
       <Grid columns={3} divided>
         <GridRow>
           <GridColumn>
-            <center>
-              <h3>{name}</h3>
-            </center>
             <ListContent>
-              <h4>Provincia:</h4> {province}
+              <p>
+                <b>Provincia: </b> {province}
+              </p>
             </ListContent>
+            <br></br>
             <ListContent>
-              <h4>Informacion:</h4> {information}
+              <p>
+                <b>Informacion:</b>
+                {information}
+              </p>
             </ListContent>
+            <br></br>
             <ListContent>
-              <h4>e-mail:</h4> {email}
+              <p>
+                <b>e-mail: </b>
+                {email}
+              </p>
             </ListContent>
+            <br></br>
             <ListContent>
-              <h4>Comercial:</h4> {commercial}
+              <p>
+                <b>Comercial:</b> {commercial}
+              </p>
             </ListContent>
+            <br></br>
             <ListContent>
-              <h4>Descripcion:</h4> {description}
+              <p>
+                <b>Direccion:</b> {direction}
+              </p>
             </ListContent>
+            <br></br>
             <ListContent>
-              <h4>Direccion:</h4> {direction}
+              <p>
+                <b>Categoria</b> {category}
+              </p>
             </ListContent>
+            <br></br>
             <ListContent>
-              <h4>Categoria</h4> {category}
+              <p>
+                <b>Sitio Web:</b> {website}{" "}
+              </p>
             </ListContent>
+            <br></br>
             <ListContent>
-              <h4>Sitio Web:</h4>
-              {website}
-            </ListContent>
-            <ListContent>
-              <h4>Telefono:</h4> {phone}
+              <p>
+                <b>Telefono:</b> {phone}
+              </p>
             </ListContent>
           </GridColumn>
 
