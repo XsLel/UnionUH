@@ -1,19 +1,20 @@
 import React from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import { history } from "./services";
 import { Admin } from "./Admin/Admin";
-import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
+import { FoodGallery } from "./components/FoodGallery";
 import { PageNotFound } from "./common";
-import { FoodGallery } from "./Components/FoodGallery";
-import { RestaurantGallery } from "./Components/RestaurantGallery";
-import "semantic-ui-css/semantic.min.css";
+import { RestaurantGallery } from "./components/RestaurantGallery";
+import { TouristicPlaceForm } from "./TouristicPlace";
+import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
 
 function App() {
   return (
-    <Router history={history}>
+    <HashRouter history={history}>
       <Switch>
         <Route exact path="/" component={Admin} />
-        <Route exact path="/404" component={PageNotFound} />
+        <Route exact path="/lugares-turisticos/registro" component={TouristicPlaceForm} />
         <Route
           exact
           path="/restaurants/:restaurantId"
@@ -29,9 +30,10 @@ function App() {
           path="/restaurants/:restaurantId/restaurant-gallery"
           component={RestaurantGallery}
         />
+        <Route exact path="/404" component={PageNotFound} />
         <Route component={PageNotFound} />
       </Switch>
-    </Router>
+    </HashRouter>
   );
 }
 
