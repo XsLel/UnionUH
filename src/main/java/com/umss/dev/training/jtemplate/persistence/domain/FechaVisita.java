@@ -73,29 +73,40 @@ public class FechaVisita{
 	 int mAnt=f.getCurrentMonth()-1;
 
 	      
-	  for (int i =0; i<12; i++) {
-	                   
-	     if(i==0 && mAct !=0) {
-	                    
-	       dates[0]= new FechaVisita(mAct, aAct, MONTH[mAct]); 
-	                     
-	     }else {
-	                     
-	       dates[i]=new FechaVisita(mAnt, aAct, MONTH[mAnt]);
-	                       
-	                       
-	           if(mAnt!=0){
-	                          
-	               mAnt--;
-	                           
-	           }else{
-	               mAnt=11;
-	                        
-	               aAct =aAct-1;
-	                        
-	           }       
-	       }
-	    }
+for (int i =0; i<12; i++) {
+         
+         if(i==0 && mAct !=0) {
+            
+             dates[0]= new FechaVisita(mAct, aAct, MONTH[mAct]); 
+            
+         }else if(i==0 && mAct==0) {
+             dates[0]= new FechaVisita(mAct,aAct, MONTH[mAct]);
+             mAnt=11;
+             aAct=aAct-1;
+            
+         }else{
+           
+           
+              dates[i]=new FechaVisita(mAnt, aAct, MONTH[mAnt]);
+              
+           
+   
+         
+             if(mAnt!=0){
+               
+                 mAnt--;
+                  
+             }else{
+                 mAnt=11;
+                 aAct =aAct-1;
+               
+             }
+            
+          
+          }
+         
+          
+       }
 	               
 	             
 	   for(int i=0; i<dates.length; i++){
