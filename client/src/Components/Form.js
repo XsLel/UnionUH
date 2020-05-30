@@ -13,6 +13,7 @@ import validate from "./Validations/validateForm";
 import Message from "./Validations/Message";
 import { http } from "../services";
 import "./Validations/index.css";
+import { useHistory } from "react-router-dom";
 
 
 const genderOptions = [
@@ -48,8 +49,17 @@ const RegisterRestaurant = () => {
     submit,
     validate
   );
+  const history = useHistory();
 
-  function submit() {
+  
+  async function submit() {
+    try {
+      await http.request({ url: "/touristic-places", method: "POST", data: values });
+      console.log("Submitted Succesfully");
+      history.push("/lugares-turisticos");
+    } catch (error) {
+      console.log(error);
+    }
     console.log("Submitted Succesfully");
   }
   const [openConfirmationModal, setOpenConfirmationModal] = React.useState(false);
@@ -242,7 +252,7 @@ const RegisterRestaurant = () => {
             onCancel={() => setOpenConfirmationModal(false)}
             onOK={() => {
               setOpenConfirmationModal(false);
-              salir();
+              history.push("/");
             }}
           />
             
