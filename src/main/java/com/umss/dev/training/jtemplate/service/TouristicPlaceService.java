@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.umss.dev.training.jtemplate.common.dto.request.TouristicPlaceRegistrationDto;
 import com.umss.dev.training.jtemplate.common.dto.response.TouristicPlaceResponseDto;
+import com.umss.dev.training.jtemplate.exception.DuplicateEntryException;
 import com.umss.dev.training.jtemplate.persistence.domain.TouristicPlace;
 import com.umss.dev.training.jtemplate.persistence.repository.TouristicPlaceRepository;
 
@@ -25,12 +26,18 @@ public class TouristicPlaceService {
         this.modelMapper = modelMapper;
     }
 
-    public TouristicPlaceResponseDto save(TouristicPlaceRegistrationDto touristicPlaceReq) throws SQLException {
+    public TouristicPlaceResponseDto save(TouristicPlaceRegistrationDto touristicPlaceReq) {
         TouristicPlace touristicPlace = modelMapper.map(touristicPlaceReq, TouristicPlace.class);
         try {
             touristicPlace = repository.save(touristicPlace);
         } catch (DataIntegrityViolationException ex) {
-            throw ((JDBCException) ex.getCause()).getSQLException();
+            SQLException sqlEx = ((JDBCException) ex.getCause()).getSQLException();
+            int errorCode = sqlEx.getErrorCode();
+
+            // Duplicate entry error code for MySQL and H2
+            if (errorCode == 1062 || errorCode == 23505) {
+                throw new DuplicateEntryException("Duplicate entry for 'name' field");
+            }
         }
         return modelMapper.map(touristicPlace, TouristicPlaceResponseDto.class);
     }
