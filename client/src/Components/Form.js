@@ -10,6 +10,9 @@ import {
 } from "semantic-ui-react";
 import UseForm from "./Validations/useForm";
 import validate from "./Validations/validateForm";
+import Message from "./Validations/Message";
+import { http } from "../services";
+import "./Validations/index.css";
 
 
 const genderOptions = [
@@ -29,6 +32,7 @@ const genderOptions = [
   { key: "q", text: "Quillacollo", value: "Quillacollo" },
   { key: "t", text: "Tapacari", value: "Tapacari" },
   { key: "t", text: "Tiraque", value: "Tiraque" },
+
 ];
 const genderOptionsCategoria = [
   { key: "a", text: "gourmet", value: "gourmet" },
@@ -48,16 +52,24 @@ const RegisterRestaurant = () => {
   function submit() {
     console.log("Submitted Succesfully");
   }
+  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(false);
   
   
   return (
     <div className="container mt-5">
+      <br>
+      </br>
       <h1 className="ui header aligned center">REGISTRO DEL RESTAURANTE</h1>
+      <br>
+      </br>
+      <br>
+      </br>
    <CenteredLayout>   
       <Form onSubmit={handleSubmit} noValidate autoComplete="off" size="large">
         <Form.Field
+        required
           control={Input}
-          label="Nombre del Restaurante*"
+          label="Nombre del Restaurante"
           type="text"
           name="nombreRestaurante"
           maxLength="50"
@@ -69,28 +81,36 @@ const RegisterRestaurant = () => {
         {errors.nombreRestaurante && <p className="error">{errors.nombreRestaurante}</p>}
         <Form.Group widths="equal">
           <Form.Field
+          required
             control={Input}
-            label="Dirección del Restaurante*"
+            label="Dirección del Restaurante"
             type="text"
             name="direccionRestaurante"
             maxLength="50"
-            placeholder="DirecciÓn del Restaurante"
+            placeholder="Dirección del Restaurante"
             value={values.direccionRestaurante}
             onChange={handleChange}
-          />{errors.direccionRestaurante && <p className="error">{errors.direccionRestaurante}</p>}
+          />
           <Form.Field
+          required
             control={Select}
-            options={genderOptions}
+            options ={genderOptions}
             label={{
-              children: "Provincia*",
+              children: "Provincia",
               htmlFor: "form-select-control-gender",
             }}
             name="provincia"
             placeholder="seleccione una provincia"
             search
             searchInput={{ id: "form-select-control-gender" }}
-          />{errors.provincia && <p className="error">{errors.provincia}</p>}
+          />
         </Form.Group>
+
+        <Form.Group widths="equal">
+          <Form.Field >{errors.direccionRestaurante && <p className="error">{errors.direccionRestaurante}</p>}</Form.Field>
+          <Form.Field>{errors.provincia && <p className="error">{errors.provincia}</p>}</Form.Field>
+        </Form.Group>
+
         <Form.Group widths="equal">
           <Form.Field
             control={TextArea}
@@ -98,12 +118,12 @@ const RegisterRestaurant = () => {
             type="text"
             name="informacionAdicional"
             maxLength="100"
-            placeholder="Tell us more about you..."
+            placeholder="Cuéntanos más.."
             value={values.informacionAdicional}
             onChange={handleChange}
             style={{ resize: "none" }}
-          />{errors.informacionAdicional && <p className="error">{errors.informacionAdicional}</p>}
-          <Form.Field
+          />
+         <Form.Field
             control={Input}
             label="Correo Electrónico"
             type="email"
@@ -112,8 +132,14 @@ const RegisterRestaurant = () => {
             placeholder="Correo Electrónico"
             value={values.email}
             onChange={handleChange}
-          />{errors.email && <p className="error">{errors.email}</p>}
+          />
         </Form.Group>
+
+        <Form.Group widths="equal">
+          <Form.Field ></Form.Field>
+          <Form.Field>{errors.email && <p className="error">{errors.email}</p>}</Form.Field>
+        </Form.Group>
+
         <Form.Group widths="equal">
           <Form.Field
             control={Input}
@@ -134,8 +160,14 @@ const RegisterRestaurant = () => {
             value={values.telefono}
             onChange={handleChange}
           />
-          {errors.telefono && <p className="error">{errors.telefono}</p>}
+          
         </Form.Group>
+
+        <Form.Group widths="equal">
+          <Form.Field ></Form.Field>
+          <Form.Field>{errors.telefono && <p className="error">{errors.telefono}</p>}</Form.Field>
+        </Form.Group>
+
         <Form.Group widths="equal">
           <Form.Field
             control={Input}
@@ -147,18 +179,25 @@ const RegisterRestaurant = () => {
             onChange={handleChange}
           />{errors.publicidad && <p className="error">{errors.publicidad}</p>}
           <Form.Field
+          required
             control={Select}
             options={genderOptionsCategoria}
             label={{
-              children: "Categoria*",
+              children: "Categoria",
               htmlFor: "form-select-control-gender",
             }}
             name="categoria"
             placeholder="seleccione una categoria"
             search
             searchInput={{ id: "form-select-control-gender" }}
-          />{errors.categoria && <p className="error">{errors.categoria}</p>}
+          />
         </Form.Group>
+
+        <Form.Group widths="equal">
+          <Form.Field ></Form.Field>
+          <Form.Field>{errors.categoria && <p className="error">{errors.categoria}</p>}</Form.Field>
+        </Form.Group>
+
         <Form.Group widths="equal">
           <Form.Field>
             <label>Fotografía del logo del Restaurante"</label>
@@ -182,14 +221,39 @@ const RegisterRestaurant = () => {
             style={{ resize: "none" }}
           />{errors.descripción && <p className="error">{errors.descripción}</p>}
         </Form.Group>
-        <Form.Input type="file" style={{ width: 160 }}></Form.Input>
+        <Form.Input type="file" accept="image/*" style={{ width: 180 }}></Form.Input>
         <Form.Group widths="equal">
-          <Form.Field control={Button} type="">
-            Cancelar
-          </Form.Field>
-          <Form.Field control={Button} type="submit">
+
+        <Message
+            centeredContent
+            open={openConfirmationModal}
+            trigger={
+              <Form.Button
+                fluid
+                negative
+                floated="left"
+                size="large"
+                style={{ width:150 }}
+                onClick={(_e, _d) => setOpenConfirmationModal(true)}>
+                Cancelar
+              </Form.Button>
+            }
+            content="¿Estás seguro de cancelar el registro?"
+            onCancel={() => setOpenConfirmationModal(false)}
+            onOK={() => {
+              setOpenConfirmationModal(false);
+              salir();
+            }}
+          />
+            
+          <Form.Button control={Button} 
+          floated="left"
+          positive 
+          size="large"
+          style={{ width:150 }}
+          type="submit">
             Guardar
-          </Form.Field>
+          </Form.Button>
         </Form.Group>
       </Form>
     </CenteredLayout>
@@ -198,3 +262,10 @@ const RegisterRestaurant = () => {
 };
 
 export default RegisterRestaurant;
+
+function salir(){
+  http.request(URL="/")
+  console.log("Submitted Succesfully");
+}
+
+  
