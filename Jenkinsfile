@@ -1,8 +1,10 @@
 pipeline {
-    def container_name = "llajta_tours"
-    def api_port = 8858
-    def host_port = 9001
     agent { label 'devops' }
+    environment {
+        CONTAINER_NAME = "llajta_tours"
+        API_PORT = 8858
+        HOST_PORT = 9001
+    }
     stages {
         stage('Clone Repo') {
             steps {
@@ -55,19 +57,19 @@ pipeline {
             steps {
                 echo 'Deploying'
                 sh '''
-                    if [ ! "$(docker ps -q -f name=${container_name})" ]; then
-                        if [ "$(docker ps -aq -f status=exited -f name=${container_name})" ]; then
+                    if [ ! "$(docker ps -q -f name=${CONTAINER_NAME})" ]; then
+                        if [ "$(docker ps -aq -f status=exited -f name=${CONTAINER_NAME})" ]; then
                             # cleanup
-                            docker rm ${container_name}
+                            docker rm ${CONTAINER_NAME}
                         fi
-                        if [ "$(docker ps -aq -f status=up -f name=${container_name})" ]; then
-                            docker stop ${container_name}
-                            docker rm ${container_name}
+                        if [ "$(docker ps -aq -f status=up -f name=${CONTAINER_NAME})" ]; then
+                            docker stop ${CONTAINER_NAME}
+                            docker rm ${CONTAINER_NAME}
                         fi
                     fi
                 '''
                 sh "docker pull ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
-                sh "docker run --name ${container_name} -d -p ${host_port}:${api_port} ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
+                sh "docker run --name ${CONTAINER_NAME} -d -p ${HOST_PORT}:${API_PORT} ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
         }
     }
