@@ -1,4 +1,7 @@
 pipeline {
+    def container_name = "llajta_tours"
+    def api_port = 8858
+    def host_port = 9001
     agent { label 'devops' }
     stages {
         stage('Clone Repo') {
@@ -20,22 +23,24 @@ pipeline {
             steps {
                 echo 'Build Stage'
                 sh 'ls -a'
-                sh './mvnw package'
+                sh './mvnw package -DskipTests=true'
             }
         }
 
         stage('Build Docker Image') {
             when {
-                branch 'dev'
+                branch 'devops'
             }
             steps {
+                sh "docker image prune --force --all"
                 sh "docker build -t ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER} ."
+                sh "./mvnw clean"
             }
         }
 
         stage('Push Docker Image') {
             when {
-                branch 'dev'
+                branch 'devops'
             }
             steps {
                 sh "docker push ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
@@ -45,12 +50,24 @@ pipeline {
         stage('Deploy') {
             agent { label 'deploy' }
             when {
-                branch 'dev'
+                branch 'devops'
             }
             steps {
                 echo 'Deploying'
+                sh '''
+                    if [ ! "$(docker ps -q -f name=${container_name})" ]; then
+                        if [ "$(docker ps -aq -f status=exited -f name=${container_name})" ]; then
+                            # cleanup
+                            docker rm ${container_name}
+                        fi
+                        if [ "$(docker ps -aq -f status=up -f name=${container_name})" ]; then
+                            docker stop ${container_name}
+                            docker rm ${container_name}
+                        fi
+                    fi
+                '''
                 sh "docker pull ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
-                sh "docker run --name turismo-umss-dev -d -p 9001:8585 ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
+                sh "docker run --name ${container_name} -d -p ${host_port}:${api_port} ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
         }
     }
