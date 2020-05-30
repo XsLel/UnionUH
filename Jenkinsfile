@@ -1,8 +1,8 @@
 pipeline {
     agent { label 'devops' }
     environment {
-        CONTAINER_NAME = "llajta_tours"
-        API_PORT = 8858
+        CONTAINER_NAME = "llajta_tours-dev"
+        API_PORT = 8585
         HOST_PORT = 9001
     }
     stages {
@@ -76,7 +76,7 @@ pipeline {
 
     post {
         always {
-            echo 'I will always say Hello again!'
+            echo 'Sending Email Notifications'
             emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: '$ADMIN_EMAIL'
         }
