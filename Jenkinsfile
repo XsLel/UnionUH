@@ -62,7 +62,7 @@ pipeline {
                             # cleanup
                             docker rm ${CONTAINER_NAME}
                         fi
-                        if [ "$(docker ps -aq -f status=up -f name=${CONTAINER_NAME})" ]; then
+                        if [ ! "$(docker ps -aq -f status=exited -f name=${CONTAINER_NAME})" ]; then
                             docker stop ${CONTAINER_NAME}
                             docker rm ${CONTAINER_NAME}
                         fi
