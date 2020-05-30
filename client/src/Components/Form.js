@@ -48,10 +48,13 @@ const RegisterRestaurant = () => {
   function submit() {
     console.log("Submitted Succesfully");
   }
+  
+  
   return (
-    <CenteredLayout>
-      <label>REGISTER RESTAURANT</label>
-      <Form onSubmit={handleSubmit} noValidate>
+    <div className="container mt-5">
+      <h1 className="ui header aligned center">REGISTRO DEL RESTAURANTE</h1>
+   <CenteredLayout>   
+      <Form onSubmit={handleSubmit} noValidate autoComplete="off" size="large">
         <Form.Field
           control={Input}
           label="Nombre del Restaurante*"
@@ -190,6 +193,7 @@ const RegisterRestaurant = () => {
         </Form.Group>
       </Form>
     </CenteredLayout>
+    </div>
   );
 };
 
