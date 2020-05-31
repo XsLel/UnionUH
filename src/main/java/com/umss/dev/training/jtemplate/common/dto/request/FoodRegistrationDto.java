@@ -9,12 +9,14 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 public class FoodRegistrationDto {
 	@Column
 	@NotBlank
 	@Size(min = 1,max = 30,message = "el tamaño del nombre es muy grande")
-	@Pattern(regexp = "[a-zA-Z]+",message = "el nombre de la comida tiene simbolos o numeros")
+	@Pattern(regexp = "[a-zA-Z].+",message = "el nombre de la comida tiene simbolos o numeros")
 	private String nombre;
 	@Column
 	@NonNull
@@ -30,10 +32,9 @@ public class FoodRegistrationDto {
 	@Column
 	@NotBlank
 	@Size(min=3,max=500,message = "el tamaño tiene que estar entre 3 y 500")
-	@Pattern(regexp = "[a-zA-Z]+",message = "los ingredietnes de la comida tiene simbolos o numeros")
+	@Pattern(regexp = "[a-zA-Z].+",message = "los ingredietnes de la comida tiene simbolos o numeros")
 	private String ingredientes;
 	@Column
-	@NotBlank
 	private String diasDisponibles;
 	@Column
 	@Min(1)
@@ -41,6 +42,10 @@ public class FoodRegistrationDto {
 	private int CantidadPorciones;
 	@Column
 	private String imagen;
+	  @JsonIgnore
+	 private Boolean isEnabled;
+	  @JsonIgnore
+	    private Boolean isDeleted;
 	public String getNombre() {
 		return nombre;
 	}
