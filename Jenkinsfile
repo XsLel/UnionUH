@@ -31,7 +31,7 @@ pipeline {
 
         stage('Build Docker Image') {
             when {
-                branch 'devops'
+                branch 'dev'
             }
             steps {
                 sh "docker image prune --force --all"
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Push Docker Image') {
             when {
-                branch 'devops'
+                branch 'dev'
             }
             steps {
                 sh "docker push ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
@@ -52,7 +52,7 @@ pipeline {
         stage('Deploy') {
             agent { label 'deploy' }
             when {
-                branch 'devops'
+                branch 'dev'
             }
             steps {
                 echo 'Deploying'
