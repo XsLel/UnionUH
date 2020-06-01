@@ -8,6 +8,8 @@ import { PageNotFound } from "./common";
 import { RestaurantGallery } from "./components/RestaurantGallery";
 import { TouristicPlaceForm } from "./TouristicPlace";
 import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
+import Start from "./start";
+import StartM from "./startMosaico";
 
 function App() {
   return (
