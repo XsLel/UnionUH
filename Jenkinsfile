@@ -1,8 +1,12 @@
 pipeline {
     agent { label 'devops' }
+    environment {
+        CONTAINER_NAME = "llajta_tours-dev"
+        API_PORT = 8585
+        HOST_PORT = 9001
+    }
     stages {
         stage('Clone Repo') {
-            //agent { label 'devops' }
             steps {
                 git branch: env.BRANCH_NAME,
                 credentialsId: 'github-official-credentials',
@@ -10,7 +14,6 @@ pipeline {
             }
         }
         stage('Compile') {
-            //agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Compile Stage'
                 sh 'chmod +x ./mvnw'
@@ -19,31 +22,63 @@ pipeline {
             }
         }
         stage('Build') {
-            //agent { docker 'maven:3-alpine' }
             steps {
                 echo 'Build Stage'
                 sh 'ls -a'
-                sh './mvnw package'
+                sh './mvnw package -DskipTests=true'
+            }
+        }
+
+        stage('Build Docker Image') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                sh "docker image prune --force --all"
+                sh "docker build -t ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER} ."
+                sh "./mvnw clean"
+            }
+        }
+
+        stage('Push Docker Image') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                sh "docker push ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
         }
 
         stage('Deploy') {
+            agent { label 'deploy' }
             when {
                 branch 'dev'
-                //environment name: 'DEPLOY_TO', value: 'development'
             }
             steps {
                 echo 'Deploying'
-                sh 'java -jar target/java-project-template-0.0.1-SNAPSHOT.jar'
+                sh '''
+                    if [ "$(docker ps -q -f name=${CONTAINER_NAME})" ]; then
+                        if [ "$(docker ps -aq -f status=exited -f name=${CONTAINER_NAME})" ]; then
+                            # cleanup
+                            docker rm ${CONTAINER_NAME}
+                        fi
+                        if [ ! "$(docker ps -aq -f status=exited -f name=${CONTAINER_NAME})" ]; then
+                            docker stop ${CONTAINER_NAME}
+                            docker rm ${CONTAINER_NAME}
+                        fi
+                    fi
+                '''
+                sh "docker pull ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
+                sh "docker run --name ${CONTAINER_NAME} -d -p ${HOST_PORT}:${API_PORT} ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
         }
     }
 
     post {
         always {
-            echo 'I will always say Hello again!'
+            echo 'Sending Email Notifications'
             emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: 'caleb.espinoza@outlook.com'
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: '$ADMIN_EMAIL'
         }
     }
 }
