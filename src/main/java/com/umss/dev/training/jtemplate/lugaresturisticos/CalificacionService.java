@@ -60,6 +60,10 @@ public class CalificacionService {
 				cont++;
 			}
 		}
-		return res/cont;
+		if(cont > 0) {
+			return res/cont;
+		}else {
+			return cont;
+		}
 	}
 }
