@@ -8,13 +8,22 @@ import { http } from "../../services";
 import "./TouristicPlaceForm.css";
 
 export default function TouristicPlaceForm() {
-  const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
-  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(false);
+  const { handleSubmit, handleChange, values, errors } = useForm(
+    submit,
+    validate
+  );
+  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(
+    false
+  );
   const history = useHistory();
 
   async function submit() {
     try {
-      await http.request({ url: "/touristic-places", method: "POST", data: values });
+      await http.request({
+        url: "/touristic-places",
+        method: "POST",
+        data: values,
+      });
       history.push("/lugares-turisticos");
     } catch (error) {
       console.log(error);
@@ -25,7 +34,8 @@ export default function TouristicPlaceForm() {
     <div className="container mt-5">
       <h1 className="ui header aligned center">Lugar turístico</h1>
       <p className="ui large form">
-        Los campos marcados con <span className="text-red">*</span> son obligatorios
+        Los campos marcados con <span className="text-red">*</span> son
+        obligatorios
       </p>
       <Form noValidate autoComplete="off" size="large" onSubmit={handleSubmit}>
         <Form.Input
@@ -51,7 +61,9 @@ export default function TouristicPlaceForm() {
           onChange={handleChange}
           required
         />
-        {errors.description && <p className="text-red small">{errors.description}</p>}
+        {errors.description && (
+          <p className="text-red small">{errors.description}</p>
+        )}
         <Form.Group>
           <Form.TextArea
             error={errors.address !== undefined}
@@ -81,7 +93,9 @@ export default function TouristicPlaceForm() {
           onChange={handleChange}
           required
         />
-        {errors.schedules && <p className="text-red small">{errors.schedules}</p>}
+        {errors.schedules && (
+          <p className="text-red small">{errors.schedules}</p>
+        )}
         <Form.Group widths="equal">
           <MessageBox
             centeredContent
@@ -92,7 +106,8 @@ export default function TouristicPlaceForm() {
                 negative
                 floated="left"
                 size="large"
-                onClick={(_e, _d) => setOpenConfirmationModal(true)}>
+                onClick={(_e, _d) => setOpenConfirmationModal(true)}
+              >
                 Cancelar
               </Form.Button>
             }
@@ -103,7 +118,13 @@ export default function TouristicPlaceForm() {
               history.push("/lugares-turisticos");
             }}
           />
-          <Form.Button fluid positive type="submit" floated="right" size="large">
+          <Form.Button
+            fluid
+            positive
+            type="submit"
+            floated="right"
+            size="large"
+          >
             Aceptar
           </Form.Button>
         </Form.Group>

@@ -8,13 +8,19 @@ import { PageNotFound } from "./common";
 import { RestaurantGallery } from "./components/RestaurantGallery";
 import { TouristicPlaceForm } from "./TouristicPlace";
 import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
+import Start from "./start";
+import StartM from "./startMosaico";
 
 function App() {
   return (
     <HashRouter history={history}>
       <Switch>
         <Route exact path="/" component={Admin} />
-        <Route exact path="/lugares-turisticos/registro" component={TouristicPlaceForm} />
+        <Route
+          exact
+          path="/lugares-turisticos/registro"
+          component={TouristicPlaceForm}
+        />
         <Route
           exact
           path="/restaurants/:restaurantId"
@@ -30,6 +36,8 @@ function App() {
           path="/restaurants/:restaurantId/restaurant-gallery"
           component={RestaurantGallery}
         />
+        <Route exact path="/lugaresturisticos" component={Start} />
+        <Route exact path="/lugaresturisticos/mosaico" component={StartM} />
         <Route exact path="/404" component={PageNotFound} />
         <Route component={PageNotFound} />
       </Switch>

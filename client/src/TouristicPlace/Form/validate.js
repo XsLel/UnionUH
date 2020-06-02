@@ -9,7 +9,8 @@ export default function validate({ name, description, address, schedules }) {
   }
 
   if (!description || isWhitespace.test(description)) {
-    errors.description = "La descripción es requerida, introduce un valor válido.";
+    errors.description =
+      "La descripción es requerida, introduce un valor válido.";
   }
 
   if (!address || isWhitespace.test(address)) {
@@ -17,7 +18,8 @@ export default function validate({ name, description, address, schedules }) {
   }
 
   if (!schedules || isWhitespace.test(schedules)) {
-    errors.schedules = "Los horarios son requeridos, introduce valores válidos.";
+    errors.schedules =
+      "Los horarios son requeridos, introduce valores válidos.";
   }
 
   return errors;
