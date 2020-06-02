@@ -9,7 +9,6 @@ import {
   Button,
 } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import image from "./palacio.jpg";
 import Main from "../main";
 class Listado extends Component {
   constructor() {
@@ -47,6 +46,8 @@ class Listado extends Component {
   }
 
   render() {
+    let aux =
+      "https://cdnmundo1.img.sputniknews.com/img/105158/14/1051581400_0:14:1024:567_1000x541_80_0_0_9889cd17d85392f6389fc106af600b9b.jpg";
     return (
       <div>
         <Main titulo={this.state.titulo} />
@@ -56,7 +57,7 @@ class Listado extends Component {
               this.state.lugaresTuristicos.map((it) => (
                 <Grid.Row key={it.idlugarturistico}>
                   <Grid.Column>
-                    <Image src={image} size="medium" />
+                    <Image src={aux} size="medium" />
                   </Grid.Column>
                   <Grid.Column>
                     <Header as="h2">{it.nombrelugarturistico}</Header>

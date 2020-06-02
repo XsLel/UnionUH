@@ -2,15 +2,16 @@ import React from "react";
 import "semantic-ui-react";
 import { Header, Dropdown, Image, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.css";
-import image from "./palacio.jpg";
 
 function Item(props) {
+  let aux =
+    "https://cdnmundo1.img.sputniknews.com/img/105158/14/1051581400_0:14:1024:567_1000x541_80_0_0_9889cd17d85392f6389fc106af600b9b.jpg";
   return (
     <div className="column">
       <div className="ui segment">
         <div className="ui two column very relaxed grid">
           <div className="column">
-            <Image src={image} size="medium" />
+            <Image src={aux} size="medium" />
           </div>
           <div className="column">
             <Header as="h2">{props.titulo}</Header>
