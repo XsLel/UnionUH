@@ -1,5 +1,5 @@
 import React from 'react';
-import MessageBox from '../../Components/MessageBox';
+import MessageBox from '../../components/MessageBox';
 import useForm from './useForm';
 import validate from './validate';
 import { useHistory } from 'react-router-dom';

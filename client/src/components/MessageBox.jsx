@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Modal } from 'semantic-ui-react';
-import './Styles/MessageBox.css';
+import './styles/MessageBox.css';
 
 export default function MessageBox({
   open,

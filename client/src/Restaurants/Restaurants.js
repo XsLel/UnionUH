@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import CardRestaurant from '../Components/restaurant/CardRestaurant';
+import CardRestaurant from '../components/restaurant/CardRestaurant';
 import { Grid } from 'semantic-ui-react';
 import { TopMenu } from '../Admin/layout';
 import './Restaurants.css';
 import { http } from '../services';
-import Restaurant from '../Components/restaurant/Restaurant';
+import Restaurant from '../components/restaurant/Restaurant';
 
 class Restaurants extends Component {
   state = {
