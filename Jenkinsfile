@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo 'Build Stage'
                 sh 'ls -a'
-                sh './mvnw package -DskipTests=true'
+                sh './mvnw package -P dev -DskipTests=true'
             }
         }
 
