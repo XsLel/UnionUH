@@ -73,4 +73,9 @@ public class RestaurantService {
 		PhotoResponseDto response = photoService.save(requestPhoto, res);
 		return response;
 	}
+	
+	public List<String> getRestaurantGallery(int id) {
+		List<String> restaurantGallery = new ArrayList<>();
+		return restaurantGallery;
+	}
 }

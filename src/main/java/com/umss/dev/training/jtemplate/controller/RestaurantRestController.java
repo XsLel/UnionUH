@@ -53,9 +53,9 @@ public class RestaurantRestController {
 	}
 	
 	@PermitAll
-	@GetMapping("{id}/photos")
+	@GetMapping("{id}/restaurant-gallery")
 	public ResponseEntity<List<String>> getRestaurantGallery(@PathVariable("id") int id) {
-		List<String> restaurantGallery = new ArrayList<>();
+		List<String> restaurantGallery = restaurantService.getRestaurantGallery(id);
 		return ResponseEntity.ok(restaurantGallery);
 	}
 }
