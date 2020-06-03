@@ -1,11 +1,11 @@
-import React from "react";
-import MessageBox from "../../components/MessageBox";
-import useForm from "./useForm";
-import validate from "./validate";
-import { useHistory } from "react-router-dom";
-import { Form, Icon } from "semantic-ui-react";
-import { http } from "../../services";
-import "./TouristicPlaceForm.css";
+import React from 'react';
+import MessageBox from '../../Components/MessageBox';
+import useForm from './useForm';
+import validate from './validate';
+import { useHistory } from 'react-router-dom';
+import { Form, Icon } from 'semantic-ui-react';
+import { http } from '../../services';
+import './TouristicPlaceForm.css';
 
 export default function TouristicPlaceForm() {
   const { handleSubmit, handleChange, values, errors } = useForm(
@@ -20,11 +20,11 @@ export default function TouristicPlaceForm() {
   async function submit() {
     try {
       await http.request({
-        url: "/touristic-places",
-        method: "POST",
+        url: '/touristic-places',
+        method: 'POST',
         data: values,
       });
-      history.push("/lugares-turisticos");
+      history.push('/lugares-turisticos');
     } catch (error) {
       console.log(error);
     }
@@ -115,7 +115,7 @@ export default function TouristicPlaceForm() {
             onCancel={() => setOpenConfirmationModal(false)}
             onOK={() => {
               setOpenConfirmationModal(false);
-              history.push("/lugares-turisticos");
+              history.push('/lugares-turisticos');
             }}
           />
           <Form.Button

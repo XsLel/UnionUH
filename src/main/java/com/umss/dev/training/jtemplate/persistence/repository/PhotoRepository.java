@@ -19,4 +19,9 @@ public interface PhotoRepository extends JpaRepository<Photo,Integer> {
 			+ "FROM Photo "
 			+ "WHERE restaurant_id = ?1 and home = true")
 	public List<PhotoResponseDto> getHomePhotos(int restaurantId);
+
+	@Query("SELECT new com.umss.dev.training.jtemplate.common.dto.response.PhotoResponseDto(id, url, carousel, food, home) "
+			+ "FROM Photo "
+			+ "WHERE restaurant_id = ?1")
+	public List<PhotoResponseDto> getByRestaurant(int restaurantId);
 }

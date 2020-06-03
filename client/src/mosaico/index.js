@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import "semantic-ui-react";
-import "semantic-ui-css/semantic.css";
-import Item from "./item";
-import Main from "../main";
+import React, { Component } from 'react';
+import 'semantic-ui-react';
+import 'semantic-ui-css/semantic.css';
+import Item from './item';
+import Main from '../main';
 class Mosaico extends Component {
   constructor() {
     super();
-    this.state = { titulo: "" };
+    this.state = { titulo: '' };
     this.state = { lugaresTuristicos: [] };
   }
 
@@ -15,8 +15,8 @@ class Mosaico extends Component {
   }
 
   componentDidMount() {
-    this.setState({ titulo: "Mosaico" });
-    fetch("/api/lugaresturistico")
+    this.setState({ titulo: 'Mosaico' });
+    fetch('/api/lugaresturistico')
       .then((res) => res.json())
       .then((lt) => this.setState({ lugaresTuristicos: Object.values(lt) }));
   }

@@ -1,8 +1,8 @@
-import React from "react";
-import "semantic-ui-react";
-import { Segment, Grid, Header, Dropdown } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-import "semantic-ui-css/semantic.min.css";
+import React from 'react';
+import 'semantic-ui-react';
+import { Segment, Grid, Header, Dropdown } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
 
 function Main(props) {
   return (

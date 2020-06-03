@@ -1,7 +1,7 @@
-import React from "react";
-import "semantic-ui-react";
-import { Segment, Grid, Icon } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
+import React from 'react';
+import 'semantic-ui-react';
+import { Segment, Grid, Icon } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 function Footer() {
   return (
     <Segment inverted>

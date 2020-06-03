@@ -1,7 +1,7 @@
-import React from "react";
-import Footer from "../footer";
-import Listado from "../listado";
-import Header from "../header";
+import React from 'react';
+import Footer from '../footer';
+import Listado from '../listado';
+import Header from '../header';
 
 function start() {
   return (

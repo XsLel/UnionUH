@@ -31,7 +31,11 @@ public class RestaurantService {
 		this.modelMapper = modelMapper;
 		this.photoService = new PhotoService(photoRepository, modelMapper);
 	}
-	
+
+	public List<Restaurant> getAll() {
+		return restaurantRepository.findAll();
+	}
+
 	public RestaurantResponseDto findById(int id) {
 		Restaurant res = restaurantRepository.findById(id).orElse(null);
 		if (res == null) {

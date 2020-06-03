@@ -24,6 +24,7 @@ public class Restaurant {
 	private String commercial;
 	private String category;
 	private String description;
+	private double qualification;
 
 	public int getId() {
 		return id;
@@ -112,4 +113,13 @@ public class Restaurant {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public double getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(double qualification) {
+		this.qualification = qualification;
+	}
+
 }

@@ -1,11 +1,11 @@
-import React from "react";
-import "semantic-ui-react";
-import { Header, Dropdown, Image, Button } from "semantic-ui-react";
-import "semantic-ui-css/semantic.css";
+import React from 'react';
+import 'semantic-ui-react';
+import { Header, Dropdown, Image, Button } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.css';
 
 function Item(props) {
   let aux =
-    "https://cdnmundo1.img.sputniknews.com/img/105158/14/1051581400_0:14:1024:567_1000x541_80_0_0_9889cd17d85392f6389fc106af600b9b.jpg";
+    'https://cdnmundo1.img.sputniknews.com/img/105158/14/1051581400_0:14:1024:567_1000x541_80_0_0_9889cd17d85392f6389fc106af600b9b.jpg';
   return (
     <div className="column">
       <div className="ui segment">

@@ -53,4 +53,9 @@ public class PhotoService {
 				.collect(Collectors.toList());
 		return response;
 	}
+
+	public List<PhotoResponseDto> getPhotoByIdRestaurant(int idRestaurant) {
+		return photoRepository.getByRestaurant(idRestaurant);
+	}
+
 }

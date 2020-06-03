@@ -1,6 +1,6 @@
-import React from "react";
-import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
-import Home from "./Home/Home";
+import React from 'react';
+import { Switch, Route, useRouteMatch, Redirect } from 'react-router-dom';
+import Home from './Home/Home';
 
 export default function RestaurantInformation() {
   let { path } = useRouteMatch();

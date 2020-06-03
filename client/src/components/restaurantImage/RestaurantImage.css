@@ -1,0 +1,14 @@
+.restaurant-image {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 0;
+  object-fit: cover;
+  filter: brightness(90%);
+  cursor: pointer;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.restaurant-image:hover {
+  filter: brightness(100%);
+}

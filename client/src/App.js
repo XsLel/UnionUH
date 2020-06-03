@@ -1,15 +1,16 @@
-import React from "react";
-import "semantic-ui-css/semantic.min.css";
-import { HashRouter, Switch, Route } from "react-router-dom";
-import { history } from "./services";
-import { Admin } from "./Admin/Admin";
-import { FoodGallery } from "./components/FoodGallery";
-import { PageNotFound } from "./common";
-import { RestaurantGallery } from "./components/RestaurantGallery";
-import { TouristicPlaceForm } from "./TouristicPlace";
-import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
-import Start from "./start";
-import StartM from "./startMosaico";
+import React from 'react';
+import 'semantic-ui-css/semantic.min.css';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import { history } from './services';
+import { Admin } from './Admin/Admin';
+import { FoodGallery } from './Components/FoodGallery';
+import { PageNotFound } from './common';
+import { RestaurantGallery } from './Components/RestaurantGallery';
+import { TouristicPlaceForm } from './TouristicPlace';
+import RestaurantInformation from './RestaurantInformation/RestaurantInformation';
+import Start from './start';
+import StartM from './startMosaico';
+import Restaurants from './Restaurants/Restaurants';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           path="/lugares-turisticos/registro"
           component={TouristicPlaceForm}
         />
+        <Route exact path="/restaurants" component={Restaurants} />
         <Route
           exact
           path="/restaurants/:restaurantId"

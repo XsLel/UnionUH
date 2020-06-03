@@ -1,6 +1,6 @@
-import React from "react";
-import { Button, Modal } from "semantic-ui-react";
-import "./styles/MessageBox.css";
+import React from 'react';
+import { Button, Modal } from 'semantic-ui-react';
+import './Styles/MessageBox.css';
 
 export default function MessageBox({
   open,
@@ -15,7 +15,7 @@ export default function MessageBox({
     <Modal size="mini" dimmer="inverted" open={open} trigger={trigger}>
       {header && <Modal.Header>{header}</Modal.Header>}
       <Modal.Content>
-        <p className={centeredContent ? "text-align-center" : ""}>{content}</p>
+        <p className={centeredContent ? 'text-align-center' : ''}>{content}</p>
       </Modal.Content>
       <Modal.Actions>
         {onCancel && (

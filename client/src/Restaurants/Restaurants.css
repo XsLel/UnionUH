@@ -1,0 +1,16 @@
+.container-restaurants {
+  padding: 20px;
+  margin-left: 20px;
+}
+
+.title {
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+
+#btn-change-list {
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-content: flex-end;
+}
