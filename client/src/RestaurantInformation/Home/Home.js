@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from "react";
-import { Redirect, withRouter } from "react-router-dom";
-import { http } from "../../services";
-import { Container, Segment } from "semantic-ui-react";
-import Carousel from "../carousel/carousel"; //// carrusel >>Carousel
-import Information from "../../components/Information";
-import Menu from "../../components/Menu";
-import Footer from "../../components/Footer";
+import React, { Component, Fragment } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
+import { http } from '../../services';
+import { Container, Segment } from 'semantic-ui-react';
+import Carousel from '../carousel/carousel'; //// carrusel >>Carousel
+import Information from '../../components/Information';
+import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 
 class Home extends Component {
   constructor(props) {
