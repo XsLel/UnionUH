@@ -2,7 +2,7 @@ pipeline {
     agent { label 'devops' }
     environment {
         CONTAINER_NAME = "llajta_tours-dev"
-        API_PORT = 8585
+        API_PORT = 9001
         HOST_PORT = 9001
     }
     stages {
