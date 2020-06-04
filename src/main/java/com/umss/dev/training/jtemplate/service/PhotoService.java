@@ -1,5 +1,6 @@
 package com.umss.dev.training.jtemplate.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,5 +53,10 @@ public class PhotoService {
 				})
 				.collect(Collectors.toList());
 		return response;
+	}
+	
+	public List<String> getRestaurantGallery(int id) {
+		List<String> restaurantGallery = photoRepository.getRestaurantGallery(id);
+		return restaurantGallery;
 	}
 }
