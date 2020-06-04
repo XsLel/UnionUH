@@ -4,6 +4,7 @@ pipeline {
         CONTAINER_NAME = "llajta_tours-dev"
         API_PORT = 9001
         HOST_PORT = 9001
+        CERT_KEY= credentials('turismo-umss-ssl')
     }
     stages {
         stage('Clone Repo') {
