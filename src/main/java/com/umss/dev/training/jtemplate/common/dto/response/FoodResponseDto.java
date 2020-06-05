@@ -1,72 +1,71 @@
 package com.umss.dev.training.jtemplate.common.dto.response;
 
+
 public class FoodResponseDto {
 	private Long id;
-	private String nombre;
-	private int precio;
-	private String descricion;
-	private String categoria;
-	private String ingredientes;
-	private String diasDisponibles;
-	private int CantidadPorciones;
-	private String imagen;
+	private String name;
+	private int price;
+	private String description;
+	private String category;
+	private String ingredients;
+	private String days;
+	private int servings;
+	private String image;
 	private Boolean isEnabled;
     private Boolean isDeleted;
-	
-    
-    public Long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public int getPrecio() {
-		return precio;
+	public int getPrice() {
+		return price;
 	}
-	public void setPrecio(int precio) {
-		this.precio = precio;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public String getDescricion() {
-		return descricion;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescricion(String descricion) {
-		this.descricion = descricion;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getCategoria() {
-		return categoria;
+	public String getCategory() {
+		return category;
 	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public String getIngredientes() {
-		return ingredientes;
+	public String getIngredients() {
+		return ingredients;
 	}
-	public void setIngredientes(String ingredientes) {
-		this.ingredientes = ingredientes;
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
 	}
-	public String getDiasDisponibles() {
-		return diasDisponibles;
+	public String getDays() {
+		return days;
 	}
-	public void setDiasDisponibles(String diasDisponibles) {
-		this.diasDisponibles = diasDisponibles;
+	public void setDays(String days) {
+		this.days = days;
 	}
-	public int getCantidadPorciones() {
-		return CantidadPorciones;
+	public int getServings() {
+		return servings;
 	}
-	public void setCantidadPorciones(int cantidadPorciones) {
-		CantidadPorciones = cantidadPorciones;
+	public void setServings(int servings) {
+		this.servings = servings;
 	}
-	public String getImagen() {
-		return imagen;
+	public String getImage() {
+		return image;
 	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public Boolean getIsEnabled() {
 		return isEnabled;
@@ -80,5 +79,8 @@ public class FoodResponseDto {
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+	
+    
+    
     
 }

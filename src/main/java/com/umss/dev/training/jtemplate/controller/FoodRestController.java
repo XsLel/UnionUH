@@ -23,7 +23,7 @@ import com.umss.dev.training.jtemplate.service.FoodService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 6000)
 @RestController
-@RequestMapping("/api/food")
+@RequestMapping("/restaurants/Food")
 public class FoodRestController {
 	
 	@Autowired
@@ -37,7 +37,7 @@ public class FoodRestController {
 		
 	}
 	@PermitAll()
-	@PostMapping
+	@PostMapping("/save")
 	public ResponseEntity<FoodResponseDto> save(@Valid @RequestBody final FoodRegistrationDto userDto) {
 		FoodResponseDto persistedUser = userService.save(userDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(persistedUser);
@@ -47,5 +47,11 @@ public class FoodRestController {
 		userService.delete(userId);
 		return ResponseEntity.noContent().build();
 	}
+	@GetMapping("/allFoods")
+	public ResponseEntity<Iterable<FoodResponseDto>> getAllUser() {
+		Iterable<FoodResponseDto> usersResponse = userService.findAllSortedByName();
+		return ResponseEntity.ok(usersResponse);
+	}
+	
 	
 }

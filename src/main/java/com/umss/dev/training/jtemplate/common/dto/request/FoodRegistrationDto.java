@@ -17,83 +17,98 @@ public class FoodRegistrationDto {
 	@NotBlank
 	@Size(min = 1,max = 30,message = "el tamaño del nombre es muy grande")
 	@Pattern(regexp = "[a-zA-Z].+",message = "el nombre de la comida tiene simbolos o numeros")
-	private String nombre;
+	private String name;
 	@Column
 	@NonNull
 	@Min(1)
 	@Max(500)
-	private int precio;
+	private int price;
 	@Column
 	@NotBlank
 	@Size(min=10,max=2000,message = "este campo tiene que tener como minimo 10 caracteres")
-	private String descricion;
+	private String description;
 	@Column
-	private String categoria;
+	private String category;
 	@Column
 	@NotBlank
 	@Size(min=3,max=500,message = "el tamaño tiene que estar entre 3 y 500")
 	@Pattern(regexp = "[a-zA-Z].+",message = "los ingredietnes de la comida tiene simbolos o numeros")
-	private String ingredientes;
+	private String ingredients;
 	@Column
-	private String diasDisponibles;
+	private String days;
 	@Column
 	@Min(1)
 	@Max(20)
-	private int CantidadPorciones;
+	private int servings;
 	@Column
-	private String imagen;
+	private String image;
 	  @JsonIgnore
 	 private Boolean isEnabled;
 	  @JsonIgnore
 	    private Boolean isDeleted;
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
-	public int getPrecio() {
-		return precio;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setPrecio(int precio) {
-		this.precio = precio;
+	public int getPrice() {
+		return price;
 	}
-	public String getDescricion() {
-		return descricion;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public void setDescricion(String descricion) {
-		this.descricion = descricion;
+	public String getDescription() {
+		return description;
 	}
-	public String getCategoria() {
-		return categoria;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public String getCategory() {
+		return category;
 	}
-	public String getIngredientes() {
-		return ingredientes;
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public void setIngredientes(String ingredientes) {
-		this.ingredientes = ingredientes;
+	public String getIngredients() {
+		return ingredients;
 	}
-	public String getDiasDisponibles() {
-		return diasDisponibles;
+	public void setIngredients(String ingredients) {
+		this.ingredients = ingredients;
 	}
-	public void setDiasDisponibles(String diasDisponibles) {
-		this.diasDisponibles = diasDisponibles;
+	public String getDays() {
+		return days;
 	}
-	public int getCantidadPorciones() {
-		return CantidadPorciones;
+	public void setDays(String days) {
+		this.days = days;
 	}
-	public void setCantidadPorciones(int cantidadPorciones) {
-		CantidadPorciones = cantidadPorciones;
+	public int getServings() {
+		return servings;
 	}
-	public String getImagen() {
-		return imagen;
+	public void setServings(int servings) {
+		this.servings = servings;
 	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public String getImage() {
+		return image;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setImage(String image) {
+		this.image = image;
 	}
+	public Boolean getIsEnabled() {
+		return isEnabled;
+	}
+	public void setIsEnabled(Boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+	
+	 
+	  
 	
 	
 }

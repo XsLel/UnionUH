@@ -1,11 +1,11 @@
 package com.umss.dev.training.jtemplate.service;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.umss.dev.training.jtemplate.common.dto.request.FoodRegistrationDto;
 import com.umss.dev.training.jtemplate.common.dto.response.FoodResponseDto;
@@ -19,7 +19,7 @@ public class FoodService {
 	
 	private FoodRepository userRepository;
 	private ModelMapper modelMapper;
-	private BCryptPasswordEncoder passwordEncoder;
+	//private BCryptPasswordEncoder passwordEncoder;
 
  
 
@@ -48,4 +48,17 @@ public class FoodService {
 	public void delete(Long userId) {
 		userRepository.deleteById(userId);
 	}
+	public Iterable<FoodResponseDto> findAllSortedByName() {
+		List<FoodResponseDto> allUsersResponse = userRepository.findAll().stream()
+												.sorted(Comparator.comparing(Food::getName))
+												.map(usr ->{
+													FoodResponseDto response = modelMapper.map(usr, FoodResponseDto.class);
+													return response;
+												})
+												.collect(Collectors.toList());
+										
+		
+		return allUsersResponse;
+	}
+	
 }
