@@ -1,2 +1,2 @@
-import addComidas from "./AddComidas";
-export default addComidas;
+import addFood from "./AddFood";
+export default addFood;

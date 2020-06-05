@@ -7,15 +7,15 @@ const AddComidas = () => {
 
     let history = useHistory();
     const [user, setUser] = useState({
-        nombre: "",
-        precio: "",
-        descricion: "",  
-        categoria: "",
-        ingredientes: "",
-        diasDisponibles:"",
-        cantidadPorciones:""
+        name: "",
+        price: "",
+        description: "",  
+        category: "",
+        ingredients: "",
+        days:"",
+        servings:""
       });
-       const { nombre, precio, descricion, categoria, ingredientes, diasDisponibles, cantidadPorciones } = user;
+       const { name, price, description, category, ingredients, days, servings } = user;
 
       
       const onInputChange = e => {
@@ -40,7 +40,7 @@ const AddComidas = () => {
     
       const onSubmit = async e => {
         
-          axios.post("http://localhost:8585/api/food", user,yourConfig)
+          axios.post("http://localhost:8585/restaurants/Food/save", user,yourConfig)
             .then(response => {
               console.log(response);
             })
@@ -53,11 +53,13 @@ const AddComidas = () => {
 
      
     return ( 
+        
         <div className="cont">
         <div className="w-75 mx-auto shadow p-5">
           <h3></h3>
             <h2 className="ui header" align="center" >Registro de Comida</h2>
           <h5 className="ui header">Los campos con * son obligatorios</h5>
+          
           <form onSubmit={e => onSubmit(e)}>
             <div className="ui input">
               <label>Nombre* </label> 
@@ -69,11 +71,13 @@ const AddComidas = () => {
                 className="cajaNombre"
                 placeholder="ingrese nombre de comida"
                 autocomplete = "off"
-                name="nombre"
-                value={nombre}
-                required 
+                name="name"
+                value={name}
+                onkeyup="onKeyUp(event)"
                 minlength="3" maxlength="30"
                 pattern="[A-Za-z].*"
+                required   
+                formnovalidate="true"
                 onChange={e => onInputChange(e)}
               />
 
@@ -88,8 +92,8 @@ const AddComidas = () => {
                 type="number"
                 className="cajaPrecio"
                 placeholder="Precio de la Comida"
-                name="precio"
-                value={precio}
+                name="price"
+                value={price}
                 max="500"
                 min="0"
                 required
@@ -106,12 +110,12 @@ const AddComidas = () => {
                 type="text"
                 className="cajaDescripcion"
                 placeholder="Ingrese descripcion de la comida"
-                name="descricion"
-                value={descricion}
-                required
+                name="description"
+                value={description}
                 maxlength="2000"
                 minLength="10"
                 pattern="[A-Za-z0-9].*"
+                required
                 onChange={e => onInputChange(e)}
               />
             </div>
@@ -123,8 +127,8 @@ const AddComidas = () => {
               <select  
                           className="ui dropdown"
                           id="cajaCategoria"
-                           name="categoria"
-                           value={categoria}
+                           name="category"
+                           value={category}
                            
                           onChange={e => handleInput(e)}
                           required
@@ -150,12 +154,12 @@ const AddComidas = () => {
                 type="text"
                 className="cajaIngredientes"
                 placeholder="Ingredientes de la Comida"
-                name="ingredientes"
-                value={ingredientes}
-                required
+                name="ingredients"
+                value={ingredients}
                 maxLength="500"
                 minLength="3"
                 pattern="[A-Za-z].*"
+                required
                 onChange={e => onInputChange(e)}
               />
               
@@ -179,6 +183,7 @@ const AddComidas = () => {
                           
                           class="ui fluid search dropdown" multiple="multiple"
                      >
+                                 
                        <option value="" selected>seleccione una opción</option>
                             <option value="lunes">Lunes</option>
                             <option value="martes">Martes</option>
@@ -206,22 +211,23 @@ const AddComidas = () => {
                 type="number"   
                 className="cajaCant"    
                 placeholder="Ingrese Cantidad de Porciones"
-                name="cantidadPorciones"
-                value={cantidadPorciones}
+                name="servings"
+                value={servings}
                 max="20"
-                required
+                min= "1"
                 onChange={e => onInputChange(e)}
               />
             </div>
+              
             <br/><br/>
           
-
-
+          <br/><br/>
             <button className="ui second button" >Cancelar </button>
             &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="ui primary button" type="submit" >Guardar </button>
             
           </form>
+          
         </div>
         
       </div>
