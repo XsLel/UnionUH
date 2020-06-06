@@ -1,6 +1,6 @@
 package com.umss.dev.training.jtemplate.lugaresturisticos;
 
-public class CalLTResponse {
+public class CalLTResponse implements Comparable<CalLTResponse>{
 
 	private Long idlugarturistico;
 	private String nombrelugarturistico;
@@ -46,6 +46,11 @@ public class CalLTResponse {
 	}
 	public void setPromedio(Long promedio) {
 		this.promedio = promedio;
+	}
+
+	@Override
+	public int compareTo(CalLTResponse clt) {
+		return getPromedio().compareTo(clt.getPromedio());
 	}
 	
 }

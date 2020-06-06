@@ -1,5 +1,6 @@
 package com.umss.dev.training.jtemplate.lugaresturisticos;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +40,8 @@ public class LugaresTuristicoService {
 					return response;
 		})    
 	      		.collect(Collectors.toList());
+
+				 Collections.sort(allResponse);
 
 	  return allResponse;
 		
