@@ -34,9 +34,10 @@ const AddComidas = () => {
   function controlNombre() {
     var nombreLabel = document.getElementById("idLabelNombre");
     var nombreInput = document.getElementById("idNombre");
-    var regexABC = new RegExp("^[a-zA-Zs]{3,30}");
-    //&& nombreInput.value.length<4
-    if (!regexABC.test(nombreInput.value)) nombreLabel.style.color = "red";
+    //var regexABC = new RegExp("^[a-zA-Zs]{3,30}");
+    var regexABC = new RegExp("^[a-zA-Z ]*$");
+    if (!regexABC.test(nombreInput.value) || nombreInput.value.length <= 3)
+      nombreLabel.style.color = "red";
     else nombreLabel.style.color = "green";
   }
   function controlPrecio() {
@@ -65,9 +66,12 @@ const AddComidas = () => {
   function controlIngredientes() {
     var ingredientesLabel = document.getElementById("idLabelIngredientes");
     var ingredientesInput = document.getElementById("idIngredientes");
-    var regexABC = new RegExp("^[a-zA-Z0-9s]{1,2000}");
+    var regexABC = new RegExp("^[a-zA-Z ]*$");
     //&& nombreInput.value.length<4
-    if (!regexABC.test(ingredientesInput.value))
+    if (
+      !regexABC.test(ingredientesInput.value) ||
+      ingredientesInput.value.length <= 10
+    )
       ingredientesLabel.style.color = "red";
     else ingredientesLabel.style.color = "green";
   }
