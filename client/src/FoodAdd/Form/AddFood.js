@@ -37,7 +37,7 @@ const AddComidas = () => {
     var regexABC = new RegExp("^[a-zA-Zs]{3,30}");
     //&& nombreInput.value.length<4
     if (!regexABC.test(nombreInput.value)) nombreLabel.style.color = "red";
-    else nombreLabel.style.color = "blue";
+    else nombreLabel.style.color = "green";
   }
   function controlPrecio() {
     var precioLabel = document.getElementById("idLabelPrecio");
@@ -48,7 +48,7 @@ const AddComidas = () => {
       !(precioInput.value > 0 && precioInput.value <= 500)
     )
       precioLabel.style.color = "red";
-    else precioLabel.style.color = "blue";
+    else precioLabel.style.color = "green";
   }
   function controlDescripcion() {
     var descripcionLabel = document.getElementById("idLabelDescripcion");
@@ -60,7 +60,7 @@ const AddComidas = () => {
       !(descripcionInput.value.length > 9)
     )
       descripcionLabel.style.color = "red";
-    else descripcionLabel.style.color = "blue";
+    else descripcionLabel.style.color = "green";
   }
   function controlIngredientes() {
     var ingredientesLabel = document.getElementById("idLabelIngredientes");
@@ -69,7 +69,7 @@ const AddComidas = () => {
     //&& nombreInput.value.length<4
     if (!regexABC.test(ingredientesInput.value))
       ingredientesLabel.style.color = "red";
-    else ingredientesLabel.style.color = "blue";
+    else ingredientesLabel.style.color = "green";
   }
   function controlCantidadPersonas() {
     var cantidadLabel = document.getElementById("idLabelCantidad");
@@ -80,7 +80,7 @@ const AddComidas = () => {
       !(cantidadInput.value > 0 && cantidadInput.value <= 20)
     )
       cantidadLabel.style.color = "red";
-    else cantidadLabel.style.color = "blue";
+    else cantidadLabel.style.color = "green";
   }
 
   const handleInput = (e) => {
