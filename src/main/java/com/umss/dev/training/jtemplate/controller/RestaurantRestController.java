@@ -1,6 +1,5 @@
 package com.umss.dev.training.jtemplate.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
