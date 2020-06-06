@@ -1,6 +1,8 @@
 package com.umss.dev.training.jtemplate.common.dto.response;
 
-import javax.imageio.ImageIO;
+import com.umss.dev.training.jtemplate.common.dto.request.RoleRegistrationDto;
+
+import java.util.Set;
 
 public class RegisterRestaurantDto {
     private String nombreRestaurante;
