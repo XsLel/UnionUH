@@ -25,7 +25,63 @@ const AddComidas = () => {
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+    controlNombre();
+    controlPrecio();
+    controlDescripcion();
+    controlIngredientes();
+    controlCantidadPersonas();
   };
+  function controlNombre() {
+    var nombreLabel = document.getElementById("idLabelNombre");
+    var nombreInput = document.getElementById("idNombre");
+    var regexABC = new RegExp("^[a-zA-Zs]{3,30}");
+    //&& nombreInput.value.length<4
+    if (!regexABC.test(nombreInput.value)) nombreLabel.style.color = "red";
+    else nombreLabel.style.color = "blue";
+  }
+  function controlPrecio() {
+    var precioLabel = document.getElementById("idLabelPrecio");
+    var precioInput = document.getElementById("idPrecio");
+    var regexNumero = new RegExp("^[0-9]{1,3}");
+    if (
+      !regexNumero.test(precioInput.value) ||
+      !(precioInput.value > 0 && precioInput.value <= 500)
+    )
+      precioLabel.style.color = "red";
+    else precioLabel.style.color = "blue";
+  }
+  function controlDescripcion() {
+    var descripcionLabel = document.getElementById("idLabelDescripcion");
+    var descripcionInput = document.getElementById("idDescripcion");
+    var regexABC = new RegExp("[a-zA-Z0-9]");
+    //&& nombreInput.value.length<4
+    if (
+      !regexABC.test(descripcionInput.value) ||
+      !(descripcionInput.value.length > 9)
+    )
+      descripcionLabel.style.color = "red";
+    else descripcionLabel.style.color = "blue";
+  }
+  function controlIngredientes() {
+    var ingredientesLabel = document.getElementById("idLabelIngredientes");
+    var ingredientesInput = document.getElementById("idIngredientes");
+    var regexABC = new RegExp("^[a-zA-Z0-9s]{1,2000}");
+    //&& nombreInput.value.length<4
+    if (!regexABC.test(ingredientesInput.value))
+      ingredientesLabel.style.color = "red";
+    else ingredientesLabel.style.color = "blue";
+  }
+  function controlCantidadPersonas() {
+    var cantidadLabel = document.getElementById("idLabelCantidad");
+    var cantidadInput = document.getElementById("idCantidad");
+    var regexNumero = new RegExp("^[0-9]{1,3}");
+    if (
+      !regexNumero.test(cantidadInput.value) ||
+      !(cantidadInput.value > 0 && cantidadInput.value <= 20)
+    )
+      cantidadLabel.style.color = "red";
+    else cantidadLabel.style.color = "blue";
+  }
 
   const handleInput = (e) => {
     let index = e.target.selectedIndex;
@@ -83,6 +139,7 @@ const AddComidas = () => {
               required
               formnovalidate="true"
               onChange={(e) => onInputChange(e)}
+              onClick={(e) => onInputChange(e)}
             />
           </div>
           <br />
@@ -98,9 +155,10 @@ const AddComidas = () => {
               placeholder="Precio de la Comida"
               name="price"
               value={price}
-              max="500"
-              min="0"
+              //max="500"
+              //min="0"
               required
+              onClick={(e) => onInputChange(e)}
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -121,6 +179,7 @@ const AddComidas = () => {
               minLength="10"
               pattern="[A-Za-z0-9].*"
               required
+              onClick={(e) => onInputChange(e)}
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -162,6 +221,7 @@ const AddComidas = () => {
               pattern="[A-Za-z].*"
               required
               onChange={(e) => onInputChange(e)}
+              onClick={(e) => onInputChange(e)}
             />
           </div>
           <br />
@@ -212,6 +272,7 @@ const AddComidas = () => {
               max="20"
               min="1"
               onChange={(e) => onInputChange(e)}
+              onClick={(e) => onInputChange(e)}
             />
           </div>
           <br />
