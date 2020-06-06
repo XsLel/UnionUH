@@ -1,0 +1,50 @@
+/*Estito css Para AddComidas.js */
+.cont {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+}
+.cajaNombre {
+  width: 350px;
+}
+.cajaPrecio {
+  width: 350px;
+}
+#cajaCategoria {
+  width: 350px;
+}
+#listCategoria {
+  width: 350px;
+}
+.cajaDescripcion {
+  width: 350px;
+  height: 80px;
+}
+.cajaIngredientes {
+  width: 350px;
+}
+#cajaDias {
+  width: 350px;
+}
+#listDias {
+  width: 350px;
+}
+.cajaCant {
+  width: 350px;
+}
+#btnagregar {
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+}
+
+#botonesprincipales {
+  width: 350px;
+}
+
+/********************************************/
