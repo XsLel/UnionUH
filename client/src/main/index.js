@@ -3,6 +3,7 @@ import "semantic-ui-react";
 import { Segment, Grid, Header, Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
+
 function Main(props) {
   return (
     <Segment>
@@ -15,8 +16,12 @@ function Main(props) {
           <Grid.Column>
             <Dropdown text="Cambiar visualizacion">
               <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/" text="Listado" />
-                <Dropdown.Item as={Link} to="/mosaico" text="Mosaico" />
+                <Dropdown.Item as={Link} to="/lugares-turisticos" text="Listado" />
+                <Dropdown.Item
+                  as={Link}
+                  to="/lugares-turisticos/mosaico"
+                  text="Mosaico"
+                />
               </Dropdown.Menu>
             </Dropdown>
           </Grid.Column>

@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import "semantic-ui-react";
-import {
-  Segment,
-  Grid,
-  Header,
-  Dropdown,
-  Image,
-  Button,
-} from "semantic-ui-react";
+import { Segment, Grid, Header, Dropdown, Image, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import image from "./palacio.jpg";
 import Main from "../main";
+import Paginador from "./paginador/paginador";
+
 class Listado extends Component {
   constructor() {
     super();
@@ -41,12 +35,14 @@ class Listado extends Component {
 
   componentDidMount() {
     this.setState({ titulo: "Listado" });
-    fetch("http://localhost:8585/api/lugaresturisticos")
+    fetch("/api/lugaresturistico", { method: "GET", mode: "no-cors" })
       .then((res) => res.json())
       .then((lt) => this.setState({ lugaresTuristicos: Object.values(lt) }));
   }
 
   render() {
+    let aux =
+      "https://cdnmundo1.img.sputniknews.com/img/105158/14/1051581400_0:14:1024:567_1000x541_80_0_0_9889cd17d85392f6389fc106af600b9b.jpg";
     return (
       <div>
         <Main titulo={this.state.titulo} />
@@ -54,12 +50,12 @@ class Listado extends Component {
           <Grid columns={3} divided>
             {this.state.lugaresTuristicos &&
               this.state.lugaresTuristicos.map((it) => (
-                <Grid.Row key={it.IDLugarTuristico}>
+                <Grid.Row key={it.idlugarturistico}>
                   <Grid.Column>
-                    <Image src={image} size="medium" />
+                    <Image src={aux} size="medium" />
                   </Grid.Column>
                   <Grid.Column>
-                    <Header as="h2">{it.NombreLugarTuristico}</Header>
+                    <Header as="h2">{it.nombrelugarturistico}</Header>
                     <Header as="h3">Calificacion : {it.promedio}</Header>
                   </Grid.Column>
                   <Grid.Column>
@@ -80,6 +76,9 @@ class Listado extends Component {
               ))}
           </Grid>
         </Segment>
+        <div class="ui column centered grid">
+          <Paginador />
+        </div>
       </div>
     );
   }

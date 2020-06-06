@@ -1,6 +1,8 @@
 package com.umss.dev.training.jtemplate.lugaresturisticos;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +18,13 @@ public class LugaresTuristicoController {
 	}
 	
 	@GetMapping()
-	public Iterable<LugaresTuristicoResponse> getLugares(){
+	public Iterable<CalLTResponse> getLugares(){
 		return service.getAll();
+	}
+	
+	@PostMapping()
+	public LugaresTuristicoResponse save(@RequestBody final LugaresTuristicoResponse lt) {
+		LugaresTuristicoResponse res = service.save(lt);
+		return res;
 	}
 }

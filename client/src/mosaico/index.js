@@ -3,6 +3,7 @@ import "semantic-ui-react";
 import "semantic-ui-css/semantic.css";
 import Item from "./item";
 import Main from "../main";
+import Paginador from "../listado/paginador/paginador";
 class Mosaico extends Component {
   constructor() {
     super();
@@ -16,7 +17,7 @@ class Mosaico extends Component {
 
   componentDidMount() {
     this.setState({ titulo: "Mosaico" });
-    fetch("http://localhost:8585/api/lugaresturisticos")
+    fetch("/api/lugaresturistico")
       .then((res) => res.json())
       .then((lt) => this.setState({ lugaresTuristicos: Object.values(lt) }));
   }
@@ -29,11 +30,14 @@ class Mosaico extends Component {
           {this.state.lugaresTuristicos &&
             this.state.lugaresTuristicos.map((it) => (
               <Item
-                key={it.IDLugarTuristico}
-                titulo={it.NombreLugarTuristico}
+                key={it.idlugarturistico}
+                titulo={it.nombrelugarturistico}
                 rank={it.promedio}
               />
             ))}
+        </div>
+        <div class="ui column centered grid">
+          <Paginador />
         </div>
       </div>
     );

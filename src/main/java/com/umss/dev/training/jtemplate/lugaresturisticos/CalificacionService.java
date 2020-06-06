@@ -8,6 +8,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.umss.dev.training.jtemplate.common.dto.request.PhotoRegistration;
+import com.umss.dev.training.jtemplate.common.dto.request.RestaurantRegistration;
+import com.umss.dev.training.jtemplate.common.dto.response.PhotoResponseDto;
+import com.umss.dev.training.jtemplate.common.dto.response.RestaurantResponseDto;
+import com.umss.dev.training.jtemplate.persistence.domain.Restaurant;
+
 @Service
 public class CalificacionService {
 	
@@ -35,5 +41,29 @@ public class CalificacionService {
 
 	  return allResponse;
 		
+	}
+	
+	public CalificacionResponse save(CalificacionResponse calRes) {
+		Calificacion aux = modelMapper.map(calRes, Calificacion.class);
+		aux = repo.save(aux);
+		CalificacionResponse response = modelMapper.map(aux, CalificacionResponse.class);
+        return response;
+    }
+	
+	public Long getPromedio(Long id) {
+		Long res = 0L;
+		Long cont = 0L;
+		List<Calificacion> lista = repo.findAll();
+		for(Calificacion item : lista) {
+			if(item.getIdlugarturistico() == id) {
+				res += item.getScore();
+				cont++;
+			}
+		}
+		if(cont > 0) {
+			return res/cont;
+		}else {
+			return cont;
+		}
 	}
 }
