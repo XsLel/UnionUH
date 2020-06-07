@@ -90,6 +90,7 @@ pipeline {
                     def team = branch.split("_")[3].toUpperCase()
                     email_list = '${' + team + '}'
                     echo "Branch ID: ${email_list}"
+                    echo "${NIZAM} | ${JENKINS}"
                     //email_list = ("${team}").toUpperCase
                 }
 
