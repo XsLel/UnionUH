@@ -5,7 +5,7 @@ import { history } from "./services";
 import { Admin } from "./Admin/Admin";
 import { FoodGallery } from "./components/FoodGallery";
 import { PageNotFound } from "./common";
-import { RestaurantGallery } from "./components/RestaurantGallery";
+import RestaurantGallery from "./components/RestaurantGallery";
 import { TouristicPlaceForm } from "./TouristicPlace";
 import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
 import Start from "./start";

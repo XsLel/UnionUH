@@ -19,4 +19,9 @@ public interface PhotoRepository extends JpaRepository<Photo,Integer> {
 			+ "FROM Photo "
 			+ "WHERE restaurant_id = ?1 and home = true")
 	public List<PhotoResponseDto> getHomePhotos(int restaurantId);
+	
+	@Query("SELECT url "
+			+ "FROM Photo "
+			+ "WHERE restaurant_id = ?1 and food = false")
+	public List<String> getRestaurantGallery(int restaurantId);
 }
