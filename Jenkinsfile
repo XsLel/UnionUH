@@ -78,8 +78,26 @@ pipeline {
     post {
         always {
             echo 'Sending Email Notifications'
-            emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: '$ADMIN_EMAIL'
+            script {
+                def email_list = ""
+                def branch = env.BRANCH_NAME
+                if (branch == "dev") {
+                    email_list = "${TRAINERS_EMAILS}"
+
+                } else if (branch == "devops") {
+                    email_list = "${DEVOPS_EMAIL}"
+                } else {
+                    def team = branch.split("_")[3]
+                    email_list = '${' + team.toUpperCase + '}'
+                    //email_list = ("${team}").toUpperCase
+                }
+
+                echo "${email_list}"
+                //emailext attachLog: true,
+                //body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                //subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                //to: '$ADMIN_EMAIL'
+            }
         }
     }
 }
