@@ -225,7 +225,8 @@ const AddComidas = () => {
               value={ingredients}
               maxLength="500"
               minLength="3"
-              pattern="[A-Za-z].*"
+              //pattern="[A-Za-z].*"
+              pattern="^[a-zA-Z ]*$"
               required
               onChange={(e) => onInputChange(e)}
               onClick={(e) => onInputChange(e)}
