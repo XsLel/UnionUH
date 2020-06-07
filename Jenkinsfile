@@ -88,9 +88,36 @@ pipeline {
                     email_list = "${DEVOPS_EMAIL}"
                 } else {
                     def team = branch.split("_")[3].toUpperCase()
-                    email_list = '${' + team + '}'
-                    echo "Branch ID: ${email_list}"
-                    echo "${NIZAM} | ${JENKINS}"
+                    if (team == "JENKINS") {
+                        email_list = "${JENKINS}"
+                    }
+                    if (team == "CORONASOFT") {
+                        email_list = "${CORONASOFT}"
+                    }
+                    if (team == "CRAZYSOFT") {
+                        email_list = "${CRAZYSOFT}"
+                    }
+                    if (team == "DATAWEAVERS") {
+                        email_list = "${DATAWEAVERS}"
+                    }
+                    if (team == "NIZAM") {
+                        email_list = "${NIZAM}"
+                    }
+                    if (team == "NOVASW") {
+                        email_list = "${NOVASW}"
+                    }
+                    if (team == "RONICH") {
+                        email_list = "${RONICH}"
+                    }
+                    if (team == "VANDAM") {
+                        email_list = "${VANDAM}"
+                    }
+                    if (team == "WHITEHACK") {
+                        email_list = "${WHITEHACK}"
+                    }
+                    //email_list = '${' + team + '}'
+                    //echo "Branch ID: ${email_list}"
+                    //echo "${NIZAM} | ${JENKINS}"
                     //email_list = ("${team}").toUpperCase
                 }
 
