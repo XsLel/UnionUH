@@ -30,6 +30,7 @@ const AddComidas = () => {
     controlDescripcion();
     controlIngredientes();
     controlCantidadPersonas();
+    //alertaGuardar();
   };
   function controlNombre() {
     var nombreLabel = document.getElementById("idLabelNombre");
@@ -46,10 +47,8 @@ const AddComidas = () => {
     var regexNumero = new RegExp("^[0-9]{1,3}");
     if (
       !regexNumero.test(precioInput.value) ||
-      !(
-        precioInput.value > 0 &&
-        (precioInput.value <= 500 || precioInput.value > 1)
-      )
+      precioInput.value < 1 ||
+      precioInput.value > 500
     )
       precioLabel.style.color = "red";
     else precioLabel.style.color = "green";
