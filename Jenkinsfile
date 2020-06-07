@@ -1,3 +1,4 @@
+import java.lang.String
 pipeline {
     agent { label 'devops' }
     environment {
@@ -87,8 +88,8 @@ pipeline {
                 } else if (branch == "devops") {
                     email_list = "${DEVOPS_EMAIL}"
                 } else {
-                    def team = branch.split("_")[3]
-                    email_list = '${' + team.toUpperCase + '}'
+                    def team = branch.split("_")[3].toUpperCase
+                    email_list = "${team}"
                     //email_list = ("${team}").toUpperCase
                 }
 
