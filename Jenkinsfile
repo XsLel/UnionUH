@@ -79,11 +79,15 @@ pipeline {
         always {
             echo 'Sending Email Notifications'
             script {
-                if (env.BRANCH_NAME == "dev") {
+                def branch = env.BRANCH_NAME
+                if (branch == "dev") {
                     emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: '$ADMIN_EMAIL'
+                } else if (branch == "devops") {
+                    echo "Email To DevOps"
                 } else {
-                    echo "No Email"
+                    def team = branch.split("_")[3]
+                    echo "TEAM: ${team}"
                 }
             }
         }
