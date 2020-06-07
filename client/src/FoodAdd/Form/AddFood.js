@@ -46,7 +46,10 @@ const AddComidas = () => {
     var regexNumero = new RegExp("^[0-9]{1,3}");
     if (
       !regexNumero.test(precioInput.value) ||
-      !(precioInput.value > 0 && precioInput.value <= 500)
+      !(
+        precioInput.value > 0 &&
+        (precioInput.value <= 500 || precioInput.value > 1)
+      )
     )
       precioLabel.style.color = "red";
     else precioLabel.style.color = "green";
@@ -70,7 +73,7 @@ const AddComidas = () => {
     //&& nombreInput.value.length<4
     if (
       !regexABC.test(ingredientesInput.value) ||
-      ingredientesInput.value.length <= 10
+      ingredientesInput.value.length <= 1
     )
       ingredientesLabel.style.color = "red";
     else ingredientesLabel.style.color = "green";
@@ -159,8 +162,8 @@ const AddComidas = () => {
               placeholder="Precio de la Comida"
               name="price"
               value={price}
-              //max="500"
-              //min="0"
+              max="500"
+              min="1"
               required
               onClick={(e) => onInputChange(e)}
               onChange={(e) => onInputChange(e)}
