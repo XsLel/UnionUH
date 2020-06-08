@@ -30,8 +30,44 @@ const AddComidas = () => {
     controlDescripcion();
     controlIngredientes();
     controlCantidadPersonas();
-    //alertaGuardar();
   };
+
+  const onClickChange = (e) => {
+    botonGuardar();
+  };
+
+  function botonGuardar() {
+    var campo = document.getElementById("idLabelCantidad");
+    if (campo.style.color == "green") {
+      campo = document.getElementById("idLabelNombre");
+      if (campo.style.color == "green") {
+        campo = document.getElementById("idLabelPrecio");
+        if (campo.style.color == "green") {
+          campo = document.getElementById("idLabelDescripcion");
+          if (campo.style.color == "green") {
+            campo = document.getElementById("idLabelIngredientes");
+            if (campo.style.color == "green") {
+              alert("muchas gracias por su registro")
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  function controlCantidadPersonas() {
+    var cantidadLabel = document.getElementById("idLabelCantidad");
+    var cantidadInput = document.getElementById("idCantidad");
+    var regexNumero = new RegExp("^[0-9]{1,3}");
+    if (
+      !regexNumero.test(cantidadInput.value) ||
+      !(cantidadInput.value > 0 && cantidadInput.value <= 20)
+    )
+      cantidadLabel.style.color = "red";
+    else cantidadLabel.style.color = "green";
+  }
+
   function controlNombre() {
     var nombreLabel = document.getElementById("idLabelNombre");
     var nombreInput = document.getElementById("idNombre");
@@ -77,17 +113,6 @@ const AddComidas = () => {
       ingredientesLabel.style.color = "red";
     else ingredientesLabel.style.color = "green";
   }
-  function controlCantidadPersonas() {
-    var cantidadLabel = document.getElementById("idLabelCantidad");
-    var cantidadInput = document.getElementById("idCantidad");
-    var regexNumero = new RegExp("^[0-9]{1,3}");
-    if (
-      !regexNumero.test(cantidadInput.value) ||
-      !(cantidadInput.value > 0 && cantidadInput.value <= 20)
-    )
-      cantidadLabel.style.color = "red";
-    else cantidadLabel.style.color = "green";
-  }
 
   const handleInput = (e) => {
     let index = e.target.selectedIndex;
@@ -102,11 +127,13 @@ const AddComidas = () => {
     },
   };
 
+
   const onSubmit = async (e) => {
     axios
       .post("http://localhost:8585/restaurants/Food/save", user, yourConfig)
       .then((response) => {
         console.log(response);
+
       })
       .catch((erro) => {
         console.log(erro.response);
@@ -299,7 +326,7 @@ const AddComidas = () => {
           &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button className="ui primary button" type="submit">
+          <button onClick={(e) => onClickChange(e)} className="ui primary button" type="submit" id="botonGuardar">
             Guardar{" "}
           </button>
         </form>
