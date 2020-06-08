@@ -10,7 +10,9 @@ const Administrador = () => {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3003/users");
+    const result = await axios.get(
+      "http://localhost:8585/restaurants/Food/allFoods"
+    );
     setUser(result.data.reverse());
     //console.log(result);
   };
@@ -27,6 +29,12 @@ const Administrador = () => {
               <tr>
                 <th>#</th>
                 <th>Nombres</th>
+              </tr>
+              <tr>
+                <th>
+                  <div></div>
+                </th>
+                <th>Recordatorio: abajo aparece listas de comidas</th>
               </tr>
             </thead>
             <tbody>

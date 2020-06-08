@@ -92,7 +92,6 @@ const AddComidas = () => {
   const handleInput = (e) => {
     let index = e.target.selectedIndex;
     console.log(e.target.options[index].text); // obtiene el texto de la opción seleccionada
-
     setUser({ ...user, [e.target.name]: e.target.options[index].text });
   };
 
@@ -252,6 +251,7 @@ const AddComidas = () => {
               <option value="" selected>
                 seleccione una opción
               </option>
+
               <option value="lunes">Lunes</option>
               <option value="martes">Martes</option>
               <option value="Miercoles">Miercoles</option>
