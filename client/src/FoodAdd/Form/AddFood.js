@@ -30,15 +30,13 @@ const AddComidas = () => {
     controlDescripcion();
     controlIngredientes();
     controlCantidadPersonas();
-    //alertaGuardar();
   };
   function controlNombre() {
     var nombreLabel = document.getElementById("idLabelNombre");
     var nombreInput = document.getElementById("idNombre");
-    //var regexABC = new RegExp("^[a-zA-Zs]{3,30}");
-    var regexABC = new RegExp("^[a-zA-Z ]*$");
-    if (!regexABC.test(nombreInput.value) || nombreInput.value.length <= 3)
-      nombreLabel.style.color = "red";
+    var regexABC = new RegExp("^[a-zA-Zs]{3,30}");
+    //&& nombreInput.value.length<4
+    if (!regexABC.test(nombreInput.value)) nombreLabel.style.color = "red";
     else nombreLabel.style.color = "green";
   }
   function controlPrecio() {
@@ -47,8 +45,7 @@ const AddComidas = () => {
     var regexNumero = new RegExp("^[0-9]{1,3}");
     if (
       !regexNumero.test(precioInput.value) ||
-      precioInput.value < 1 ||
-      precioInput.value > 500
+      !(precioInput.value > 0 && precioInput.value <= 500)
     )
       precioLabel.style.color = "red";
     else precioLabel.style.color = "green";
@@ -68,12 +65,9 @@ const AddComidas = () => {
   function controlIngredientes() {
     var ingredientesLabel = document.getElementById("idLabelIngredientes");
     var ingredientesInput = document.getElementById("idIngredientes");
-    var regexABC = new RegExp("^[a-zA-Z ]*$");
+    var regexABC = new RegExp("^[a-zA-Z0-9s]{1,2000}");
     //&& nombreInput.value.length<4
-    if (
-      !regexABC.test(ingredientesInput.value) ||
-      ingredientesInput.value.length <= 1
-    )
+    if (!regexABC.test(ingredientesInput.value))
       ingredientesLabel.style.color = "red";
     else ingredientesLabel.style.color = "green";
   }
@@ -92,6 +86,7 @@ const AddComidas = () => {
   const handleInput = (e) => {
     let index = e.target.selectedIndex;
     console.log(e.target.options[index].text); // obtiene el texto de la opción seleccionada
+
     setUser({ ...user, [e.target.name]: e.target.options[index].text });
   };
 
@@ -223,8 +218,7 @@ const AddComidas = () => {
               value={ingredients}
               maxLength="500"
               minLength="3"
-              //pattern="[A-Za-z].*"
-              pattern="^[a-zA-Z ]*$"
+              pattern="[A-Za-z].*"
               required
               onChange={(e) => onInputChange(e)}
               onClick={(e) => onInputChange(e)}
@@ -277,22 +271,20 @@ const AddComidas = () => {
               value={servings}
               max="20"
               min="1"
+              required
               onChange={(e) => onInputChange(e)}
               onClick={(e) => onInputChange(e)}
             />
           </div>
           <br />
           <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <button className="ui primary button" type="submit">
-            Agregar Foto{" "}
-          </button>
-          <br />
-          <br />
-          <br />
+          <form
+            encType="multipart/form-data"
+            action="uploader.php"
+            method="POST"
+          >
+            <input name="uploadedfile" type="file" />
+          </form>
           <br />
           <br />
           <button className="ui second button">Cancelar </button>
