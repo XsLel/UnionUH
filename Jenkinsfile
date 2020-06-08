@@ -82,7 +82,7 @@ pipeline {
                 def email_list = ""
                 def branch = env.BRANCH_NAME
                 if (branch == "dev") {
-                    email_list = "${TRAINERS_EMAILS}"
+                    email_list = "$DEFAULT_RECIPIENTS"
 
                 } else if (branch == "devops") {
                     email_list = "${DEVOPS_EMAIL}"
@@ -121,11 +121,10 @@ pipeline {
                     //email_list = ("${team}").toUpperCase
                 }
 
-                echo "${email_list}"
-                //emailext attachLog: true,
-                //body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                //subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                //to: '$ADMIN_EMAIL'
+                emailext attachLog: true,
+                body: "Hello\n ${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: Log file attached to this email.",
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                to: '$ADMIN_EMAIL'
             }
         }
     }
