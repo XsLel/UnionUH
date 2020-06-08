@@ -55,8 +55,10 @@ const Administrador = () => {
           </Link>
           <br />
           <br />
-
           <Link className="ui button">Buscar</Link>
+          <br />
+          <br />
+          <input type="tesxt"></input>
         </div>
       </div>
     </div>
