@@ -277,6 +277,13 @@ const AddComidas = () => {
           </div>
           <br />
           <br />
+          <form
+            encType="multipart/form-data"
+            action="uploader.php"
+            method="POST"
+          >
+            <input name="uploadedfile" type="file" />
+          </form>
           <br />
           <br />
           <button className="ui second button">Cancelar </button>
