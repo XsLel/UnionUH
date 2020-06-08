@@ -251,7 +251,6 @@ const AddComidas = () => {
               <option value="" selected>
                 seleccione una opción
               </option>
-
               <option value="lunes">Lunes</option>
               <option value="martes">Martes</option>
               <option value="Miercoles">Miercoles</option>
@@ -282,6 +281,16 @@ const AddComidas = () => {
               onClick={(e) => onInputChange(e)}
             />
           </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <button className="ui primary button" type="submit">
+            Agregar Foto{" "}
+          </button>
+          <br />
           <br />
           <br />
           <br />
