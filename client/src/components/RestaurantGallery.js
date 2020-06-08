@@ -1,17 +1,45 @@
-import React from "react";
-import { useRouteMatch } from "react-router-dom";
-import RestaurantGalleryGrid from "./RestaurantGalleryGrid";
+import React, { Component } from "react";
+import { Segment } from "semantic-ui-react";
+import { http } from "../services";
+import Gallery from "./Gallery";
 
-export function RestaurantGallery() {
-  let {
-    params: { restaurantId },
-  } = useRouteMatch();
+class RestaurantGallery extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+  }
 
-  return (
-    <>
-      <h1>Galeria Restaurante</h1>
-      <p>Restaurante con id: {restaurantId}</p>
-      <RestaurantGalleryGrid />
-    </>
-  );
+  componentDidMount() {
+    const {
+      match: {
+        params: { restaurantId },
+      },
+    } = this.props;
+    this.getRestaurantGallery(restaurantId);
+  }
+
+  getRestaurantGallery = (id) => {
+    http
+      .request({ url: `restaurantes/${id}/restaurant-gallery` })
+      .then((url) => {
+        this.setState({ gallery: url });
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(this.setState({ loading: false }));
+  };
+
+  render() {
+    let { loading, gallery } = this.state;
+    return (
+      <Segment loading={loading}>
+        <h1>Galería del restaurante</h1>
+        <Gallery images={gallery} />
+        <RestaurantGalleryGrid />
+      </Segment>
+    );
+  }
 }
+
+export default RestaurantGallery;
