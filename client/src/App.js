@@ -8,6 +8,7 @@ import { FoodGallery } from "./components/FoodGallery";
 import { PageNotFound } from "./common";
 import { RestaurantGallery } from "./components/RestaurantGallery";
 import { TouristicPlaceForm } from "./TouristicPlace";
+import CommentRating from "./landscape/commentsRating/CommentRating";
 import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
 import Start from "./start";
 import StartM from "./startMosaico";
@@ -18,6 +19,7 @@ function App() {
       <HashRouter history={history}>
         <Switch>
           <Route exact path="/" component={Admin} />
+          <Route exact path="/commentrating" component={CommentRating} />
           <Route
             exact
             path="/lugares-turisticos/registro"
