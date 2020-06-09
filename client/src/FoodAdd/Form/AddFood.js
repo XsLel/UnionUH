@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import "../style/AddCom.css";
 
 const AddComidas = () => {
   let history = useHistory();
@@ -47,14 +48,13 @@ const AddComidas = () => {
           if (campo.style.color == "green") {
             campo = document.getElementById("idLabelIngredientes");
             if (campo.style.color == "green") {
-              alert("muchas gracias por su registro")
+              alert("muchas gracias por su registro");
             }
           }
         }
       }
     }
   }
-
 
   function controlCantidadPersonas() {
     var cantidadLabel = document.getElementById("idLabelCantidad");
@@ -123,13 +123,11 @@ const AddComidas = () => {
     },
   };
 
-
   const onSubmit = async (e) => {
     axios
       .post("http://localhost:8585/restaurants/Food/save", user, yourConfig)
       .then((response) => {
         console.log(response);
-
       })
       .catch((erro) => {
         console.log(erro.response);
@@ -319,7 +317,12 @@ const AddComidas = () => {
           &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button onClick={(e) => onClickChange(e)} className="ui primary button" type="submit" id="botonGuardar">
+          <button
+            onClick={(e) => onClickChange(e)}
+            className="ui primary button"
+            type="submit"
+            id="botonGuardar"
+          >
             Guardar{" "}
           </button>
         </form>
