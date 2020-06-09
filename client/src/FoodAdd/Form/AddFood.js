@@ -71,8 +71,7 @@ const AddComidas = () => {
   function controlNombre() {
     var nombreLabel = document.getElementById("idLabelNombre");
     var nombreInput = document.getElementById("idNombre");
-    var regexABC = new RegExp("^[a-zA-Zs]{3,30}");
-    //&& nombreInput.value.length<4
+    var regexABC = new RegExp("^[a-zA-Zs ]{3,30}");
     if (!regexABC.test(nombreInput.value)) nombreLabel.style.color = "red";
     else nombreLabel.style.color = "green";
   }
@@ -102,8 +101,9 @@ const AddComidas = () => {
   function controlIngredientes() {
     var ingredientesLabel = document.getElementById("idLabelIngredientes");
     var ingredientesInput = document.getElementById("idIngredientes");
-    var regexABC = new RegExp("^[a-zA-Z0-9s]{1,2000}");
-    //&& nombreInput.value.length<4
+    var regexABC = new RegExp("^[a-zA-Zs ]{1,500}");
+    //^[a-zA-Zs ] regex solo letras y espacios
+    //^[a-zA-Z0-9s]
     if (!regexABC.test(ingredientesInput.value))
       ingredientesLabel.style.color = "red";
     else ingredientesLabel.style.color = "green";
@@ -161,7 +161,7 @@ const AddComidas = () => {
               onkeyup="onKeyUp(event)"
               minlength="3"
               maxlength="30"
-              pattern="[A-Za-z].*"
+              pattern="^[a-zA-Zs ]{3,30}"
               required
               formnovalidate="true"
               onChange={(e) => onInputChange(e)}
@@ -232,7 +232,7 @@ const AddComidas = () => {
           <br />
           <br />
           <div className="ui input">
-            <label id="idLabelIngredientes">Ingredientes* </label>
+            <label id="idLabelIngredientes">Ingredientes *</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input
               id="idIngredientes"
@@ -243,8 +243,8 @@ const AddComidas = () => {
               name="ingredients"
               value={ingredients}
               maxLength="500"
-              minLength="3"
-              pattern="[A-Za-z].*"
+              minLength="0"
+              pattern="^[a-zA-Zs ]{1,500}"
               required
               onChange={(e) => onInputChange(e)}
               onClick={(e) => onInputChange(e)}
