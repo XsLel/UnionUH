@@ -41,7 +41,7 @@ public class LugaresTuristicoService {
 		})    
 	      		.collect(Collectors.toList());
 
-				 Collections.sort(allResponse);
+				 Collections.sort(allResponse,Collections.reverseOrder());
 
 	  return allResponse;
 		
