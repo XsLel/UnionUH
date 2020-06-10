@@ -1,6 +1,6 @@
-import React, { useDebugValue } from "react";
-import { Divider } from "semantic-ui-react";
+import React from "react";
 import "./styles/Gallery.css";
+
 const Gallery = (props) => {
   let { images } = props;
 
