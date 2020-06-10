@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import "../style/AddCom.css";
 
 const AddComidas = () => {
   let history = useHistory();
@@ -31,11 +32,46 @@ const AddComidas = () => {
     controlIngredientes();
     controlCantidadPersonas();
   };
+
+  const onClickChange = (e) => {
+    botonGuardar();
+  };
+
+  function botonGuardar() {
+    var campo = document.getElementById("idLabelCantidad");
+    if (campo.style.color == "green") {
+      campo = document.getElementById("idLabelNombre");
+      if (campo.style.color == "green") {
+        campo = document.getElementById("idLabelPrecio");
+        if (campo.style.color == "green") {
+          campo = document.getElementById("idLabelDescripcion");
+          if (campo.style.color == "green") {
+            campo = document.getElementById("idLabelIngredientes");
+            if (campo.style.color == "green") {
+              alert("muchas gracias por su registro");
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function controlCantidadPersonas() {
+    var cantidadLabel = document.getElementById("idLabelCantidad");
+    var cantidadInput = document.getElementById("idCantidad");
+    var regexNumero = new RegExp("^[0-9]{1,3}");
+    if (
+      !regexNumero.test(cantidadInput.value) ||
+      !(cantidadInput.value > 0 && cantidadInput.value <= 20)
+    )
+      cantidadLabel.style.color = "red";
+    else cantidadLabel.style.color = "green";
+  }
+
   function controlNombre() {
     var nombreLabel = document.getElementById("idLabelNombre");
     var nombreInput = document.getElementById("idNombre");
-    var regexABC = new RegExp("^[a-zA-Zs]{3,30}");
-    //&& nombreInput.value.length<4
+    var regexABC = new RegExp("^[a-zA-Zs ]{3,30}");
     if (!regexABC.test(nombreInput.value)) nombreLabel.style.color = "red";
     else nombreLabel.style.color = "green";
   }
@@ -65,22 +101,12 @@ const AddComidas = () => {
   function controlIngredientes() {
     var ingredientesLabel = document.getElementById("idLabelIngredientes");
     var ingredientesInput = document.getElementById("idIngredientes");
-    var regexABC = new RegExp("^[a-zA-Z0-9s]{1,2000}");
-    //&& nombreInput.value.length<4
+    var regexABC = new RegExp("^[a-zA-Zs ]{1,500}");
+    //^[a-zA-Zs ] regex solo letras y espacios
+    //^[a-zA-Z0-9s]
     if (!regexABC.test(ingredientesInput.value))
       ingredientesLabel.style.color = "red";
     else ingredientesLabel.style.color = "green";
-  }
-  function controlCantidadPersonas() {
-    var cantidadLabel = document.getElementById("idLabelCantidad");
-    var cantidadInput = document.getElementById("idCantidad");
-    var regexNumero = new RegExp("^[0-9]{1,3}");
-    if (
-      !regexNumero.test(cantidadInput.value) ||
-      !(cantidadInput.value > 0 && cantidadInput.value <= 20)
-    )
-      cantidadLabel.style.color = "red";
-    else cantidadLabel.style.color = "green";
   }
 
   const handleInput = (e) => {
@@ -135,7 +161,7 @@ const AddComidas = () => {
               onkeyup="onKeyUp(event)"
               minlength="3"
               maxlength="30"
-              pattern="[A-Za-z].*"
+              pattern="^[a-zA-Zs ]{3,30}"
               required
               formnovalidate="true"
               onChange={(e) => onInputChange(e)}
@@ -155,8 +181,8 @@ const AddComidas = () => {
               placeholder="Precio de la Comida"
               name="price"
               value={price}
-              //max="500"
-              //min="0"
+              max="500"
+              min="1"
               required
               onClick={(e) => onInputChange(e)}
               onChange={(e) => onInputChange(e)}
@@ -206,7 +232,7 @@ const AddComidas = () => {
           <br />
           <br />
           <div className="ui input">
-            <label id="idLabelIngredientes">Ingredientes* </label>
+            <label id="idLabelIngredientes">Ingredientes *</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input
               id="idIngredientes"
@@ -217,8 +243,8 @@ const AddComidas = () => {
               name="ingredients"
               value={ingredients}
               maxLength="500"
-              minLength="3"
-              pattern="[A-Za-z].*"
+              minLength="0"
+              pattern="^[a-zA-Zs ]{1,500}"
               required
               onChange={(e) => onInputChange(e)}
               onClick={(e) => onInputChange(e)}
@@ -271,6 +297,7 @@ const AddComidas = () => {
               value={servings}
               max="20"
               min="1"
+              required
               onChange={(e) => onInputChange(e)}
               onClick={(e) => onInputChange(e)}
             />
@@ -290,7 +317,12 @@ const AddComidas = () => {
           &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button className="ui primary button" type="submit">
+          <button
+            onClick={(e) => onClickChange(e)}
+            className="ui primary button"
+            type="submit"
+            id="botonGuardar"
+          >
             Guardar{" "}
           </button>
         </form>
