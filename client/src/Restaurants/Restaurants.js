@@ -23,8 +23,8 @@ class Restaurants extends Component {
       .then((restaurants) => {
         if (restaurants) {
           this.setState({
-            restaurants: restaurantsMocks,
-            restaurantsAux: restaurantsMocks,
+            restaurants: restaurants,
+            restaurantsAux: restaurants,
             loading: false,
           });
         }
