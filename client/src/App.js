@@ -12,6 +12,7 @@ import CommentRating from "./landscape/commentsRating/CommentRating";
 import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
 import Start from "./start";
 import StartM from "./startMosaico";
+import Restaurants from "./Restaurants/Restaurants";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Admin} />
           <Route exact path="/commentrating" component={CommentRating} />
+          <Route exact path="/restaurants" component={Restaurants} />
           <Route
             exact
             path="/lugares-turisticos/registro"
