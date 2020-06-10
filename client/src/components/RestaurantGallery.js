@@ -3,6 +3,8 @@ import { Segment } from "semantic-ui-react";
 import { http } from "../services";
 import Gallery from "./Gallery";
 
+import { withRouter } from "react-router-dom";
+
 class RestaurantGallery extends Component {
   constructor(props) {
     super(props);
@@ -31,9 +33,19 @@ class RestaurantGallery extends Component {
   };
 
   render() {
+    const { history } = this.props;
     let { loading, gallery } = this.state;
     return (
       <Segment loading={loading}>
+        <div>
+          <button
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            volver!!!
+          </button>
+        </div>
         <h1>Galería del restaurante</h1>
         <Gallery images={gallery} />
       </Segment>
@@ -41,4 +53,4 @@ class RestaurantGallery extends Component {
   }
 }
 
-export default RestaurantGallery;
+export default withRouter(RestaurantGallery);

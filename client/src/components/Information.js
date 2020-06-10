@@ -71,7 +71,7 @@ const Inforestaurant = (props) => {
 
           <GridColumn>
             {" "}
-            <Link to={`${url}/restaurant-gallery`}>
+            <Link to={`${url}restaurant-gallery`}>
               {" "}
               Galeria Restaurante
             </Link>{" "}
