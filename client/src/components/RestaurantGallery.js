@@ -36,7 +36,6 @@ class RestaurantGallery extends Component {
       <Segment loading={loading}>
         <h1>Galería del restaurante</h1>
         <Gallery images={gallery} />
-        <RestaurantGalleryGrid />
       </Segment>
     );
   }

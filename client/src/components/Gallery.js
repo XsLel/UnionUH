@@ -1,15 +1,26 @@
-import React from "react";
-
+import React, { useDebugValue } from "react";
+import { Divider } from "semantic-ui-react";
+import "./styles/Gallery.css";
 const Gallery = (props) => {
   let { images } = props;
 
   //Prueba
-  if (typeof images !== "undefined") {
-    console.log("Hola desde el componente galería");
-    console.log(images);
+
+  function viewImages(images) {
+    if (typeof images !== "undefined") {
+      return (
+        <div className="images">
+          {images.map((c, i) => (
+            <div key={i} className="image-container">
+              <img src={c} alt={c} />
+            </div>
+          ))}
+        </div>
+      );
+    }
   }
 
-  return <h4>Galería</h4>;
+  return <div>{viewImages(images)}</div>;
 };
 
 export default Gallery;
