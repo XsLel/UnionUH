@@ -38,10 +38,6 @@ class Listado extends Component {
       .then((lt) => this.setState({ lugaresTuristicos: Object.values(lt) }));
   }
 
-  onSelect() {
-    this.setState("https://www.pinterest.com/pin/703265298046229508/");
-  }
-
   render() {
     let aux =
       "https://cdnmundo1.img.sputniknews.com/img/105158/14/1051581400_0:14:1024:567_1000x541_80_0_0_9889cd17d85392f6389fc106af600b9b.jpg";
@@ -54,7 +50,9 @@ class Listado extends Component {
               this.state.lugaresTuristicos.map((it) => (
                 <Grid.Row key={it.idlugarturistico}>
                   <Grid.Column>
-                    <a onClick="onSelect()">
+                    <a
+                      href="https://www.pinterest.com/pin/703265298046229508/"
+                      target="_blank">
                       <Image src={aux} size="medium" />
                     </a>
                   </Grid.Column>

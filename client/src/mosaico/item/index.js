@@ -11,7 +11,7 @@ function Item(props) {
       <div className="ui segment">
         <div className="ui two column very relaxed grid">
           <div className="column">
-            <a href="https://www.pinterest.com/pin/703265298046229508/">
+            <a href="https://www.pinterest.com/pin/703265298046229508/" target="_blank">
               <Image src={aux} size="medium" />
             </a>
           </div>
