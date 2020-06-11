@@ -5,7 +5,6 @@ import { TopMenu } from "../Admin/layout";
 import "./Restaurants.css";
 import { http } from "../services";
 import Restaurant from "../components/restaurant/Restaurant";
-import { restaurantsMocks } from "../services/mocks";
 
 class Restaurants extends Component {
   state = {
@@ -40,8 +39,10 @@ class Restaurants extends Component {
   filterRestaurant(text) {
     const { restaurants, restaurantsAux } = this.state;
     if (text.length > 0) {
-      const filterRestaurant = restaurantsAux.filter((restaurant) =>
-        restaurant.name.toUpperCase().includes(text.toUpperCase())
+      const filterRestaurant = restaurantsAux.filter(
+        (restaurant) =>
+          restaurant.name.toUpperCase().includes(text.toUpperCase()) ||
+          restaurant.direction.toUpperCase().includes(text.toUpperCase())
       );
       this.setState({ restaurantsAux: filterRestaurant });
     } else {
