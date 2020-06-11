@@ -27,4 +27,11 @@ public class LugaresTuristicoController {
 		LugaresTuristicoResponse res = service.save(lt);
 		return res;
 	}
+
+	@GetMapping("/count")
+	public Long getCount(){
+		return service.getCount();
+	}
+
+
 }

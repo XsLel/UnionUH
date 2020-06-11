@@ -52,5 +52,10 @@ public class LugaresTuristicoService {
 		aux = repo.save(aux);
 		LugaresTuristicoResponse response = modelMapper.map(aux, LugaresTuristicoResponse.class);
         return response;
-    }
+	}
+
+	public Long getCount(){
+		Long aux = repo.count();
+		return aux;
+	}
 }
