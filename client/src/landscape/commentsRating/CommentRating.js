@@ -16,10 +16,39 @@ const CommentRating = () => {
     description: "",
     generalRating: 0,
     visitDate: "",
+    serviceRating: 0,
+    locationRating: 0,
+    priceRating: 0,
+    cualityRating: 0,
+    
+    
   };
+
+  const serviceRating1 =(Cali) => {
+    Outcome.serviceRating=Cali;
+    console.log(Outcome.serviceRating)
+  };
+
+  const locationRating2 =(Cali) => {
+    Outcome.locationRating=Cali;
+    console.log(Outcome.locationRating)
+  };
+
+  const priceRating3 =(Cali) => {
+    Outcome.priceRating=Cali;
+    console.log(Outcome.priceRating)
+  };
+
+  const cualityRating4=(Cali) => {
+    Outcome.cualityRating=Cali;
+    console.log(Outcome.cualityRating)
+  };
+
+
   const generalQualification = (Cali) => {
     Outcome.generalRating = Cali;
   };
+
   const visitDate = (date) => {
     Outcome.visitDate = date;
   };
@@ -49,7 +78,8 @@ const CommentRating = () => {
             <Politics acceptPolicies={acceptPolicies} />
             <GeneralRating generalQualification={generalQualification} />
             <div className="rating">
-              <FactorRating />
+              <FactorRating serviceRating1 ={serviceRating1} locationRating2 ={locationRating2 } 
+              priceRating3={priceRating3} cualityRating4={cualityRating4}  />
             </div>
             <Commentary
               newTitle={newTitle}
