@@ -19,7 +19,7 @@ const CommentRating = () => {
     serviceRating: 0,
     locationRating: 0,
     priceRating: 0,
-    cualityRating: 0,
+    attentionclient: 0,
     
     
   };
@@ -39,9 +39,9 @@ const CommentRating = () => {
     console.log(Outcome.priceRating)
   };
 
-  const cualityRating4=(Cali) => {
-    Outcome.cualityRating=Cali;
-    console.log(Outcome.cualityRating)
+  const attentionclient4=(Cali) => {
+    Outcome.attentionclient=Cali;
+    console.log(Outcome.attentionclient)
   };
 
 
@@ -79,7 +79,7 @@ const CommentRating = () => {
             <GeneralRating generalQualification={generalQualification} />
             <div className="rating">
               <FactorRating serviceRating1 ={serviceRating1} locationRating2 ={locationRating2 } 
-              priceRating3={priceRating3} cualityRating4={cualityRating4}  />
+              priceRating3={priceRating3} attentionclient4={attentionclient4}  />
             </div>
             <Commentary
               newTitle={newTitle}

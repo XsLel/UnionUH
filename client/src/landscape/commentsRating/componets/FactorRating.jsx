@@ -11,7 +11,7 @@ const FactorRating = (props) => {
      props.locationRating2(rating);
     };
     const handleRateFour = (e, { rating }) => {
-     props.cualityRating4(rating);
+     props.attentionclient4(rating);
     };
   return (
     <Fragment>
@@ -20,7 +20,7 @@ const FactorRating = (props) => {
         <GridColumn>
           <Grid columns={2}>
             <GridRow>
-              <h4>Beneficio</h4>
+              <h4>Sevicio</h4>
               <Rating 
               icon="star" 
               onRate={handleRateOne} 
@@ -55,7 +55,7 @@ const FactorRating = (props) => {
           </Grid>
           <Grid columns={2}>
             <GridRow>
-              <h4>Calidad</h4>
+              <h4>Atencion al cliente</h4>
               <Rating icon="star"
                onRate={handleRateFour} 
                defaultRating={0} 
