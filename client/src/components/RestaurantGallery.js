@@ -39,11 +39,13 @@ class RestaurantGallery extends Component {
       <Segment loading={loading}>
         <div>
           <button
+            class="ui right floated button"
             onClick={() => {
               history.goBack();
             }}
           >
-            volver!!!
+            <i class="left chevron icon"></i>
+            volver
           </button>
         </div>
         <h1>Galería del restaurante</h1>
