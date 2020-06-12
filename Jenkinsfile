@@ -4,7 +4,8 @@ pipeline {
         CONTAINER_NAME = "llajta_tours-dev"
         API_PORT = 9001
         HOST_PORT = 9001
-        CERT_KEY= credentials('turismo-umss-ssl')
+        CERT_KEY = credentials('turismo-umss-ssl')
+        EMAIL_LIST = ""
     }
     stages {
         stage('Clone Repo') {
@@ -79,47 +80,47 @@ pipeline {
         always {
             echo 'Sending Email Notifications'
             script {
-                def email_list = ""
+                //def email_list = ""
                 def branch = env.BRANCH_NAME
                 if (branch == "dev") {
-                    email_list = "$DEFAULT_RECIPIENTS"
+                    EMAIL_LIST = "$DEFAULT_RECIPIENTS"
                 } else if (branch == "devops") {
-                    email_list = "${DEVOPS_EMAIL}"
+                    EMAIL_LIST = "${DEVOPS_EMAIL}"
                 } else {
                     def team = branch.split("_")[3].toUpperCase()
                     if (team == "JENKINS") {
-                        email_list = "${JENKINS}"
+                        EMAIL_LIST = "${JENKINS}"
                     }
                     if (team == "CORONASOFT") {
-                        email_list = "${CORONASOFT}"
+                        EMAIL_LIST = "${CORONASOFT}"
                     }
                     if (team == "CRAZYSOFT") {
-                        email_list = "${CRAZYSOFT}"
+                        EMAIL_LIST = "${CRAZYSOFT}"
                     }
                     if (team == "DATAWEAVERS") {
-                        email_list = "${DATAWEAVERS}"
+                        EMAIL_LIST = "${DATAWEAVERS}"
                     }
                     if (team == "NIZAM") {
-                        email_list = "${NIZAM}"
+                        EMAIL_LIST = "${NIZAM}"
                     }
                     if (team == "NOVASW") {
-                        email_list = "${NOVASW}"
+                        EMAIL_LIST = "${NOVASW}"
                     }
                     if (team == "RONICH") {
-                        email_list = "${RONICH}"
+                        EMAIL_LIST = "${RONICH}"
                     }
                     if (team == "VANDAM") {
-                        email_list = "${VANDAM}"
+                        EMAIL_LIST = "${VANDAM}"
                     }
                     if (team == "WHITEHACK") {
-                        email_list = "${WHITEHACK}"
+                        EMAIL_LIST = "${WHITEHACK}"
                     }
                 }
 
                 emailext attachLog: true,
                 body: "Hello\n ${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: Log file attached to this email.",
                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                to: '${email_list}'
+                to: '$EMAIL_LIST'
             }
         }
     }
