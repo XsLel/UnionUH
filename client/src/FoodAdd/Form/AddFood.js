@@ -262,7 +262,7 @@ const AddComidas = () => {
               size="7"
               id="cajaDias"
               placeholder="Dias Disponibles"
-              name="diasDisponibles"
+              name="days"
               required
               onChange={(e) => handleInput(e)}
               class="ui fluid search dropdown"
