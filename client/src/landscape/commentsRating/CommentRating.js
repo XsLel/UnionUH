@@ -16,7 +16,24 @@ const CommentRating = () => {
     description: "",
     generalRating: 0,
     visitDate: "",
+    answer1: "",
+    answer2: "",
+    answer3: "",
+    answer4: "",
   };
+  const answerOne = (answer) => {
+    Outcome.answer1 = answer;
+  };
+  const answerTwo = (answer) => {
+    Outcome.answer2 = answer;
+  };
+  const answerThree = (answer) => {
+    Outcome.answer3 = answer;
+  };
+  const answerFour = (answer) => {
+    Outcome.answer4 = answer;
+  };
+
   const generalQualification = (Cali) => {
     Outcome.generalRating = Cali;
   };
@@ -57,7 +74,12 @@ const CommentRating = () => {
               newCount={newCount}
             />
             <VisitDate visitDate={visitDate} />
-            <Questionnaire />
+            <Questionnaire
+              answerOne={answerOne}
+              answerTwo={answerTwo}
+              answerThree={answerThree}
+              answerFour={answerFour}
+            />
           </section>
 
           <div class="vertical-line"></div>
