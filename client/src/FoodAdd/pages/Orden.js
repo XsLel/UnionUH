@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
-const Administrador = () => {
+const Orden = () => {
     const [users,setUser]=useState([]);
     
     useEffect(() => {
@@ -19,15 +19,13 @@ const Administrador = () => {
     } 
 
     //const vec = [{name:"lucas"},{name:"pedro"}];
-    const array = []
-    for (let index = 0; index < users.length; index++) {
-      const element = users[index].name;
-        array.push({name : element})
-    }
-
+   
 
     const vector = [];
     const temp =  [];
+
+  
+
 
     for (let index = 0; index < users.length; index++) {
       let element = users[index].name;
@@ -45,9 +43,12 @@ const Administrador = () => {
       let element =vector[index];
          temp.push({name : element})               
     }
+
   
 
-    
+
+
+ 
     
     return ( 
           <div>
@@ -66,7 +67,7 @@ const Administrador = () => {
       Lista
       <i className="dropdown icon"></i>
       <div className="menu">
-         <Link className="ui teal button" id="btnOrdenar" to="/prueba/admiinistrador"
+      <Link className="ui teal button" id="btnOrdenar" to="/prueba/admiinistrador"
          
          >Ordenar Lista </Link><br/>
          <div className="ui simple dropdown item">
@@ -78,7 +79,6 @@ const Administrador = () => {
          <Link className="ui teal button" id="btnOrdenar" to="/prueba/administrrador">Bebida</Link><br/>
          <Link className="ui teal button" id="btnOrdenar" to="/prueba/administraador">Postre
         </Link>
-       
       </div>
     </div>
        
@@ -100,7 +100,7 @@ const Administrador = () => {
                     </thead>
                     <tbody>
                        {
-                        users.map((user,index)=>(
+                        temp.map((user,index)=>(
                       <tr>
                          <th scope="row">{index+1}</th>
                          <td>{user.name}</td>
@@ -115,7 +115,7 @@ const Administrador = () => {
                </div>
                <div className="column">
                   <br/><br/><br/><br/>
-               <Link className="ui inverted red button" id="botonesprincipales" >Modificar</Link>
+                  <Link className="ui inverted red button" id="botonesprincipales" >Modificar</Link>
                 <br />
                 <br />
                 <Link className="ui yellow button" id="botonesprincipales">Eliminar</Link>
@@ -133,4 +133,4 @@ const Administrador = () => {
      );
 }
  
-export default Administrador;
+export default Orden;

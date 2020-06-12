@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
-const Administrador = () => {
+const Ordenp = () => {
     const [users,setUser]=useState([]);
     
     useEffect(() => {
@@ -18,20 +18,21 @@ const Administrador = () => {
         //console.log(result);
     } 
 
-    //const vec = [{name:"lucas"},{name:"pedro"}];
-    const array = []
-    for (let index = 0; index < users.length; index++) {
-      const element = users[index].name;
-        array.push({name : element})
-    }
-
+    
+   
 
     const vector = [];
     const temp =  [];
 
+    
     for (let index = 0; index < users.length; index++) {
       let element = users[index].name;
-         vector.push(element)               
+      let patron=users[index].categoria;
+      if (patron == "Postre") {
+      // cat1.push(element)  
+       vector.push(element)               
+
+      }
     }
       //metodo para ordenar los elementos de un array
     vector.sort((a, b) => {
@@ -41,11 +42,10 @@ const Administrador = () => {
     });
 
      //copiando elmentos de un array solo con el atribuoto name 
-    for (let index = 0; index < users.length; index++) {
+    for (let index = 0; index < vector.length; index++) {
       let element =vector[index];
          temp.push({name : element})               
     }
-  
 
     
     
@@ -66,7 +66,7 @@ const Administrador = () => {
       Lista
       <i className="dropdown icon"></i>
       <div className="menu">
-         <Link className="ui teal button" id="btnOrdenar" to="/prueba/admiinistrador"
+      <Link className="ui teal button" id="btnOrdenar" to="/prueba/admiinistrador"
          
          >Ordenar Lista </Link><br/>
          <div className="ui simple dropdown item">
@@ -78,7 +78,6 @@ const Administrador = () => {
          <Link className="ui teal button" id="btnOrdenar" to="/prueba/administrrador">Bebida</Link><br/>
          <Link className="ui teal button" id="btnOrdenar" to="/prueba/administraador">Postre
         </Link>
-       
       </div>
     </div>
        
@@ -100,7 +99,7 @@ const Administrador = () => {
                     </thead>
                     <tbody>
                        {
-                        users.map((user,index)=>(
+                        temp.map((user,index)=>(
                       <tr>
                          <th scope="row">{index+1}</th>
                          <td>{user.name}</td>
@@ -115,7 +114,7 @@ const Administrador = () => {
                </div>
                <div className="column">
                   <br/><br/><br/><br/>
-               <Link className="ui inverted red button" id="botonesprincipales" >Modificar</Link>
+                  <Link className="ui inverted red button" id="botonesprincipales" >Modificar</Link>
                 <br />
                 <br />
                 <Link className="ui yellow button" id="botonesprincipales">Eliminar</Link>
@@ -133,4 +132,4 @@ const Administrador = () => {
      );
 }
  
-export default Administrador;
+export default Ordenp;
