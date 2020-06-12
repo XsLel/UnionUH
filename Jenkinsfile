@@ -117,7 +117,7 @@ pipeline {
 
                 emailext attachLog: true,
                 body: "Hello\n\n Pipeline: ${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}\nStatus: ${currentBuild.currentResult}\n" +
-                    "Log file: Attached to this email.\n\n Regards\n\n Jenkins\nCI Server",
+                    "Log file: Attached to this email.\n\n Regards\n\n Jenkins\nCI Server\n",
                 subject: "Build ${currentBuild.currentResult}: Pipeline ${env.JOB_NAME}", to: "$EMAIL_LIST"
             }
         }
