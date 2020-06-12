@@ -5,7 +5,6 @@ pipeline {
         API_PORT = 9001
         HOST_PORT = 9001
         CERT_KEY = credentials('turismo-umss-ssl')
-        EMAIL_LIST = ""
     }
     stages {
         stage('Clone Repo') {
@@ -80,7 +79,6 @@ pipeline {
         always {
             echo 'Sending Email Notifications'
             script {
-                //def email_list = ""
                 def branch = env.BRANCH_NAME
                 if (branch == "dev") {
                     EMAIL_LIST = "$DEFAULT_RECIPIENTS"
@@ -119,8 +117,7 @@ pipeline {
 
                 emailext attachLog: true,
                 body: "Hello\n ${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: Log file attached to this email.",
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                to: '$EMAIL_LIST'
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: "$EMAIL_LIST"
             }
         }
     }
