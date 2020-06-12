@@ -116,8 +116,9 @@ pipeline {
                 }
 
                 emailext attachLog: true,
-                body: "Hello\n ${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: Log file attached to this email.",
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}", to: "$EMAIL_LIST"
+                body: "Hello\n\n Pipeline: ${env.JOB_NAME}\n\n Build Number: ${env.BUILD_NUMBER}\n\n Status: ${currentBuild.currentResult}\n\n
+                Log file: Attached to this email.",
+                subject: "Build ${currentBuild.currentResult}: Pipeline ${env.JOB_NAME}", to: "$EMAIL_LIST"
             }
         }
     }
