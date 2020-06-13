@@ -1,41 +1,44 @@
-import React from 'react';
-import MessageBox from '../../components/MessageBox';
-import useForm from './useForm';
-import validate from './validate';
-import { useHistory } from 'react-router-dom';
-import { Form, Icon } from 'semantic-ui-react';
-import { http } from '../../services';
-import './TouristicPlaceForm.css';
+import React from "react";
+import MessageBox from "../../components/MessageBox";
+import useForm from "./useForm";
+import validate from "./validate";
+import { useToasts } from "react-toast-notifications";
+import { useHistory } from "react-router-dom";
+import { Form, Icon } from "semantic-ui-react";
+import { http } from "../../services";
+import "./TouristicPlaceForm.css";
 
 export default function TouristicPlaceForm() {
-  const { handleSubmit, handleChange, values, errors } = useForm(
-    submit,
-    validate
-  );
-  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(
-    false
-  );
+  const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
+  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(false);
+  const { addToast } = useToasts();
   const history = useHistory();
 
   async function submit() {
     try {
-      await http.request({
-        url: '/touristic-places',
-        method: 'POST',
-        data: values,
-      });
-      history.push('/lugares-turisticos');
+      await http.request({ url: "/touristic-places", method: "POST", data: values });
+      addToast("Se ha registrado correctamente", { appearance: "success" });
+      history.push("/lugares-turisticos");
     } catch (error) {
-      console.log(error);
+      let errorMessage;
+      if (error.status === 400 && error.message === "Duplicate entry for 'name' field") {
+        errorMessage = `El lugar turístico '${values.name}' ya existe`;
+      } else {
+        if (400 <= error.status <= 499) {
+          console.error(error);
+        }
+        errorMessage =
+          "Ha ocurrido un error en el servidor. Por favor, intenta más tarde.";
+      }
+      addToast(errorMessage, { appearance: "error" });
     }
   }
 
   return (
     <div className="container mt-5">
-      <h1 className="ui header aligned center">Lugar turístico</h1>
+      <h1 className="title">Lugar turístico</h1>
       <p className="ui large form">
-        Los campos marcados con <span className="text-red">*</span> son
-        obligatorios
+        Los campos marcados con <span className="text-red">*</span> son obligatorios
       </p>
       <Form noValidate autoComplete="off" size="large" onSubmit={handleSubmit}>
         <Form.Input
@@ -61,9 +64,7 @@ export default function TouristicPlaceForm() {
           onChange={handleChange}
           required
         />
-        {errors.description && (
-          <p className="text-red small">{errors.description}</p>
-        )}
+        {errors.description && <p className="text-red small">{errors.description}</p>}
         <Form.Group>
           <Form.TextArea
             error={errors.address !== undefined}
@@ -93,9 +94,7 @@ export default function TouristicPlaceForm() {
           onChange={handleChange}
           required
         />
-        {errors.schedules && (
-          <p className="text-red small">{errors.schedules}</p>
-        )}
+        {errors.schedules && <p className="text-red small">{errors.schedules}</p>}
         <Form.Group widths="equal">
           <MessageBox
             centeredContent
@@ -104,10 +103,10 @@ export default function TouristicPlaceForm() {
               <Form.Button
                 fluid
                 negative
+                type="button"
                 floated="left"
                 size="large"
-                onClick={(_e, _d) => setOpenConfirmationModal(true)}
-              >
+                onClick={(_e, _d) => setOpenConfirmationModal(true)}>
                 Cancelar
               </Form.Button>
             }
@@ -115,16 +114,10 @@ export default function TouristicPlaceForm() {
             onCancel={() => setOpenConfirmationModal(false)}
             onOK={() => {
               setOpenConfirmationModal(false);
-              history.push('/lugares-turisticos');
+              history.push("/lugares-turisticos");
             }}
           />
-          <Form.Button
-            fluid
-            positive
-            type="submit"
-            floated="right"
-            size="large"
-          >
+          <Form.Button fluid positive type="submit" floated="right" size="large">
             Aceptar
           </Form.Button>
         </Form.Group>
