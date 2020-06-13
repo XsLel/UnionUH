@@ -36,7 +36,7 @@ pipeline {
 
         stage('Build Docker Image') {
             when {
-                branch 'dev'
+                branch 'devops'
             }
             steps {
                 sh "docker image prune --force --all"
