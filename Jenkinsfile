@@ -47,7 +47,7 @@ pipeline {
 
         stage('Push Docker Image') {
             when {
-                branch 'dev'
+                branch 'devops'
             }
             steps {
                 sh "docker push ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
@@ -57,7 +57,7 @@ pipeline {
         stage('Deploy') {
             agent { label 'deploy' }
             when {
-                branch 'dev'
+                branch 'devops'
             }
             steps {
                 echo 'Deploying'
