@@ -169,7 +169,7 @@ const ModifyRestaurant = () => {
             label="Teléfono"
             type="number"
             name="telefono"
-            maxLength="30"
+            maxLength="7"
             placeholder="Teléfono"
             value={values.telefono}
             onChange={handleChange}

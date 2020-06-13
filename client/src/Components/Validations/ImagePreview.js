@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Image } from "semantic-ui-react"
 
  
-class Example extends Component {
+class ImagePrev extends Component {
   state =  {
     selectedFile: null,
     imagePreviewUrl: null
@@ -70,4 +70,4 @@ class Example extends Component {
   }
 }
  
-export default Example;
+export default ImagePrev;

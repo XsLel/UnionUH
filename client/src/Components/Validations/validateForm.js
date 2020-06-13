@@ -5,9 +5,13 @@ export default function validateForm(values) {
     errors.nombreRestaurante = "campo vacío";
   } 
 
+  if (!/^[a-zA-Z ]+$/.test(values.nombreRestaurante)) {
+    errors.nombreRestaurante = "Nombre de Restaurante invalido solo se aceptan letras";
+  }
+
     if (!values.email) {
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-      errors.email = "Email address is invalid";
+      errors.email = "correo electronico invalido";
     }
 
   

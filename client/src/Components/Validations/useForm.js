@@ -24,6 +24,7 @@ const useForm = (callback, validate) => {
     });
   };
 
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     setErrors(validate(values));
@@ -42,6 +43,9 @@ const useForm = (callback, validate) => {
     values,
     errors,
   };
+
+  
 };
+
 
 export default useForm;
