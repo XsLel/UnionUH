@@ -62,7 +62,7 @@ pipeline {
             steps {
                 echo 'Deploying'
                 sh '''
-                    if [ "$(docker ps -q -f name=${CONTAINER_NAME})" ]; then
+                    if [ "$(docker ps -aq -f name=${CONTAINER_NAME})" ]; then
                         if [ ! "$(docker ps -aq -f status=exited -f name=${CONTAINER_NAME})" ]; then
                             docker stop ${CONTAINER_NAME}
                         fi
