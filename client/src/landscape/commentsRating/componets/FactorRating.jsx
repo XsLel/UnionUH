@@ -1,6 +1,18 @@
 import React, { Fragment } from "react";
 import { Rating, Grid, GridRow, GridColumn } from "semantic-ui-react";
-const FactorRating = () => {
+const FactorRating = (props) => {
+    const handleRateOne = (e, { rating }) => {
+      props.serviceRating1(rating); 
+    };
+    const handleRateTwo = (e, { rating }) => {
+     props.priceRating3(rating);
+    };
+    const handleRateThree = (e, { rating }) => {
+     props.locationRating2(rating);
+    };
+    const handleRateFour = (e, { rating }) => {
+     props.attentionclient4(rating);
+    };
   return (
     <Fragment>
       <h2>Puntuacion de factores</h2>
@@ -8,26 +20,48 @@ const FactorRating = () => {
         <GridColumn>
           <Grid columns={2}>
             <GridRow>
-              <h4>Beneficio</h4>
-              <Rating icon="star" defaultRating={0} maxRating={5} />
+              <h4>Sevicio</h4>
+              <Rating 
+              icon="star" 
+              onRate={handleRateOne} 
+              defaultRating={0} 
+              maxRating={5}
+              size="massive" 
+              />
             </GridRow>
           </Grid>
           <Grid columns={2}>
             <GridRow>
               <h4>Precio</h4>
-              <Rating icon="star" defaultRating={0} maxRating={5} />
+              <Rating 
+              icon="star" 
+              onRate={handleRateTwo} 
+              defaultRating={0} 
+              maxRating={5} 
+              size="massive"
+              />
             </GridRow>
           </Grid>
           <Grid columns={2}>
             <GridRow>
               <h4>Ubicacion</h4>
-              <Rating icon="star" defaultRating={0} maxRating={5} />
+              <Rating icon="star" 
+              onRate={handleRateThree} 
+              defaultRating={0} 
+              maxRating={5}
+              size="massive"
+               />
             </GridRow>
           </Grid>
           <Grid columns={2}>
             <GridRow>
-              <h4>Calidad</h4>
-              <Rating icon="star" defaultRating={0} maxRating={5} />
+              <h4>Atencion al cliente</h4>
+              <Rating icon="star"
+               onRate={handleRateFour} 
+               defaultRating={0} 
+               maxRating={5} 
+               size="massive"
+               />
             </GridRow>
           </Grid>
         </GridColumn>
