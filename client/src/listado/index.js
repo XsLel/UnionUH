@@ -68,7 +68,14 @@ class Listado extends Component {
                         <Dropdown.Item text="5" />
                       </Dropdown.Menu>
                     </Dropdown>
-                    <Button secondary onClick={() => this.insert()}>
+                    <Button
+                      secondary
+                      onClick={() =>
+                        this.insert(
+                          it.idlugarturistico,
+                          parseInt(document.getElementById("calificar").value)
+                        )
+                      }>
                       Calificar
                     </Button>
                   </Grid.Column>

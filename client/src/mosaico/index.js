@@ -1,46 +1,69 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import "semantic-ui-react";
-import "semantic-ui-css/semantic.css";
-import Item from "./item";
+import { Segment, Grid, Button } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 import Main from "../main";
-import Paginador from "../listado/paginador/paginador";
-class Mosaico extends Component {
-  constructor() {
-    super();
-    this.state = { titulo: "" };
-    this.state = { lugaresTuristicos: [] };
-  }
 
-  valueToState(target) {
-    this.setState({ [target.name]: target.value });
-  }
+const Mosaico = () => {
+  const [titulo, setTitulo] = useState("");
+  const [lugaresTuristicos, setLT] = useState([]);
+  const [count, setCount] = useState(1);
+  const [actual, setActual] = useState(1);
 
-  componentDidMount() {
-    this.setState({ titulo: "Mosaico" });
-    fetch("/api/lugaresturistico")
-      .then((res) => res.json())
-      .then((lt) => this.setState({ lugaresTuristicos: Object.values(lt) }));
-  }
+  useEffect(() => {
+    const getLT = async () => {
+      await fetch("/api/lugaresturistico")
+        .then((res) => res.json())
+        .then((lt) => setLT(Object.values(lt)));
+    };
 
-  render() {
-    return (
-      <div>
-        <Main titulo={this.state.titulo} />
-        <div className="ui two column grid">
-          {this.state.lugaresTuristicos &&
-            this.state.lugaresTuristicos.map((it) => (
-              <Item
-                key={it.idlugarturistico}
-                titulo={it.nombrelugarturistico}
-                rank={it.promedio}
-              />
-            ))}
-        </div>
-        <div class="ui column centered grid">
-          <Paginador />
-        </div>
+    const getCount = async () => {
+      await fetch("/api/lugaresturistico/count/2")
+        .then((res) => res.json())
+        .then((val) => setCount(parseInt(val)));
+    };
+    setTitulo("Listado");
+    getLT();
+    getCount();
+  }, []);
+
+  const onChange = (number) => {
+    setActual(number);
+  };
+  const indexLastPage = actual * 6;
+  const indexFirstPage = indexLastPage - 6;
+  const array = lugaresTuristicos.slice(indexFirstPage, indexLastPage);
+  const numbers = [];
+  for (let i = 1; i <= count; i++) {
+    numbers.push(i);
+  }
+  return (
+    <div>
+      {console.log(count)}
+      <Main titulo={titulo} />
+      <Segment>
+        <Grid columns={3} divided>
+          {array.map((it) => (
+            <Item
+              key={it.idlugarturistico}
+              titulo={it.nombrelugarturistico}
+              rank={it.promedio}
+              image={it.foto}
+              link={it.link}
+            />
+          ))}
+        </Grid>
+      </Segment>
+      <div class="ui column centered grid">
+        <ul>
+          {numbers.map((number) => (
+            <li key={number}>
+              <Button onClick={() => onChange(number)}>{number}</Button>
+            </li>
+          ))}
+        </ul>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 export default Mosaico;
