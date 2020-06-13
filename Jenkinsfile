@@ -1,9 +1,9 @@
 pipeline {
     agent { label 'devops' }
     environment {
-        CONTAINER_NAME = "llajta_tours-dev"
+        CONTAINER_NAME = "llajta_tours-devops"
         API_PORT = 9001
-        HOST_PORT = 9001
+        HOST_PORT = 9002
         CERT_KEY = credentials('turismo-umss-ssl')
     }
     stages {
@@ -59,14 +59,10 @@ pipeline {
                 echo 'Deploying'
                 sh '''
                     if [ "$(docker ps -q -f name=${CONTAINER_NAME})" ]; then
-                        if [ "$(docker ps -aq -f status=exited -f name=${CONTAINER_NAME})" ]; then
-                            # cleanup
-                            docker rm ${CONTAINER_NAME}
-                        fi
                         if [ ! "$(docker ps -aq -f status=exited -f name=${CONTAINER_NAME})" ]; then
                             docker stop ${CONTAINER_NAME}
-                            docker rm ${CONTAINER_NAME}
                         fi
+                        docker rm ${CONTAINER_NAME}
                     fi
                 '''
                 sh "docker pull ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
@@ -117,7 +113,7 @@ pipeline {
 
                 emailext attachLog: true,
                 body: "Hello\n\n Pipeline: ${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}\nStatus: ${currentBuild.currentResult}\n" +
-                    "Log file: Attached to this email.\n\n Regards\n\n Jenkins\nCI Server\n",
+                    "Log file: Attached to this email.\n\n Regards\n\n Jenkins\nCI Server\n\n",
                 subject: "Build ${currentBuild.currentResult}: Pipeline ${env.JOB_NAME}", to: "$EMAIL_LIST"
             }
         }
