@@ -5,11 +5,13 @@ import { TopMenu } from "../Admin/layout";
 import "./Restaurants.css";
 import { http } from "../services";
 import Restaurant from "../components/restaurant/Restaurant";
+import Pagination from "semantic-ui-react/dist/commonjs/addons/Pagination";
 
 class Restaurants extends Component {
   state = {
     restaurants: [],
     restaurantsAux: [],
+    restaurantCurrent: [],
     loading: true,
     viewMain: true,
   };
@@ -20,12 +22,24 @@ class Restaurants extends Component {
         url: "/restaurantes/restaurants",
       })
       .then((restaurants) => {
-        if (restaurants) {
-          this.setState({
-            restaurants: restaurants,
-            restaurantsAux: restaurants,
-            loading: false,
-          });
+        if (restaurants && restaurants.length > 0) {
+          if (restaurants.length > 9) {
+            this.setState({
+              activePage: 1,
+              itemCurrent: restaurants.slice(0, 9),
+              restaurants: restaurants,
+              restaurantsAux: restaurants,
+              loading: false,
+            });
+          } else {
+            this.setState({
+              activePage: 1,
+              itemCurrent: restaurants,
+              restaurants: restaurants,
+              restaurantsAux: restaurants,
+              loading: false,
+            });
+          }
         }
       })
       .catch((error) => {
@@ -44,10 +58,38 @@ class Restaurants extends Component {
           restaurant.name.toUpperCase().includes(text.toUpperCase()) ||
           restaurant.direction.toUpperCase().includes(text.toUpperCase())
       );
-      this.setState({ restaurantsAux: filterRestaurant });
+      if (filterRestaurant.length > 9) {
+        this.setState({
+          restaurantsAux: filterRestaurant,
+          activePage: 1,
+          itemCurrent: filterRestaurant.slice(0, 9),
+        });
+      } else {
+        this.setState({
+          restaurantsAux: filterRestaurant,
+          activePage: 1,
+          itemCurrent: filterRestaurant,
+        });
+      }
     } else {
-      this.setState({ restaurantsAux: restaurants });
+      this.setState({
+        restaurantsAux: restaurants,
+        itemCurrent: restaurants.slice(0, 9),
+        activePage: 1,
+      });
     }
+  }
+
+  changePage(event, data) {
+    const { activePage } = data;
+    const { restaurantsAux } = this.state;
+    const lastItem = activePage * 9;
+    const firstItem = lastItem - 9;
+    const currentItemAux = restaurantsAux.slice(firstItem, lastItem);
+    this.setState({
+      activePage: activePage,
+      itemCurrent: currentItemAux,
+    });
   }
 
   gridRestaurants(restaurants) {
@@ -85,19 +127,19 @@ class Restaurants extends Component {
   }
 
   renderRestaurants() {
-    const { restaurantsAux, viewMain } = this.state;
+    const { restaurantsAux, viewMain, itemCurrent } = this.state;
     if (restaurantsAux.length === 0) {
       return <h1>No existen restaurantes</h1>;
     }
     if (viewMain) {
-      return this.gridRestaurants(restaurantsAux);
+      return this.gridRestaurants(itemCurrent);
     } else {
-      return this.listRestaurants(restaurantsAux);
+      return this.listRestaurants(itemCurrent);
     }
   }
 
   render() {
-    const { loading, viewMain } = this.state;
+    const { loading, viewMain, restaurantsAux, activePage } = this.state;
     return (
       <div>
         <TopMenu
@@ -123,6 +165,16 @@ class Restaurants extends Component {
                 </div>
                 {loading ? <h1>Cargando</h1> : this.renderRestaurants()}
               </div>
+              {restaurantsAux.length > 0 ? (
+                <Pagination
+                  onPageChange={(event, data) => this.changePage(event, data)}
+                  activePage={activePage}
+                  firstItem={null}
+                  lastItem={null}
+                  defaultActivePage={5}
+                  totalPages={restaurantsAux.length / 9}
+                />
+              ) : null}
             </Grid.Column>
           </Grid.Row>
         </Grid>
