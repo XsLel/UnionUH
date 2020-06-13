@@ -83,7 +83,7 @@ pipeline {
             script {
                 def branch = env.BRANCH_NAME
                 if (branch == "dev") {
-                    EMAIL_LIST = "$DEFAULT_RECIPIENTS"
+                    EMAIL_LIST = "${GENERAL}"
                 } else if (branch == "devops") {
                     EMAIL_LIST = "${DEVOPS_EMAIL}"
                 } else {
