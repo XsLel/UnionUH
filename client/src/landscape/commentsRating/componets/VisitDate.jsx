@@ -23,7 +23,7 @@ export default class VisitDate extends React.Component {
   render() {
     return (
       <div>
-        <h3>Año y mes de su visita</h3>
+        <h3>Mes y año de su visita</h3>
         <form>
           <select value={this.state.value} onChange={this.handleChange}>
             <option date="titulo">Seleccione una fecha</option>
