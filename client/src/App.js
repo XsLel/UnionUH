@@ -16,7 +16,7 @@ function App() {
           path="/RegisterRestaurant"
           component={RegisterRestaurant}
         />
-        <Route exact path="/Modificar" component={Modificar} />
+        <Route exact path="/modifyRestaurant" component={Modificar} />
         <Route exact path="/404" component={PageNotFound} />
         <Route component={PageNotFound} />
       </Switch>

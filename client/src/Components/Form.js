@@ -14,6 +14,7 @@ import Message from "./Validations/Message";
 import { http } from "../services";
 import "./Validations/index.css";
 import { useHistory } from "react-router-dom";
+import ImagePreview from "./Validations/ImagePreview"
 
 
 const genderOptions = [
@@ -49,6 +50,9 @@ const RegisterRestaurant = () => {
     submit,
     validate
   );
+ 
+  const fileChangedHandler=(e)=>{console.log(e)}
+
   const history = useHistory();
 
   
@@ -210,13 +214,9 @@ const RegisterRestaurant = () => {
 
         <Form.Group widths="equal">
           <Form.Field>
-            <label>Fotografía del logo del Restaurante"</label>
-            <Image
-              src="https://react.semantic-ui.com/images/wireframe/square-image.png"
-              size="small"
-              circular
-              name="fotoRestaurante"
-            />
+            <label>Fotografía del logo del Restaurante</label>
+            <ImagePreview fileChangedHandler={fileChangedHandler}></ImagePreview>
+            
           </Form.Field>
 
           <Form.Field
@@ -231,7 +231,7 @@ const RegisterRestaurant = () => {
             style={{ resize: "none" }}
           />{errors.descripción && <p className="error">{errors.descripción}</p>}
         </Form.Group>
-        <Form.Input type="file" accept="image/*" style={{ width: 180 }}></Form.Input>
+      
         <Form.Group widths="equal">
 
         <Message
@@ -273,9 +273,5 @@ const RegisterRestaurant = () => {
 
 export default RegisterRestaurant;
 
-function salir(){
-  http.request(URL="/")
-  console.log("Submitted Succesfully");
-}
 
   

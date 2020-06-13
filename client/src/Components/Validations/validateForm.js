@@ -15,9 +15,9 @@ export default function validateForm(values) {
     } else if (!/([0-9]){7}/.test(values.telefono)) {
       errors.telefono = "El numero de no existe";
     }
+ 
 
-
-    if ((values.telefono != "" && !/^444(\d*)$/.test(values.telefono))|| !(0 <= values.telefono.length && values.telefono.length <= 7)) {
+    if ((values.telefono != "" && !/^4(\d*)$/.test(values.telefono))|| !(0 <= values.telefono.length && values.telefono.length <= 7)) {
       errors.telefono = "El numero no existe";
     }
   
