@@ -29,7 +29,7 @@ public class RestaurantRegistration {
 	private String category;
 	@NotBlank(message = "The DESCRIPTION field cannot be empty")
 	private String description;
-	@NotBlank(message = "The QUALIFICATION field cannot be empty")
+
 	private double qualification;
 	
 	private List<PhotoRegistration> photos;
