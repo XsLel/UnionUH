@@ -5,6 +5,10 @@ pipeline {
         API_PORT = 9001
         HOST_PORT = 9002
         CERT_KEY = credentials('turismo-umss-ssl')
+        MYSQL_HOST = credentials('db-server-address')
+        DB_CREDENTIALS = credentials('db-credentials')
+        DB_NAME = credentials('db-name-dev')
+        DB_PORT = credentials('db-port-dev')
     }
     stages {
         stage('Clone Repo') {
@@ -66,7 +70,9 @@ pipeline {
                     fi
                 '''
                 sh "docker pull ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
-                sh "docker run --name ${CONTAINER_NAME} --env CERT_KEY=${CERT_KEY} -d -p ${HOST_PORT}:${API_PORT} ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
+                sh "docker run --name ${CONTAINER_NAME} --env CERT_KEY=${CERT_KEY} --env MYSQL_HOST=${MYSQL_HOST} --env DB_NAME=${DB_NAME} " +
+                    "--env DB_PORT=${DB_PORT} --env DB_USER=${DB_CREDENTIALS_USR} --env DB_PASSWORD=${DB_CREDENTIALS_PWD} -d -p ${HOST_PORT}:${API_PORT} " +
+                    "${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
         }
     }
