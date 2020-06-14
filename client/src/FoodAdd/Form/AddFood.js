@@ -253,34 +253,51 @@ const AddComidas = () => {
           <br />
           <br />
           <div className="ui input">
-            <label>Dias Disponibles</label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <select
-              name="skills"
-              multiple=""
-              class="ui fluid check"
-              size="7"
-              id="cajaDias"
-              placeholder="Dias Disponibles"
-              name="days"
-              required
-              onChange={(e) => handleInput(e)}
-              class="ui fluid search dropdown"
-              multiple="multiple"
-            >
-              <option value="" selected>
-                seleccione una opción
-              </option>
-              <option value="lunes">Lunes</option>
-              <option value="martes">Martes</option>
-              <option value="Miercoles">Miercoles</option>
-              <option value="jueves">Jueves</option>
-              <option value="viernes">Viernes</option>
-              <option value="sabado">Sabado</option>
-              <option value="domingo">Domingo</option>
-            </select>
-            <h6>presione ctrl para selecionar</h6>
-            <h6>mas opciones</h6>
+            <div class="grouped fields">
+              <label>Seleccione una mas opciones</label>
+              <div class="field">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="days" value="Lunes"></input>
+                  <label>Lunes</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="days" value="Martes"></input>
+                  <label>Martes</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="days" value="Miercoles"></input>
+                  <label>Miercoles</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="days" value="Jueves"></input>
+                  <label>Jueves</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="days" value="Viernes"></input>
+                  <label>Viernes</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="days" value="Sabado"></input>
+                  <label>Sabado</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui checkbox">
+                  <input type="checkbox" name="days" value="Domingo"></input>
+                  <label>Domingo</label>
+                </div>
+              </div>
+            </div>
           </div>
           <br />
           <br />
