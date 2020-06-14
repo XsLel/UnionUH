@@ -97,13 +97,7 @@ class Restaurants extends Component {
       <Grid columns={3} divided={true}>
         <Grid.Row>
           {restaurants.map((restaurant, index) => {
-            return (
-              <CardRestaurant
-                customClass={"card-Restaurants"}
-                key={index}
-                restaurant={restaurant}
-              />
-            );
+            return <CardRestaurant key={index} restaurant={restaurant} />;
           })}
         </Grid.Row>
       </Grid>
@@ -112,15 +106,9 @@ class Restaurants extends Component {
 
   listRestaurants(restaurants) {
     return (
-      <div className={"restaurants"}>
+      <div>
         {restaurants.map((restaurant, index) => {
-          return (
-            <Restaurant
-              customClass={"card-Restaurants-list"}
-              key={index}
-              restaurant={restaurant}
-            />
-          );
+          return <Restaurant key={index} restaurant={restaurant} />;
         })}
       </div>
     );
