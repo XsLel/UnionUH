@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames/bind";
 import MessageBox from "../../components/MessageBox";
 import useForm from "./useForm";
 import validate from "./validate";
@@ -6,13 +7,19 @@ import { useToasts } from "react-toast-notifications";
 import { useHistory } from "react-router-dom";
 import { Form, Icon } from "semantic-ui-react";
 import { http } from "../../services";
-import "./TouristicPlaceForm.css";
+import globalStyles from "../../index.module.css";
+import localStyles from "./TouristicPlaceForm.module.css";
+
+const globalCx = classNames.bind(globalStyles);
+const localCx = classNames.bind(localStyles);
 
 export default function TouristicPlaceForm() {
-  const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
   const [openConfirmationModal, setOpenConfirmationModal] = React.useState(false);
+  const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
   const { addToast } = useToasts();
   const history = useHistory();
+
+  const errorClassNames = classNames(globalCx("text-red"), localCx("small"));
 
   async function submit() {
     try {
@@ -35,10 +42,11 @@ export default function TouristicPlaceForm() {
   }
 
   return (
-    <div className="container mt-5">
-      <h1 className="title">Lugar turístico</h1>
+    <div className={globalCx("container", "mt-5")}>
+      <h1 className={localCx("title")}>Lugar turístico</h1>
       <p className="ui large form">
-        Los campos marcados con <span className="text-red">*</span> son obligatorios
+        Los campos marcados con <span className={globalCx("text-red")}>*</span> son
+        obligatorios
       </p>
       <Form noValidate autoComplete="off" size="large" onSubmit={handleSubmit}>
         <Form.Input
@@ -52,7 +60,7 @@ export default function TouristicPlaceForm() {
           value={values.name}
           onChange={handleChange}
         />
-        {errors.name && <p className="text-red small">{errors.name}</p>}
+        {errors.name && <p className={errorClassNames}>{errors.name}</p>}
         <Form.TextArea
           error={errors.description !== undefined}
           label="Descripción"
@@ -64,7 +72,7 @@ export default function TouristicPlaceForm() {
           onChange={handleChange}
           required
         />
-        {errors.description && <p className="text-red small">{errors.description}</p>}
+        {errors.description && <p className={errorClassNames}>{errors.description}</p>}
         <Form.Group>
           <Form.TextArea
             error={errors.address !== undefined}
@@ -82,7 +90,7 @@ export default function TouristicPlaceForm() {
             <Icon name="map marker alternate" />
           </Form.Button>
         </Form.Group>
-        {errors.address && <p className="text-red small">{errors.address}</p>}
+        {errors.address && <p className={errorClassNames}>{errors.address}</p>}
         <Form.TextArea
           error={errors.schedules !== undefined}
           label="Horarios"
@@ -94,7 +102,7 @@ export default function TouristicPlaceForm() {
           onChange={handleChange}
           required
         />
-        {errors.schedules && <p className="text-red small">{errors.schedules}</p>}
+        {errors.schedules && <p className={errorClassNames}>{errors.schedules}</p>}
         <Form.Group widths="equal">
           <MessageBox
             centeredContent

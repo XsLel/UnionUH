@@ -1,8 +1,8 @@
-h1.title {
+.title {
   font-size: 4rem;
   text-align: center;
 }
 
-p.small {
+.small {
   font-size: 13px;
 }

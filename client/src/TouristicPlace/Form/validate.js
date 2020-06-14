@@ -1,7 +1,7 @@
 export default function validate({ name, description, address, schedules }) {
   const errors = {};
   const isWhitespace = /^\s+$/m;
-  const validSequence = /^[ñÑ]*\w+[.,-:ñÑáéíóúÁÉÍÓÚ]*$/;
+  const validSequence = /^[\wÀ-ÿñÑ.,-:]+(\s*[\wÀ-ÿñÑ.,-:]*)*[\wÀ-ÿñÑ.,-:]+$/;
   const validSequenceMsg = "Ingresa una secuencia de caracteres válidos.";
 
   if (!name || isWhitespace.test(name)) {
