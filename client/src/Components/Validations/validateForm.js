@@ -5,7 +5,7 @@ export default function validateForm(values) {
     errors.nombreRestaurante = "campo vacío";
   } 
 
-  if (!/^[a-zA-Z ]+$/.test(values.nombreRestaurante)) {
+  if (!/^[a-z ^ ñ A-Z ^ Ñ ]+$/.test(values.nombreRestaurante)) {
     errors.nombreRestaurante = "Nombre de Restaurante invalido solo se aceptan letras";
   }
 
