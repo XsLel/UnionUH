@@ -31,8 +31,18 @@ const AddComidas = () => {
     controlDescripcion();
     controlIngredientes();
     controlCantidadPersonas();
+    controlTamañoFoto();
   };
-
+  
+  function controlTamañoFoto(){
+    var tamañoFoto = document.getElementById("botonCargarimagen");
+    var subirFoto = document.getElementById("subirFoto");
+    if(tamañoFoto.size > 244 ){
+      subirFoto.style.color = "red";
+    }else{
+      subirFoto.style.color = "green";
+    }
+  }
   const onClickChange = (e) => {
     botonGuardar();
   };
@@ -308,8 +318,9 @@ const AddComidas = () => {
             encType="multipart/form-data"
             action="uploader.php"
             method="POST"
+            id="subirFoto"
           >
-            <input name="uploadedfile" type="file" />
+            <input name="uploadedfile" type="file" id="botonCargarimagen"/>
           </form>
           <br />
           <br />
