@@ -6,6 +6,8 @@ import "./Restaurants.css";
 import { http } from "../services";
 import Restaurant from "../components/restaurant/Restaurant";
 import Pagination from "semantic-ui-react/dist/commonjs/addons/Pagination";
+import { Responsive, Segment } from "semantic-ui-react";
+import NotFoundItems from "../components/NotFoundItems";
 
 class Restaurants extends Component {
   state = {
@@ -117,7 +119,7 @@ class Restaurants extends Component {
   renderRestaurants() {
     const { restaurantsAux, viewMain, itemCurrent } = this.state;
     if (restaurantsAux.length === 0) {
-      return <h1>No existen restaurantes</h1>;
+      return <NotFoundItems text={"No existen restaurantes"} />;
     }
     if (viewMain) {
       return this.gridRestaurants(itemCurrent);
@@ -126,46 +128,74 @@ class Restaurants extends Component {
     }
   }
 
-  render() {
+  renderContainerRestaurant() {
     const { loading, viewMain, restaurantsAux, activePage } = this.state;
+    return (
+      <div>
+        <div className={"container-Restaurants"}>
+          <div className="title">
+            <h1>Restaurantes</h1>
+            <div id={"btn-change-list"}>
+              <button
+                className="circular ui basic icon button"
+                onClick={() => this.changeView()}>
+                <i className={viewMain ? "icon align justify" : "icon th"} />
+              </button>
+            </div>
+          </div>
+          {loading ? <h1>Cargando</h1> : this.renderRestaurants()}
+        </div>
+        {restaurantsAux.length > 0 ? (
+          <Pagination
+            onPageChange={(event, data) => this.changePage(event, data)}
+            activePage={activePage}
+            firstItem={null}
+            lastItem={null}
+            defaultActivePage={5}
+            totalPages={restaurantsAux.length / 9}
+          />
+        ) : null}
+      </div>
+    );
+  }
+
+  renderContainerFilter() {
+    return (
+      <div>
+        <h1>Filtros</h1>
+      </div>
+    );
+  }
+
+  renderContainerComputer() {
+    return (
+      <div>
+        <Grid>
+          <Grid.Column width={4}>{this.renderContainerFilter()}</Grid.Column>
+          <Grid.Column width={11}>{this.renderContainerRestaurant()}</Grid.Column>
+        </Grid>
+      </div>
+    );
+  }
+
+  render() {
     return (
       <div>
         <TopMenu
           showSearchRestaurant={true}
           filterRestaurant={(text) => this.filterRestaurant(text)}
         />
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={4}>
-              <h1>Filtros</h1>
-            </Grid.Column>
-            <Grid.Column width={11}>
-              <div className={"container-Restaurants"}>
-                <div className="title">
-                  <h1>Restaurantes</h1>
-                  <div id={"btn-change-list"}>
-                    <button
-                      className="circular ui basic icon button"
-                      onClick={() => this.changeView()}>
-                      <i className={viewMain ? "icon align justify" : "icon th"} />
-                    </button>
-                  </div>
-                </div>
-                {loading ? <h1>Cargando</h1> : this.renderRestaurants()}
-              </div>
-              {restaurantsAux.length > 0 ? (
-                <Pagination
-                  onPageChange={(event, data) => this.changePage(event, data)}
-                  activePage={activePage}
-                  firstItem={null}
-                  lastItem={null}
-                  defaultActivePage={5}
-                  totalPages={restaurantsAux.length / 9}
-                />
-              ) : null}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+        <Segment.Group>
+          <Responsive as={Segment} {...Responsive.onlyComputer}>
+            {this.renderContainerComputer()}
+          </Responsive>
+          <Responsive as={Segment} {...Responsive.onlyTablet}>
+            {this.renderContainerComputer()}
+          </Responsive>
+          <Responsive as={Segment} {...Responsive.onlyMobile}>
+            {this.renderContainerRestaurant()}
+          </Responsive>
+        </Segment.Group>
       </div>
     );
   }
