@@ -13,6 +13,7 @@ const AddComidas = () => {
     ingredients: "",
     days: "",
     servings: "",
+    image: "",
   });
   const {
     name,
@@ -22,6 +23,7 @@ const AddComidas = () => {
     ingredients,
     days,
     servings,
+    image,
   } = user;
 
   const onInputChange = (e) => {
@@ -31,12 +33,42 @@ const AddComidas = () => {
     controlDescripcion();
     controlIngredientes();
     controlCantidadPersonas();
+    //controlImage();
   };
-
+  const eventImage = (e) => {
+    var fotoLabel = document.getElementById("idLabelFoto");
+    controlImage();
+    if (fotoLabel.style.color == "green") {
+      setUser({ ...user, [e.target.name]: e.target.value });
+    } else {
+      alert("Elija una imagen jpg, o png por favor");
+    }
+  };
   const onClickChange = (e) => {
     botonGuardar();
+    //controlImage();
   };
-
+  function controlImage(obj) {
+    var imageInput = document.getElementById("idImage");
+    var fotoLabel = document.getElementById("idLabelFoto");
+    var submitFoto = document.getElementById("submitFoto");
+    var regexABC = new RegExp("^.*.(jpg|JPG|png|PNG)$");
+    if (imageInput.value != "") {
+      if (!regexABC.test(imageInput.value)) {
+        alert(imageInput.value + "La imagen no es correcta");
+        fotoLabel.style.color = "red";
+        imageInput.style.color = "blue";
+      } /*
+        //controla tamaño de imagen
+        else if(imageInput.size<21){
+        var tam=parseInt(imageInput.size);
+        alert(imageInput.value+"La imagen no puede exceder los "+tam);
+        fotoLabel.style.color="red";
+      }*/ else {
+        fotoLabel.style.color = "green";
+      }
+    }
+  }
   function botonGuardar() {
     var campo = document.getElementById("idLabelCantidad");
     if (campo.style.color == "green") {
@@ -48,7 +80,10 @@ const AddComidas = () => {
           if (campo.style.color == "green") {
             campo = document.getElementById("idLabelIngredientes");
             if (campo.style.color == "green") {
-              alert("muchas gracias por su registro");
+              campo = document.getElementById("idLabelFoto");
+              if (campo.style.color == "green") {
+                alert("muchas gracias por su registro");
+              }
             }
           }
         }
@@ -262,7 +297,7 @@ const AddComidas = () => {
               size="7"
               id="cajaDias"
               placeholder="Dias Disponibles"
-              name="diasDisponibles"
+              name="days"
               required
               onChange={(e) => handleInput(e)}
               class="ui fluid search dropdown"
@@ -304,13 +339,27 @@ const AddComidas = () => {
           </div>
           <br />
           <br />
-          <form
-            encType="multipart/form-data"
-            action="uploader.php"
-            method="POST"
-          >
-            <input name="uploadedfile" type="file" />
-          </form>
+          <div className="ui input">
+            <label id="idLabelFoto">Foto *</label>
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <form encType="multipart/form-data" method="post"></form>
+            <input
+              id="idImage"
+              name="image"
+              type="file"
+              value={image}
+              pattern="^.*\.(jpg|JPG|png|PNG)$"
+              required
+              formnovalidate="true"
+              //onChange={(e) => onInputChange(e)}
+              onChange={(e) => eventImage(e)}
+              onClick={(e) => onInputChange(e)}
+            />
+          </div>
+          <br />
+          <br />
           <br />
           <br />
           <button className="ui second button">Cancelar </button>
