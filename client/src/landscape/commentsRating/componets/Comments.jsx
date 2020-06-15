@@ -1,11 +1,12 @@
 import React from "react";
 import { http } from "../../../services";
-import { Button, Comment, Form, Header, Rating } from "semantic-ui-react";
+import { Comment, Header, Rating } from "semantic-ui-react";
 
 export default class Comments extends React.Component {
   state = {
     commentarys: [],
     ultimos: [],
+
     image: [
       "https://react.semantic-ui.com/images/avatar/small/matt.jpg",
       "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
@@ -16,12 +17,24 @@ export default class Comments extends React.Component {
 
   imagealeatoire(image) {
     var i;
+
     i = Math.floor(3 * Math.random());
     return this.state.image[i];
+  }
+  cut() {
+    if (this.state.commentarys.length > 15) {
+      return this.state.commentarys.slice(
+        this.state.commentarys.length - 15,
+        this.state.commentarys.length
+      );
+    } else {
+      return this.state.commentarys;
+    }
   }
   namesAleatoire(names) {
     var i;
     i = Math.floor(6 * Math.random());
+
     return this.state.names[i];
   }
 
@@ -30,13 +43,19 @@ export default class Comments extends React.Component {
       .request({ url: "/commentary/" })
       .then((res) => this.setState({ commentarys: res }));
   }
+  componentDidUpdate() {
+    http
+      .request({ url: "/commentary/" })
+      .then((res) => this.setState({ commentarys: res }));
+  }
+
   render() {
     return (
       <Comment.Group>
         <Header as="h3" dividing>
           Comentarios recientes
         </Header>
-        {this.state.commentarys.map((comment) => (
+        {this.cut().map((comment) => (
           <Comment>
             <Comment.Avatar src={this.imagealeatoire(this.state.image)} />
             <Comment.Content>
@@ -49,17 +68,9 @@ export default class Comments extends React.Component {
               <Comment.Author as="a">
                 {this.namesAleatoire(this.state.names)}
               </Comment.Author>
-              <Comment.Actions>
-                <Comment.Action>Reply</Comment.Action>
-              </Comment.Actions>
             </Comment.Content>
           </Comment>
         ))}
-
-        <Form reply>
-          <Form.TextArea />
-          <Button content="Add Reply" labelPosition="left" icon="edit" primary />
-        </Form>
       </Comment.Group>
     );
   }

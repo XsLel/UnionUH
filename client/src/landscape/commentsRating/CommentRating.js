@@ -79,6 +79,7 @@ const CommentRating = () => {
   };
   const newCount = (count) => {
     states.count = count;
+    console.log("desde comment rating", states.count);
   };
   const acceptPolicies = (stat) => {
     states.politicalTerms = stat;
