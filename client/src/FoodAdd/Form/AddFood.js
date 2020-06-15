@@ -1,8 +1,7 @@
 ﻿import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import '../style/AddCom.css'
-
+import "../style/AddCom.css";
 
 const AddComidas = () => {
   let history = useHistory();
@@ -147,14 +146,14 @@ const AddComidas = () => {
           <br />
           <br />
           <div className="ui input">
-            <label id="idLabelPrecio">Precio BS* </label>
+            <label id="idLabelPrecio">Precio Bs.* </label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input
               id="idPrecio"
               type="number"
               className="cajaPrecio"
-              placeholder="Precio de la Comida"
+              placeholder="precio de la Comida"
               name="price"
               value={price}
               //max="500"
@@ -167,14 +166,14 @@ const AddComidas = () => {
           <br />
           <br />
           <div className="ui input">
-            <label id="idLabelDescripcion">Descripcion* </label>
+            <label id="idLabelDescripcion">Descripción* </label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input
               id="idDescripcion"
               autocomplete="off"
               type="text"
               className="cajaDescripcion"
-              placeholder="Ingrese descripcion de la comida"
+              placeholder="ingrese descripcion de la comida"
               name="description"
               value={description}
               maxlength="2000"
@@ -188,7 +187,7 @@ const AddComidas = () => {
           <br />
           <br />
           <div className="ui input">
-            <label>Categoria* </label>
+            <label>Categoría* </label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <select
@@ -215,7 +214,7 @@ const AddComidas = () => {
               autocomplete="off"
               type="text"
               className="cajaIngredientes"
-              placeholder="Ingredientes de la Comida"
+              placeholder="ingredientes de la Comida"
               name="ingredients"
               value={ingredients}
               maxLength="500"
@@ -229,7 +228,7 @@ const AddComidas = () => {
           <br />
           <br />
           <div className="ui input">
-            <label>Dias Disponibles</label>
+            <label>Días Disponibles</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <select
               name="skills"
@@ -249,14 +248,13 @@ const AddComidas = () => {
               </option>
               <option value="lunes">Lunes</option>
               <option value="martes">Martes</option>
-              <option value="Miercoles">Miercoles</option>
+              <option value="Miercoles">Miércoles</option>
               <option value="jueves">Jueves</option>
               <option value="viernes">Viernes</option>
-              <option value="sabado">Sabado</option>
+              <option value="sabado">Sábado</option>
               <option value="domingo">Domingo</option>
             </select>
-            <h6>presione ctrl para selecionar</h6>
-            <h6>mas opciones</h6>
+            <h6>presione ctrl para selecionar más opciones</h6>
           </div>
           <br />
           <br />
@@ -268,7 +266,7 @@ const AddComidas = () => {
               id="idCantidad"
               type="number"
               className="cajaCant"
-              placeholder="Ingrese Cantidad de Porciones"
+              placeholder="ingrese Cantidad de Porciones"
               name="servings"
               value={servings}
               max="20"
