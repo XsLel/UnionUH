@@ -31,5 +31,9 @@ export default function validateForm(values) {
     errors.direccionRestaurante = "campo vacío";
   }
 
+  if (values.categoria === "") {
+    errors.categoria = "Seleccione una categoria";
+  }
+
   return errors;
 }
