@@ -31,6 +31,7 @@ const Send = (props) => {
                 })
                 .then((res) => console.log(res));
               alert("Su comentario se envio correctamente");
+              window.location.reload(true);
             }
           }
         }

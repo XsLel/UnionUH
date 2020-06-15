@@ -43,11 +43,6 @@ export default class Comments extends React.Component {
       .request({ url: "/commentary/" })
       .then((res) => this.setState({ commentarys: res }));
   }
-  componentDidUpdate() {
-    http
-      .request({ url: "/commentary/" })
-      .then((res) => this.setState({ commentarys: res }));
-  }
 
   render() {
     return (

@@ -27,7 +27,7 @@
 }
 div.vertical-line {
   width: 1px;
-  background-color: black;
+  background-color: rgb(185, 182, 182);
   height: auto;
   float: left;
 }
