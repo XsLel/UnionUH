@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { http } from '../../services';
-import './RestaurantImage.css';
+import React, { Component } from "react";
+import { http } from "../../services";
+import "./RestaurantImage.css";
 
 class RestaurantImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: '../../img/restaurant-random.png',
+      url: "../../img/restaurant-random.png",
       loading: true,
       error: false,
     };
@@ -31,18 +31,23 @@ class RestaurantImage extends Component {
 
   render() {
     const { url, loading, error } = this.state;
+    const { isListView } = this.props;
     if (!loading && error) {
       return (
         <div>
-          <img className="restaurant-image" src={url} alt="ImageRestaurant" />
+          <img
+            className={isListView ? "restaurant-list-image" : "restaurant-image"}
+            src={url}
+            alt="ImageRestaurant"
+          />
         </div>
       );
     }
     return (
       <div>
         <img
-          className="restaurant-image"
-          src={require('../../img/restaurant-random.png')}
+          className={isListView ? "restaurant-list-image" : "restaurant-image"}
+          src={require("../../img/restaurant-random.png")}
           alt="ImageRestaurant"
         />
       </div>
