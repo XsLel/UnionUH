@@ -26,7 +26,7 @@ class RestaurantSearchPage extends Component {
 
   refreshSearchContent(text, starVal) {
     this.setState({ searchText: text, star: starVal, invalidSearch: false });
-    Promise.resolve(http.request({ url: "/restaurantes/filter/" + starVal }))
+    Promise.resolve(http.request({ url: "/restaurant/filter/" + starVal }))
       .then((restaurants) => {
         let found = restaurants.filter((element) =>
           element.name.toLowerCase().includes(text.toLowerCase())
