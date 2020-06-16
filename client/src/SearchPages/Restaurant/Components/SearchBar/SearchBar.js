@@ -1,5 +1,14 @@
+import "./SearchBar.css";
 import React, { Component } from "react";
-import { Input, Grid, ItemContent, Item, Card, Button } from "semantic-ui-react";
+import {
+  Input,
+  Grid,
+  ItemContent,
+  Item,
+  Button,
+  List,
+  LabelDetail,
+} from "semantic-ui-react";
 import { SearchFilter } from "../SearchFilter";
 
 class SearchBar extends Component {
@@ -61,10 +70,17 @@ class SearchBar extends Component {
               </Input>
             </Grid.Row>
             <Grid.Row>
-              <Card style={{ width: "70%" }}>
-                <SearchFilter
-                  onChangeFilter={this.filterHandleChange.bind(this)}></SearchFilter>
-              </Card>
+              <List>
+                <List.Item>
+                  <div class="filter-label">
+                    <LabelDetail content="Filtrar resultados desde"></LabelDetail>
+                  </div>
+                </List.Item>
+                <List.Item>
+                  <SearchFilter
+                    onChangeFilter={this.filterHandleChange.bind(this)}></SearchFilter>
+                </List.Item>
+              </List>
             </Grid.Row>
           </Grid>
         </ItemContent>
