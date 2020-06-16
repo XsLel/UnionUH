@@ -59,7 +59,7 @@ const RegisterRestaurant = () => {
   async function submit() {
     try {
       await http.request({
-        url: "/touristic-places",
+        url: "/restaurantRegistration/save",
         method: "POST",
         data: values,
       });

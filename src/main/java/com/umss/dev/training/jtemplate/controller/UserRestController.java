@@ -41,7 +41,7 @@ public class UserRestController {
     }
 
     @PermitAll
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<UserResponseDto> save(@Valid @RequestBody final UserRegistrationDto userDto) {
 
         UserResponseDto persistedUser = service.save(userDto);
