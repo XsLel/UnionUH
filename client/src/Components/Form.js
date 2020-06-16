@@ -92,15 +92,15 @@ const RegisterRestaurant = () => {
             control={Input}
             label="Nombre del Restaurante"
             type="text"
-            name="nombreRestaurante"
+            name="nameRestaurant"
             maxLength="50"
             placeholder="Nombre del Restaurante"
-            value={values.nombreRestaurante}
+            value={values.nameRestaurant}
             onChange={handleChange}
             style={{ width: 595 }}
           />
-          {errors.nombreRestaurante && (
-            <p className="error">{errors.nombreRestaurante}</p>
+          {errors.nameRestaurant && (
+            <p className="error">{errors.nameRestaurant}</p>
           )}
           <Form.Group widths="equal">
             <Form.Field
@@ -108,10 +108,10 @@ const RegisterRestaurant = () => {
               control={Input}
               label="Dirección del Restaurante"
               type="text"
-              name="direccionRestaurante"
+              name="restaurantAddress"
               maxLength="50"
               placeholder="Dirección del Restaurante"
-              value={values.direccionRestaurante}
+              value={values.restaurantAddress}
               onChange={handleChange}
             />
             <Form.Field
@@ -122,8 +122,12 @@ const RegisterRestaurant = () => {
                 children: "Provincia",
                 htmlFor: "form-select-control-gender",
               }}
-              name="provincia"
+              name="province"
               placeholder="seleccione una provincia"
+              value={values.province}
+              onChange={(e, { value, name }) =>
+                handleChange({ target: { value, name } })
+              }
               search
               searchInput={{ id: "form-select-control-gender" }}
             />
@@ -131,12 +135,12 @@ const RegisterRestaurant = () => {
 
           <Form.Group widths="equal">
             <Form.Field>
-              {errors.direccionRestaurante && (
-                <p className="error">{errors.direccionRestaurante}</p>
+              {errors.restaurantAddress && (
+                <p className="error">{errors.restaurantAddress}</p>
               )}
             </Form.Field>
             <Form.Field>
-              {errors.provincia && <p className="error">{errors.provincia}</p>}
+              {errors.province && <p className="error">{errors.province}</p>}
             </Form.Field>
           </Form.Group>
 
@@ -145,10 +149,10 @@ const RegisterRestaurant = () => {
               control={TextArea}
               label="Información adicional del restaurante"
               type="text"
-              name="informacionAdicional"
+              name="additionalInformation"
               maxLength="100"
               placeholder="Cuéntanos más.."
-              value={values.informacionAdicional}
+              value={values.additionalInformation}
               onChange={handleChange}
               style={{ resize: "none" }}
             />
@@ -175,23 +179,21 @@ const RegisterRestaurant = () => {
             <Form.Field
               control={Input}
               label="Dirección de su sitio web"
-              name="direccionWeb"
+              name="webAddress"
               maxLength="100"
               placeholder="Dirección de su sitio web"
-              value={values.direccionWeb}
+              value={values.webAddress}
               onChange={handleChange}
             />
-            {errors.direccionWeb && (
-              <p className="error">{errors.direccionWeb}</p>
-            )}
+            {errors.webAddress && <p className="error">{errors.webAddress}</p>}
             <Form.Field
               control={Input}
               label="Teléfono"
-              type="number"
-              name="telefono"
+              type="tel"
+              name="phone"
               maxLength="7"
               placeholder="Teléfono"
-              value={values.telefono}
+              value={values.phone}
               onChange={handleChange}
             />
           </Form.Group>
@@ -199,7 +201,7 @@ const RegisterRestaurant = () => {
           <Form.Group widths="equal">
             <Form.Field></Form.Field>
             <Form.Field>
-              {errors.telefono && <p className="error">{errors.telefono}</p>}
+              {errors.phone && <p className="error">{errors.phone}</p>}
             </Form.Field>
           </Form.Group>
 
@@ -207,14 +209,16 @@ const RegisterRestaurant = () => {
             <Form.Field
               control={Input}
               label="Dirección página de publicidad"
-              name="publicidad"
+              name="advertising"
               maxLength="100"
               placeholder="Dirección página de publicidad"
-              value={values.publicidad}
+              value={values.advertising}
               onChange={handleChange}
             />
-            {errors.publicidad && <p className="error">{errors.publicidad}</p>}
-            <Form.Checkbox
+            {errors.advertising && (
+              <p className="error">{errors.advertising}</p>
+            )}
+            <Form.Field
               required
               control={Select}
               options={genderOptionsCategoria}
@@ -222,9 +226,12 @@ const RegisterRestaurant = () => {
                 children: "categoria",
                 htmlFor: "form-select-control-gender",
               }}
-              name="categoria"
+              name="category"
               placeholder="seleccione una categoria"
-              onChange={handleChange}
+              value={values.category}
+              onChange={(e, { value, name }) =>
+                handleChange({ target: { value, name } })
+              }
               search
               searchInput={{ id: "form-select-control-gender" }}
             />
@@ -233,7 +240,7 @@ const RegisterRestaurant = () => {
           <Form.Group widths="equal">
             <Form.Field></Form.Field>
             <Form.Field>
-              {errors.categoria && <p className="error">{errors.categoria}</p>}
+              {errors.category && <p className="error">{errors.category}</p>}
             </Form.Field>
           </Form.Group>
 
@@ -248,16 +255,16 @@ const RegisterRestaurant = () => {
             <Form.Field
               control={TextArea}
               label="Descripción del Restaurante"
-              name="descripción"
+              name="description"
               type="text"
               maxLength="600"
               placeholder="Descripción del Restaurante"
-              value={values.descripción}
+              value={values.description}
               onChange={handleChange}
               style={{ resize: "none" }}
             />
-            {errors.descripción && (
-              <p className="error">{errors.descripción}</p>
+            {errors.description && (
+              <p className="error">{errors.description}</p>
             )}
           </Form.Group>
 

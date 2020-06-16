@@ -1,11 +1,11 @@
 export default function validateForm(values) {
   let errors = {};
 
-  if (values.nombreRestaurante === "") {
-    errors.nombreRestaurante = "campo vacío";
+  if (values.nameRestaurant == "") {
+    errors.nameRestaurant = "campo vacío";
   } else {
-    if (!/^[a-z ^ ñ A-Z ^ Ñ ]+$/.test(values.nombreRestaurante)) {
-      errors.nombreRestaurante =
+    if (!/^[a-z ^ ñ A-Z ^ Ñ ]+$/.test(values.nameRestaurant)) {
+      errors.nameRestaurant =
         "Nombre de Restaurante invalido solo se aceptan letras [A-Z]";
     }
   }
@@ -15,24 +15,28 @@ export default function validateForm(values) {
     errors.email = "correo electronico invalido";
   }
 
-  if (!values.telefono) {
-  } else if (!/([0-9]){7}/.test(values.telefono)) {
-    errors.telefono = "El numero de no existe";
+  if (!values.phone) {
+  } else if (!/([0-9]){7}/.test(values.phone)) {
+    errors.phone = "El numero de no existe";
   }
 
   if (
-    (values.telefono != "" && !/^4(\d*)$/.test(values.telefono)) ||
-    !(0 <= values.telefono.length && values.telefono.length <= 7)
+    (values.phone != "" && !/^4(\d*)$/.test(values.phone)) ||
+    !(0 <= values.phone.length && values.phone.length <= 7)
   ) {
-    errors.telefono = "El numero no existe";
+    errors.phone = "El numero no existe";
   }
 
-  if (values.direccionRestaurante === "") {
-    errors.direccionRestaurante = "campo vacío";
+  if (values.restaurantAddress === "") {
+    errors.restaurantAddress = "campo vacío";
   }
 
-  if (values.categoria === "") {
-    errors.categoria = "Seleccione una categoria";
+  if (values.category === "") {
+    errors.category = "Seleccione una categoria";
+  }
+
+  if (values.province === "") {
+    errors.province = "Seleccione una provincia";
   }
 
   return errors;

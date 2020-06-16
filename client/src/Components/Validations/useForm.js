@@ -2,21 +2,22 @@ import { useState, useEffect } from "react";
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
-    nombreRestaurante: "",
-    direccionRestaurante: "",
-    informacionAdicional: "",
+    nameRestaurant: "",
+    restaurantAddress: "",
+    additionalInformation: "",
     email: "",
-    direccionWeb: "",
-    telefono: "",
-    publicidad: "",
-    categoria: "",
-    descripción: "",
-    provincia:""
+    webAddress: "",
+    phone: "",
+    advertising: "",
+    category: "",
+    description: "",
+    province: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
+    debugger;
     const { name, value } = event.target;
     setValues({
       ...values,
@@ -24,7 +25,6 @@ const useForm = (callback, validate) => {
     });
   };
 
-  
   const handleSubmit = (event) => {
     event.preventDefault();
     setErrors(validate(values));
@@ -43,9 +43,6 @@ const useForm = (callback, validate) => {
     values,
     errors,
   };
-
-  
 };
-
 
 export default useForm;
