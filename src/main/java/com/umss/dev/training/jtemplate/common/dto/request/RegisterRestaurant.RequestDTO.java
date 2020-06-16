@@ -44,6 +44,14 @@ private String category;
 @Size (max = 500, message = "Name must have at most 500 characters.")
 private String description;
 
+@NotBlank(message = "We suggest that you write an email address.")
+@Size (max = 50, message = "Email must have at most 50 characters.")
+private String email;
+
+/*@NotBlank(message = "placing a photo is optional")
+@Size (max = 50, message = "photo is jpg")
+private String fotoRestaurant;*/
+
 @JsonIgnore
 private Boolean isEnabled = false;
 @JsonIgnore
@@ -88,13 +96,13 @@ private Boolean isDeleted = false;
     public void setadvertising(String advertising) {
         this.advertising = advertising;
     }
-     public String getfotoRestaurant() {
+    /* public String getfotoRestaurant() {
         return fotoRestaurant;
     }
 
     public void setfotoRestaurant(String fotoRestaurant) {
         this.fotoRestaurant = fotoRestaurant;
-    }    
+    } */   
      public String getprovince() {
         return province;
     }
