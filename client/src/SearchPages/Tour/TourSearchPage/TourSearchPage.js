@@ -1,8 +1,10 @@
+import "../Styles/TourSearchPage.css";
 import React, { Component } from "react";
-import { Container, Divider, Label } from "semantic-ui-react";
+import { Container, Divider, Segment, Message } from "semantic-ui-react";
 import { TourDropDownList } from "../Components/TourDropDownList";
 import { SearchTour } from "../Components/SearchTour";
 import { http } from "../../../services";
+import { useToasts } from "react-toast-notifications";
 
 class TourSearchPage extends Component {
   constructor(props) {
@@ -39,24 +41,40 @@ class TourSearchPage extends Component {
   }
 
   render() {
+    const { loading } = this.state;
     return (
       <Container>
-        <SearchTour
-          onSearchBarTextEnter={this.refreshSearchContent.bind(this)}
-          onInvalidSearch={this.onInvalidSearch.bind(this)}></SearchTour>
-        <Divider> </Divider>
-        {this.state.dataArray.length <= 0 || this.state.invalidSearch ? (
-          <Label size="massive">
-            {!this.state.invalidSearch
-              ? "No se ha podido encontrar recorridos turísticos, ingrese datos nuevamente"
-              : "Datos inválidos, debe ingresar solo caracteres alfanuméricos"}
-          </Label>
-        ) : (
-          <TourDropDownList data={this.state.dataArray}></TourDropDownList>
-        )}
+        <Segment loading={loading}>
+          <div class="search-bar-item">
+            <SearchTour
+              onSearchBarTextEnter={this.refreshSearchContent.bind(this)}
+              onInvalidSearch={this.onInvalidSearch.bind(this)}
+              addToast={this.props.addToast}></SearchTour>
+          </div>
+          <Divider> </Divider>
+          {this.state.invalidSearch ? (
+            <Message
+              negative
+              size="massive"
+              header="Error en la búsqueda"
+              content="Datos inválidos, debe ingresar solo caracteres alfanuméricos"
+            />
+          ) : this.state.dataArray.length <= 0 ? (
+            <Message
+              warning
+              size="massive"
+              header="Sin resultados"
+              content="No se ha podido encontrar recorridos turísticos, ingrese datos nuevamente"></Message>
+          ) : (
+            <TourDropDownList data={this.state.dataArray}></TourDropDownList>
+          )}
+        </Segment>
       </Container>
     );
   }
 }
 
-export default TourSearchPage;
+export default () => {
+  const { addToast } = useToasts();
+  return <TourSearchPage addToast={addToast} />;
+};
