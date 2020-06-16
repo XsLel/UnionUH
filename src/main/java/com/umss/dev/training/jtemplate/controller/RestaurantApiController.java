@@ -18,13 +18,13 @@ import com.umss.dev.training.jtemplate.service.RestaurantService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/restaurantes")
-public class RestaurantRestController {
+@RequestMapping("/api/restaurant")
+public class RestaurantApiController {
 
 	@Autowired
 	private RestaurantService restaurantService;
 
-	public RestaurantRestController(RestaurantService restaurantService) {
+	public RestaurantApiController(RestaurantService restaurantService) {
 		this.restaurantService = restaurantService;
 	}
 
