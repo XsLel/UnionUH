@@ -7,30 +7,29 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       star: "5",
-      search_text: "",
+      searchText: "",
     };
   }
 
   handleChange(e) {
-    this.setState({ search_text: e.target.value });
-    if (e.target.value === "") this.props.onSearchBarTextEnter(e.target.value, "5");
+    this.setState({ searchText: e.target.value });
   }
 
   handleSearchClick(e) {
-    if (this.state.search_text === "") alert("Debe ingresar datos en el buscador");
-    else if (this.validateSearchText(this.state.search_text))
-      this.props.onSearchBarTextEnter(this.state.search_text, this.state.star);
+    if (this.state.searchText === "")
+      this.props.addToast("Debe ingresar datos en el buscador", {
+        appearance: "warning",
+      });
+    if (this.state.searchText === "" || this.validateSearchText(this.state.searchText))
+      this.props.onSearchBarTextEnter(this.state.searchText, this.state.star);
     else {
       this.props.onInvalidSearch();
     }
   }
 
   filterHandleChange(starVal) {
-    if (
-      this.state.search_text === "" ||
-      this.validateSearchText(this.state.search_text)
-    ) {
-      this.props.onSearchBarTextEnter(this.state.search_text, starVal);
+    if (this.state.searchText === "" || this.validateSearchText(this.state.searchText)) {
+      this.props.onSearchBarTextEnter(this.state.searchText, starVal);
     } else {
       this.props.onInvalidSearch();
     }
@@ -54,7 +53,7 @@ class SearchBar extends Component {
                 placeholder="Escriba algo para buscar"
                 action
                 onChange={this.handleChange.bind(this)}
-                value={this.state.search_text}>
+                value={this.state.searchText}>
                 <input />
                 <Button onClick={this.handleSearchClick.bind(this)} type="submit">
                   Buscar
@@ -62,7 +61,7 @@ class SearchBar extends Component {
               </Input>
             </Grid.Row>
             <Grid.Row>
-              <Card>
+              <Card style={{ width: "70%" }}>
                 <SearchFilter
                   onChangeFilter={this.filterHandleChange.bind(this)}></SearchFilter>
               </Card>
