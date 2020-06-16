@@ -26,25 +26,3 @@ textarea {
   border: 2px solid rgb(180, 17, 17);
   border-radius: 5px;
 }
-
-.buttonTrue {
-  display: inline-block;
-  padding: 3px 3px;
-  cursor: pointer;
-  text-align: center;
-  color: #000;
-  background-color: rgb(2, 196, 2);
-  border-radius: 9px;
-
-}
-
-.buttonFalse {
-  display: inline-block;
-  padding: 3px 3px;
-  cursor: pointer;
-  text-align: center;
-  color: #fff;
-  background-color: black;
-  border-radius: 9px;
-  
-}

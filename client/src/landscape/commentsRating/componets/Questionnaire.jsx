@@ -1,93 +1,102 @@
 import React from "react";
-import { Button, Grid, GridRow, GridColumn} from "semantic-ui-react";
-import {useState} from 'react'
-import "./css/Commentary.css";
+import { Button, Grid, GridRow, GridColumn } from "semantic-ui-react";
+import { useState } from "react";
 
 const Questionnaire = (props) => {
-
-  const [activeButton1, setActiveButton1] = useState(false);
-  const [activeButton2, setActiveButton2] = useState(false);
-  const [activeButton3, setActiveButton3] = useState(false);
-  const [activeButton4, setActiveButton4] = useState(false);
-  const [colorButton1, setColorButton1] = useState('');
-  const [colorButton2, setColorButton2] = useState('');
-  const [colorButton3, setColorButton3] = useState('');
-  const [colorButton4, setColorButton4] = useState('');
-
-  
+  const [colorOne, setColorOne] = useState("");
+  const [colorTwo, setColorTwo] = useState("");
+  const [colorThree, setColorThree] = useState("");
   const questionOneButtonOne = () => {
     questionOne("si");
-    setActiveButton1(true)
-    setColorButton1('green')
-
+    setColorOne("blue");
+    setColorTwo("");
+    setColorThree("");
   };
   const questionOneButtonTwo = () => {
     questionOne("no");
-    setActiveButton1(true)
-    setColorButton1('black')
+    setColorOne("");
+    setColorTwo("blue");
+    setColorThree("");
   };
   const questionOneButtonThree = () => {
     questionOne("no se");
-    setActiveButton1(true)
-    setColorButton1('grey')
+    setColorOne("");
+    setColorTwo("");
+    setColorThree("blue");
   };
   const questionOne = (v) => {
     props.answerOne(v);
   };
-
+  const [colorOne2, setColorOne2] = useState("");
+  const [colorTwo2, setColorTwo2] = useState("");
+  const [colorThree2, setColorThree2] = useState("");
   const questionTwoButtonOne = () => {
     questionTwo("si");
-    setActiveButton2(true)
-    setColorButton2('green')
-
+    setColorOne2("blue");
+    setColorTwo2("");
+    setColorThree2("");
   };
   const questionTwoButtonTwo = () => {
     questionTwo("no");
-    setActiveButton2(true)
-    setColorButton2('black')
+    setColorOne2("");
+    setColorTwo2("blue");
+    setColorThree2("");
   };
   const questionTwoButtonThree = () => {
     questionTwo("no se");
-    setActiveButton2(true)
-    setColorButton2('grey')
+    setColorOne2("");
+    setColorTwo2("");
+    setColorThree2("blue");
   };
   const questionTwo = (v) => {
     props.answerTwo(v);
   };
 
+  const [colorOne3, setColorOne3] = useState("");
+  const [colorTwo3, setColorTwo3] = useState("");
+  const [colorThree3, setColorThree3] = useState("");
   const questionThreeButtonOne = () => {
     questionThree("si");
-    setActiveButton3(true)
-    setColorButton3('green')
+    setColorOne3("blue");
+    setColorTwo3("");
+    setColorThree3("");
   };
   const questionThreeButtonTwo = () => {
     questionThree("no");
-    setActiveButton3(true)
-    setColorButton3('black')
+    setColorOne3("");
+    setColorTwo3("blue");
+    setColorThree3("");
   };
   const questionThreeButtonThree = () => {
-    questionThree("no se")
-    setActiveButton3(true)
-    setColorButton3('grey')
+    questionThree("no se");
+    setColorOne3("");
+    setColorTwo3("");
+    setColorThree3("blue");
   };
   const questionThree = (v) => {
     props.answerThree(v);
   };
 
+  const [colorOne4, setColorOne4] = useState("");
+  const [colorTwo4, setColorTwo4] = useState("");
+  const [colorThree4, setColorThree4] = useState("");
   const questionFourButtonOne = () => {
     questionFour("si");
-    setActiveButton4(true)
-    setColorButton4('green')
+    setColorOne4("blue");
+    setColorTwo4("");
+    setColorThree4("");
   };
   const questionFourButtonTwo = () => {
-    questionFour("no")
-    setActiveButton4(true)
-    setColorButton4('black')
+    questionFour("no");
+    setColorOne4("");
+    setColorTwo4("blue");
+    setColorThree4("");
   };
   const questionFourButtonThree = () => {
-    questionFour("no se")
-    setActiveButton4(true)
-    setColorButton4('grey')
+    questionFour("no se");
+    setColorOne4("");
+    setColorTwo4("");
+    setColorThree4("blue");
   };
   const questionFour = (v) => {
     props.answerFour(v);
@@ -99,40 +108,64 @@ const Questionnaire = (props) => {
       <Grid columns={2}>
         <GridRow>
           <p>Este lugar turístico es una joya oculta ?</p>
-          <Button.Group className={activeButton1? "buttonTrue": "buttonFalse"} size="large">             
-            <Button color={colorButton1}  onClick={questionOneButtonOne} >SI</Button>
-            <Button color={colorButton1}  onClick={questionOneButtonTwo} >NO</Button>
-            <Button color={colorButton1}  onClick={questionOneButtonThree} >NO SE</Button>
+          <Button.Group size="smoll">
+            <Button color={colorOne} onClick={questionOneButtonOne}>
+              SI
+            </Button>
+            <Button color={colorTwo} onClick={questionOneButtonTwo}>
+              NO
+            </Button>
+            <Button color={colorThree} onClick={questionOneButtonThree}>
+              NO SE
+            </Button>
           </Button.Group>
         </GridRow>
       </Grid>
       <Grid columns={2}>
         <GridRow>
           <p>En este lugar o actividad se aceptan tarjetas de crédito ?</p>
-          <Button.Group className={activeButton2? "buttonTrue": "buttonFalse"} size="large">
-            <Button color={colorButton2} onClick={questionTwoButtonOne}>SI</Button>
-            <Button color={colorButton2} onClick={questionTwoButtonTwo}>NO</Button>
-            <Button color={colorButton2} onClick={questionTwoButtonThree}>NO SE</Button>
+          <Button.Group size="smoll">
+            <Button color={colorOne2} onClick={questionTwoButtonOne}>
+              SI
+            </Button>
+            <Button color={colorTwo2} onClick={questionTwoButtonTwo}>
+              NO
+            </Button>
+            <Button color={colorThree2} onClick={questionTwoButtonThree}>
+              NO SE
+            </Button>
           </Button.Group>
         </GridRow>
       </Grid>
       <Grid columns={2}>
         <GridRow>
           <p>Consideras peligroso el lugar turístico ?</p>
-          <Button.Group className={activeButton3? "buttonTrue": "buttonFalse"} size="large">
-            <Button color={colorButton3} onClick={questionThreeButtonOne}>SI</Button>
-            <Button color={colorButton3} onClick={questionThreeButtonTwo}>NO</Button>
-            <Button color={colorButton3} onClick={questionThreeButtonThree}>NO SE</Button>
+          <Button.Group size="smoll">
+            <Button color={colorOne3} onClick={questionThreeButtonOne}>
+              SI
+            </Button>
+            <Button color={colorTwo3} onClick={questionThreeButtonTwo}>
+              NO
+            </Button>
+            <Button color={colorThree3} onClick={questionThreeButtonThree}>
+              NO SE
+            </Button>
           </Button.Group>
         </GridRow>
       </Grid>
       <Grid columns={2}>
         <GridRow>
           <p>Recomendarías este lugar turístico ?</p>
-          <Button.Group className={activeButton4? "buttonTrue": "buttonFalse"} size="large">
-            <Button color={colorButton4} onClick={questionFourButtonOne}>SI</Button>
-            <Button color={colorButton4} onClick={questionFourButtonTwo}>NO</Button>
-            <Button color={colorButton4} onClick={questionFourButtonThree}>NO SE</Button>
+          <Button.Group size="smoll">
+            <Button color={colorOne4} onClick={questionFourButtonOne}>
+              SI
+            </Button>
+            <Button color={colorTwo4} onClick={questionFourButtonTwo}>
+              NO
+            </Button>
+            <Button color={colorThree4} onClick={questionFourButtonThree}>
+              NO SE
+            </Button>
           </Button.Group>
         </GridRow>
       </Grid>
