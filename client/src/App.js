@@ -14,6 +14,7 @@ import Start from "./start";
 import StartM from "./startMosaico";
 import Restaurants from "./Restaurants/Restaurants";
 import { AccommodationPage } from "./SearchPages/AccommodationPage";
+import { RestaurantPage } from "./SearchPages/RestaurantPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Admin} />
           <Route exact path="/search-accommodation" component={AccommodationPage} />
+          <Route exact path="/search-restaurant" component={RestaurantPage} />
           <Route exact path="/commentrating" component={CommentRating} />
           <Route exact path="/restaurants" component={Restaurants} />
           <Route

@@ -4,6 +4,11 @@ import { Dropdown } from "semantic-ui-react";
 
 const serviceOptions = [
   {
+    key: "1",
+    text: "Búsqueda de Restaurantes",
+    value: "search-restaurant",
+  },
+  {
     key: "2",
     text: "Búsqueda por Alojamiento",
     value: "search-accommodation",
