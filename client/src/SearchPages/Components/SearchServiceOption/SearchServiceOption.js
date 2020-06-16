@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 
-const serviceOptions = [];
+const serviceOptions = [
+  {
+    key: "1",
+    text: "Búsqueda de Restaurantes",
+    value: "search-restaurant",
+  },
+];
 
 class SearchServiceOption extends Component {
   constructor(props) {
