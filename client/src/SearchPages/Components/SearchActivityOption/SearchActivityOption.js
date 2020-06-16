@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Dropdown } from "semantic-ui-react";
 
-const activityOptions = [];
+const activityOptions = [
+  {
+    key: "2",
+    text: "Busqueda de Aventura",
+    value: "search-adventure",
+  },
+];
 
 class SearchActivityOption extends Component {
   constructor(props) {
