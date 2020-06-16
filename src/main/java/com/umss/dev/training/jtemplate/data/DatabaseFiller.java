@@ -22,7 +22,7 @@ public class DatabaseFiller {
         EventService.getInstance().save(createEvent("Aniversario de Tapacarí", "2020-01-26"));
         EventService.getInstance().save(createEvent("Día de la madre", "2020-05-27"));
         EventService.getInstance().save(createEvent("Santa Vera Cruz Tatala", "2020-05-02"));
-        EventService.getInstance().save(createEvent("Santa Vera Cruz Tatala", "2020-05-02"));
+        EventService.getInstance().save(createEvent("Santa Vera Cruz Tatala", "2020-05-03"));
         EventService.getInstance().save(createEvent("Día del peatón", "2020-04-01"));
         EventService.getInstance().save(createEvent("Virgen de Urkupiña", "2020-08-15"));
         EventService.getInstance().save(createEvent("Aniversario Departamental", "2020-09-14"));

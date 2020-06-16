@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugins from "@fullcalendar/daygrid";
 import { http } from "../../../services";
+import esLocale from "@fullcalendar/core/locales/es";
 
 class EventFestCalendar extends Component {
   constructor() {
@@ -27,6 +28,7 @@ class EventFestCalendar extends Component {
   render() {
     return (
       <FullCalendar
+        locale={esLocale}
         defaultView="dayGridMonth"
         plugins={[dayGridPlugins]}
         events={this.state.dataArray}
