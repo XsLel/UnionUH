@@ -16,7 +16,7 @@ class CategoryFilter extends Component {
   render() {
     return (
       <Select
-        placeholder="Filtrar por categoría"
+        defaultValue={"Todos"}
         onChange={this.handleChange.bind(this)}
         options={categoryOptions}
       />

@@ -1,8 +1,10 @@
-import { Segment, Item, Container, Divider, Label } from "semantic-ui-react";
+import "../Styles/AccommodationSearchPage.css";
+import { Segment, Item, Container, Divider, Message } from "semantic-ui-react";
 import { DropdownList } from "../Components/DropdownList";
 import { SearchBar } from "../Components/SearchBar";
 import React, { Component } from "react";
 import { http } from "../../../services";
+import { useToasts } from "react-toast-notifications";
 
 class AccommodationSearchPage extends Component {
   constructor(props) {
@@ -53,16 +55,26 @@ class AccommodationSearchPage extends Component {
       <Container>
         <Segment loading={loading}>
           <Item.Group>
-            <SearchBar
-              onSearchBarTextEnter={this.refreshSearchContent.bind(this)}
-              onInvalidSearch={this.onInvalidSearch.bind(this)}></SearchBar>
+            <div class="search-bar-item">
+              <SearchBar
+                onSearchBarTextEnter={this.refreshSearchContent.bind(this)}
+                onInvalidSearch={this.onInvalidSearch.bind(this)}
+                addToast={this.props.addToast}></SearchBar>
+            </div>
             <Divider> </Divider>
-            {this.state.dataArray.length <= 0 || this.state.invalidSearch ? (
-              <Label size="massive">
-                {this.state.invalidSearch
-                  ? "Datos inválidos, debe ingresar solo caracteres alfanuméricos"
-                  : "No se ha podido encontrar alojamiento, ingrese datos nuevamente"}
-              </Label>
+            {this.state.invalidSearch ? (
+              <Message
+                negative
+                size="massive"
+                header="Error en la búsqueda"
+                content="Datos inválidos, debe ingresar solo caracteres alfanuméricos"
+              />
+            ) : this.state.dataArray.length <= 0 ? (
+              <Message
+                warning
+                size="massive"
+                header="Sin resultados"
+                content="No se ha podido encontrar alojamientos, ingrese datos nuevamente"></Message>
             ) : (
               <DropdownList data={this.state.dataArray}></DropdownList>
             )}
@@ -73,4 +85,7 @@ class AccommodationSearchPage extends Component {
   }
 }
 
-export default AccommodationSearchPage;
+export default () => {
+  const { addToast } = useToasts();
+  return <AccommodationSearchPage addToast={addToast} />;
+};
