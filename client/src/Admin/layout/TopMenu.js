@@ -1,6 +1,7 @@
 import React from "react";
 import { Segment, Menu } from "semantic-ui-react";
 import Input from "semantic-ui-react/dist/commonjs/elements/Input";
+import { SearchServiceOption } from "../../SearchPages/Components/SearchServiceOption";
 
 function TopMenu(props) {
   const { showSearchRestaurant, filterRestaurant } = props;
@@ -8,6 +9,9 @@ function TopMenu(props) {
     <Segment inverted color="teal" className="no-radius">
       <Menu inverted color="teal" secondary>
         <Menu.Item name="home" active />
+        <Menu.Item>
+          <SearchServiceOption></SearchServiceOption>
+        </Menu.Item>
         {showSearchRestaurant === true ? (
           <Menu.Menu position="right">
             <Menu.Item>
