@@ -29,6 +29,8 @@ public class RestaurantRegistration {
 	private String category;
 	@NotBlank(message = "The DESCRIPTION field cannot be empty")
 	private String description;
+
+	private double qualification;
 	
 	private List<PhotoRegistration> photos;
 	
@@ -97,5 +99,11 @@ public class RestaurantRegistration {
 	}
 	public void setPhotos(List<PhotoRegistration> photos) {
 		this.photos = photos;
+	}
+	public double getQualification() {
+		return qualification;
+	}
+	public void setQualification(double qualification) {
+		this.qualification = qualification;
 	}
 }

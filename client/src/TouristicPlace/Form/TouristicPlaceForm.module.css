@@ -1,7 +1,8 @@
-h1.ui.header {
+.title {
   font-size: 4rem;
+  text-align: center;
 }
 
-p.small {
+.small {
   font-size: 13px;
 }

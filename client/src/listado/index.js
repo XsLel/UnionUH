@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import "semantic-ui-react";
-import {
-  Segment,
-  Grid,
-  Header,
-  Dropdown,
-  Image,
-  Button,
-} from "semantic-ui-react";
+import { Segment, Grid, Header, Dropdown, Image, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import Main from "../main";
 class Listado extends Component {

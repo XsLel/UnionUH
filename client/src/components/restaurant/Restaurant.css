@@ -1,0 +1,28 @@
+.restaurant {
+  margin: 20px 5px 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-restaurant {
+  margin: 5px;
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.description {
+  margin-bottom: 10px;
+}
+
+.direction {
+  margin-top: 10px;
+  align-items: center;
+}
+
+.card-restaurant-list {
+  margin: 5px;
+  width: 800px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

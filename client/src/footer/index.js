@@ -7,8 +7,7 @@ function Footer() {
     <Segment inverted>
       <Grid inverted columns={4} divided>
         <Grid.Column>
-          &copy; 2020 UMSS-AVANTICA todos los derechos reservados | Cochabamba,
-          Bolivia.
+          &copy; 2020 UMSS-AVANTICA todos los derechos reservados | Cochabamba, Bolivia.
         </Grid.Column>
         <Grid.Column>
           <Icon link name="facebook" />

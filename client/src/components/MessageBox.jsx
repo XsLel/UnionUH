@@ -19,15 +19,9 @@ export default function MessageBox({
       </Modal.Content>
       <Modal.Actions>
         {onCancel && (
-          <Button
-            negative
-            content="Cancelar"
-            onClick={(_e, _d) => onCancel()}
-          />
+          <Button negative content="Cancelar" onClick={(_e, _d) => onCancel()} />
         )}
-        {onOK && (
-          <Button positive content="Aceptar" onClick={(_e, _d) => onOK()} />
-        )}
+        {onOK && <Button positive content="Aceptar" onClick={(_e, _d) => onOK()} />}
       </Modal.Actions>
     </Modal>
   );

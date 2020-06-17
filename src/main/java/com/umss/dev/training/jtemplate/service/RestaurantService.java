@@ -1,9 +1,11 @@
 package com.umss.dev.training.jtemplate.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ import com.umss.dev.training.jtemplate.persistence.repository.RestaurantReposito
 
 @Service
 public class RestaurantService {
+
+	private static RestaurantService instance;
 	
 	private RestaurantRepository restaurantRepository;
 	private PhotoRepository photoRepository;
@@ -30,8 +34,17 @@ public class RestaurantService {
 		this.photoRepository = photoRepository;
 		this.modelMapper = modelMapper;
 		this.photoService = new PhotoService(photoRepository, modelMapper);
+		instance = this;
 	}
-	
+
+	public static RestaurantService getInstance(){
+		return instance;
+	}
+
+	public List<Restaurant> getAll() {
+		return restaurantRepository.findAll();
+	}
+
 	public RestaurantResponseDto findById(int id) {
 		Restaurant res = restaurantRepository.findById(id).orElse(null);
 		if (res == null) {
@@ -47,7 +60,20 @@ public class RestaurantService {
 		RestaurantResponseDto response = modelMapper.map(res, RestaurantResponseDto.class);
 		response.setPhotos(listPhoto);
         return response;
-    }
+	}
+	
+	public  Iterable<Restaurant> filterByReviewValue(double reviewValue) {
+		List<Restaurant> allUsersResponse = restaurantRepository.findAll()
+		.stream()
+		.sorted(Comparator.comparing(Restaurant::getQualification).reversed())
+		.filter(r -> r.getQualification() <= reviewValue)
+		.map(usr -> {
+			Restaurant response = modelMapper.map(usr, Restaurant.class);
+			return response;
+		})
+		.collect(Collectors.toList());
+		return allUsersResponse;
+	}
 	
 	public RestaurantResponseDto save(RestaurantRegistration requestRestaurant) {
 		Restaurant restaurant = modelMapper.map(requestRestaurant, Restaurant.class);

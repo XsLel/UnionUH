@@ -16,16 +16,8 @@ function Main(props) {
           <Grid.Column>
             <Dropdown text="Cambiar visualizacion">
               <Dropdown.Menu>
-                <Dropdown.Item
-                  as={Link}
-                  to="/lugaresturisticos"
-                  text="Listado"
-                />
-                <Dropdown.Item
-                  as={Link}
-                  to="/lugaresturisticos/mosaico"
-                  text="Mosaico"
-                />
+                <Dropdown.Item as={Link} to="/lugaresturisticos" text="Listado" />
+                <Dropdown.Item as={Link} to="/lugaresturisticos/mosaico" text="Mosaico" />
               </Dropdown.Menu>
             </Dropdown>
           </Grid.Column>
