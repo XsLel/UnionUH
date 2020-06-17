@@ -1,12 +1,6 @@
 import React from "react";
 import { useRouteMatch } from "react-router-dom";
-import {
-  Grid,
-  GridRow,
-  GridColumn,
-  ListContent,
-  Divider,
-} from "semantic-ui-react";
+import { Grid, GridRow, GridColumn, ListContent, Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const Inforestaurant = (props) => {
@@ -66,15 +60,12 @@ const Inforestaurant = (props) => {
           </GridColumn>
 
           <GridColumn>
-            <Link to={`${url}/food-gallery`}>Galeria Comida</Link>
+            <Link to={`${url}/food-gallery`}>ver Comida</Link>
           </GridColumn>
 
           <GridColumn>
             {" "}
-            <Link to={`${url}/restaurant-gallery`}>
-              {" "}
-              Galeria Restaurante
-            </Link>{" "}
+            <Link to={`${url}/restaurant-gallery`}> ver Restaurante</Link>{" "}
           </GridColumn>
         </GridRow>
       </Grid>
