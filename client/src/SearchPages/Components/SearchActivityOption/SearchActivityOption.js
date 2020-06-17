@@ -4,6 +4,11 @@ import { Dropdown } from "semantic-ui-react";
 
 const activityOptions = [
   {
+    key: "1",
+    text: "Actividades por Recorrido Turístico",
+    value: "search-tour",
+  },
+  {
     key: "2",
     text: "Busqueda de Aventura",
     value: "search-adventure",
