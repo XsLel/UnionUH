@@ -6,7 +6,7 @@ import { Carousel } from "react-responsive-carousel"; /////npm install react-res
 
 function showUrl(list, description, name) {
   return (
-    <div className="group">
+    <div className="group-restaurant">
       <Carousel autoPlay dynamicHeight={true} showThumbs={false} showStatus={false}>
         {list.map((url, i) => (
           <div key={i}>
@@ -14,9 +14,9 @@ function showUrl(list, description, name) {
           </div>
         ))}
       </Carousel>
-      <div className="data">
-        <h1 className="title">{name}</h1>
-        <p className="description">{description}</p>
+      <div className="data-restaurant">
+        <h1 className="title-restaurant">{name}</h1>
+        <p className="description-restaurant">{description}</p>
       </div>
     </div>
   );
