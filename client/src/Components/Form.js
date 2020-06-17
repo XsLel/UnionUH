@@ -56,15 +56,16 @@ const RegisterRestaurant = () => {
 
   const history = useHistory();
 
-  async function submit() {
+  async function submit(e) {
+    debugger
+    e.preventDefault();
     try {
       await http.request({
-        url: "/restaurantRegistration/save",
+        url: "/restaurant/save",
         method: "POST",
         data: values,
       });
       console.log("Submitted Succesfully");
-      history.push("/lugares-turisticos");
     } catch (error) {
       console.log(error);
     }
@@ -299,6 +300,7 @@ const RegisterRestaurant = () => {
               size="large"
               style={{ width: 150 }}
               type="submit"
+              onClick={submit}
             >
               Guardar
             </Form.Button>
