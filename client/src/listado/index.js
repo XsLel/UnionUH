@@ -1,81 +1,118 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import "semantic-ui-react";
-import { Segment, Grid, Header, Dropdown, Image, Button } from "semantic-ui-react";
+import { Segment, Grid, Header, Image, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import Main from "../main";
-class Listado extends Component {
-  constructor() {
-    super();
-    this.state = { titulo: "" };
-    this.state = { lugaresTuristicos: [] };
-    this.state = { califique: 0 };
+
+const Listado = () => {
+  const [titulo, setTitulo] = useState("");
+  const [lugaresTuristicos, setLT] = useState([]);
+  const [count, setCount] = useState(1);
+  const [actual, setActual] = useState(1);
+
+  useEffect(() => {
+    const getLT = async () => {
+      await fetch("/api/lugaresturistico")
+        .then((res) => res.json())
+        .then((lt) => setLT(Object.values(lt)));
+    };
+
+    const getCount = async () => {
+      await fetch("/api/lugaresturistico/count/1")
+        .then((res) => res.json())
+        .then((val) => setCount(parseInt(val)));
+    };
+    setTitulo("Listado");
+    getLT();
+    getCount();
+  }, []);
+
+  const onChange = (number) => {
+    setActual(number);
+  };
+
+  const insert = async (id, sc) => {
+    try {
+      const res = await fetch("/api/calificacion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          idlugarturistico: id,
+          score: sc,
+        }),
+      });
+      return res;
+    } catch (err) {
+      return err;
+    }
+  };
+
+  const indexLastPage = actual * 5;
+  const indexFirstPage = indexLastPage - 5;
+  const array = lugaresTuristicos.slice(indexFirstPage, indexLastPage);
+  const numbers = [];
+  for (let i = 1; i <= count; i++) {
+    numbers.push(i);
   }
 
-  valueToState(target) {
-    this.setState({ [target.text]: target.value });
-  }
-
-  insert(id) {
-    return fetch("http://localhost:8585/api/calificacion", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        IDLugarTuristico: id,
-        entrada_identrada: 1,
-        Calificación: this.state.califique,
-      }),
-    })
-      .then((res) => res)
-      .catch((err) => err);
-  }
-
-  componentDidMount() {
-    this.setState({ titulo: "Listado" });
-    fetch("/api/lugaresturistico", { method: "GET", mode: "no-cors" })
-      .then((res) => res.json())
-      .then((lt) => this.setState({ lugaresTuristicos: Object.values(lt) }));
-  }
-
-  render() {
-    let aux =
-      "https://cdnmundo1.img.sputniknews.com/img/105158/14/1051581400_0:14:1024:567_1000x541_80_0_0_9889cd17d85392f6389fc106af600b9b.jpg";
-    return (
-      <div>
-        <Main titulo={this.state.titulo} />
-        <Segment>
-          <Grid columns={3} divided>
-            {this.state.lugaresTuristicos &&
-              this.state.lugaresTuristicos.map((it) => (
-                <Grid.Row key={it.idlugarturistico}>
-                  <Grid.Column>
-                    <Image src={aux} size="medium" />
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Header as="h2">{it.nombrelugarturistico}</Header>
-                    <Header as="h3">Calificacion : {it.promedio}</Header>
-                  </Grid.Column>
-                  <Grid.Column>
-                    <Dropdown>
-                      <Dropdown.Menu>
-                        <Dropdown.Item text="1" />
-                        <Dropdown.Item text="2" />
-                        <Dropdown.Item text="3" />
-                        <Dropdown.Item text="4" />
-                        <Dropdown.Item text="5" />
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <Button secondary onClick={() => this.insert()}>
-                      Calificar
-                    </Button>
-                  </Grid.Column>
-                </Grid.Row>
-              ))}
-          </Grid>
-        </Segment>
+  return (
+    <div>
+      <Main titulo={titulo} />
+      <Segment>
+        <Grid columns={3} divided>
+          {array.map((it) => (
+            <Grid.Row key={it.idlugarturistico}>
+              <Grid.Column>
+                <a href={it.link} target="_blank">
+                  <Image src={it.foto} size="medium" />
+                </a>
+              </Grid.Column>
+              <Grid.Column>
+                <Header as="h2">{it.nombrelugarturistico}</Header>
+                <Header as="h3">Calificacion : {it.promedio}</Header>
+              </Grid.Column>
+              <Grid.Column>
+                <select id={"lugar" + it.idlugarturistico}>
+                  <option value="0" disabled>
+                    Seleccione un Puntaje..
+                  </option>
+                  <option value="1" selected>
+                    1
+                  </option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <Button
+                  secondary
+                  onClick={() =>
+                    insert(
+                      it.idlugarturistico,
+                      document.getElementById("lugar" + it.idlugarturistico).value
+                    )
+                  }>
+                  Calificar
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+          ))}
+        </Grid>
+      </Segment>
+      <div class="ui column centered grid">
+        <Grid columns={numbers.length}>
+          <Grid.Row>
+            {numbers.map((number) => (
+              <Grid.Column>
+                <Button onClick={() => onChange(number)}>{number}</Button>
+              </Grid.Column>
+            ))}
+          </Grid.Row>
+        </Grid>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 export default Listado;
