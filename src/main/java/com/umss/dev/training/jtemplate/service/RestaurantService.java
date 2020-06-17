@@ -1,8 +1,8 @@
 package com.umss.dev.training.jtemplate.service;
 
-import com.umss.dev.training.jtemplate.common.dto.request.RegisterRestaurantRequestDTO;
-import com.umss.dev.training.jtemplate.common.dto.response.RegisterRestaurantDto;
-import com.umss.dev.training.jtemplate.persistence.domain.RegisterRestaurant;
+import com.umss.dev.training.jtemplate.common.dto.request.RestaurantRequestDTO;
+import com.umss.dev.training.jtemplate.common.dto.response.RestaurantDto;
+import com.umss.dev.training.jtemplate.persistence.domain.Restaurant;
 import com.umss.dev.training.jtemplate.persistence.repository.RegisterRestaurantRepository;
 
 import org.modelmapper.ModelMapper;
@@ -20,33 +20,33 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
         this.modelMapper = modelMapper;
     }
-    public RegisterRestaurantDto save(RegisterRestaurantRequestDTO requestRestaurant) {
-		RegisterRestaurant restaurant = modelMapper.map(requestRestaurant, RegisterRestaurant.class);
+    public RestaurantDto save(RestaurantRequestDTO requestRestaurant) {
+		Restaurant restaurant = modelMapper.map(requestRestaurant, Restaurant.class);
 		restaurant = restaurantRepository.save(restaurant);
 		
-		RegisterRestaurantDto response = modelMapper.map(restaurant, RegisterRestaurantDto.class);
+		RestaurantDto response = modelMapper.map(restaurant, RestaurantDto.class);
 		
         return response;
     }
-    public  Iterable<RegisterRestaurant> findAll() {
-        List<RegisterRestaurant> allUsersResponse = restaurantRepository.findAll()
+    public  Iterable<Restaurant> findAll() {
+        List<Restaurant> allUsersResponse = restaurantRepository.findAll()
                                             .stream()
-                                            .sorted(Comparator.comparing(RegisterRestaurant::getnameRestaurant))
+                                            .sorted(Comparator.comparing(Restaurant::getnameRestaurant))
 
                                             .collect(Collectors.toList());
 
         return allUsersResponse;
     }
 
-    public List<RegisterRestaurant> getAll() {
+    public List<Restaurant> getAll() {
 		return restaurantRepository.findAll();
     }
     
 
-	public RegisterRestaurantDto findById(long id) {
-        RegisterRestaurant res = restaurantRepository.findById(id).orElse(null);
+	public RestaurantDto findById(long id) {
+        Restaurant res = restaurantRepository.findById(id).orElse(null);
         
-		RegisterRestaurantDto response = modelMapper.map(res, RegisterRestaurantDto.class);
+		RestaurantDto response = modelMapper.map(res, RestaurantDto.class);
         return response;
 	}
 

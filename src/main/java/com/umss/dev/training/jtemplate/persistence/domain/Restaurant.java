@@ -8,7 +8,7 @@ import java.util.Set;
 @Entity
 @Table(name = "restaurant")
 
-public class RegisterRestaurant {
+public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

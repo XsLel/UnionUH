@@ -35,12 +35,12 @@ const genderOptions = [
   { key: "t", text: "Tiraque", value: "Tiraque" },
 ];
 const genderOptionsCategoria = [
-  { key: "a", text: "gourmet", value: "gourmet" },
-  { key: "a", text: "familiar", value: "familiar" },
-  { key: "a", text: "buffet", value: "buffet" },
-  { key: "b", text: "comida rapida", value: "comida rapida" },
-  { key: "c", text: "tematico", value: "tematico" },
-  { key: "c", text: "para llevar", value: "para llevar" },
+  { key: "a", text: "Gourmet", value: "Gourmet" },
+  { key: "a", text: "Familiar", value: "Familiar" },
+  { key: "a", text: "Buffet", value: "Buffet" },
+  { key: "b", text: "Comida rapida", value: "Comida rapida" },
+  { key: "c", text: "Tematico", value: "Tematico" },
+  { key: "c", text: "Para llevar", value: "Para llevar" },
 ];
 
 const ModifyRestaurant = () => {
@@ -124,7 +124,7 @@ const ModifyRestaurant = () => {
                 htmlFor: "form-select-control-gender",
               }}
               name="province"
-              placeholder="seleccione una provincia"
+              placeholder="Seleccione una provincia"
               value={values.province}
               onChange={(e, { value, name }) =>
                 handleChange({ target: { value, name } })
@@ -224,11 +224,11 @@ const ModifyRestaurant = () => {
               control={Select}
               options={genderOptionsCategoria}
               label={{
-                children: "categoria",
+                children: "Categoria",
                 htmlFor: "form-select-control-gender",
               }}
               name="category"
-              placeholder="seleccione una categoria"
+              placeholder="Seleccione una categoria"
               value={values.category}
               onChange={(e, { value, name }) =>
                 handleChange({ target: { value, name } })

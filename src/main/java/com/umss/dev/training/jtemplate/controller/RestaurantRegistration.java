@@ -5,9 +5,13 @@ import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 
-import com.umss.dev.training.jtemplate.common.dto.request.RegisterRestaurantRequestDTO;
-import com.umss.dev.training.jtemplate.common.dto.response.RegisterRestaurantDto;
-import com.umss.dev.training.jtemplate.persistence.domain.RegisterRestaurant;
+
+import com.umss.dev.training.jtemplate.common.dto.request.RestaurantRequestDTO;
+import com.umss.dev.training.jtemplate.common.dto.response.RestaurantDto;
+import com.umss.dev.training.jtemplate.persistence.domain.Restaurant;
+import com.umss.dev.training.jtemplate.common.dto.request.RestaurantRequestDTO;
+import com.umss.dev.training.jtemplate.common.dto.response.RestaurantDto;
+
 import com.umss.dev.training.jtemplate.service.RestaurantService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +36,9 @@ public class RestaurantRegistration {
     }
     @PermitAll
     @PostMapping("/save")
-    public ResponseEntity<RegisterRestaurantDto> save(@Valid @RequestBody final RegisterRestaurantRequestDTO restaurantDto) {
+    public ResponseEntity<RestaurantDto> save(@Valid @RequestBody final RestaurantRequestDTO restaurantDto) {
 
-        RegisterRestaurantDto persistedUser = service.save(restaurantDto);
+        RestaurantDto persistedUser = service.save(restaurantDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(persistedUser);
     }
     @PermitAll
@@ -45,14 +49,14 @@ public class RestaurantRegistration {
     
     @PermitAll
 	@GetMapping("/modify") 
-	public List<RegisterRestaurant> listRestaurants() {
+	public List<Restaurant> listRestaurants() {
 		return service.getAll();
 	}
  
     @PermitAll
 	@GetMapping("/{id}")
-	public ResponseEntity<RegisterRestaurantDto> findById(@PathVariable("id") Long id) {
-		RegisterRestaurantDto restaurantResponse = service.findById(id);
+	public ResponseEntity<RestaurantDto> findById(@PathVariable("id") Long id) {
+		RestaurantDto restaurantResponse = service.findById(id);
 		return ResponseEntity.ok(restaurantResponse);
 	}
 
