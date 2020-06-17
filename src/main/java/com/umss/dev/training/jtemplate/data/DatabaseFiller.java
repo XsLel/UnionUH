@@ -1,5 +1,7 @@
 package com.umss.dev.training.jtemplate.data;
 
+import com.umss.dev.training.jtemplate.persistence.domain.Adventure;
+import com.umss.dev.training.jtemplate.service.AdventureService;
 import com.umss.dev.training.jtemplate.persistence.domain.Tour;
 import com.umss.dev.training.jtemplate.service.TourService;
 import com.umss.dev.training.jtemplate.persistence.domain.Event;
@@ -12,17 +14,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DatabaseFiller {
-    
+
     @EventListener
     public void handleContextRefresh(ContextRefreshedEvent event) {
         System.out.println("***************** SEEDING DATABASE **********************");
+        seedAdventure();
         seedTours();
         seedRestaurants();
         seedEvent();
     }
 
     private void seedTours() {
-        if(TourService.getInstance().getCount() <= 0){
+        if (TourService.getInstance().getCount() <= 0) {
             Tour t1 = new Tour();
             t1.setName("Cristo de la Concordia");
             t1.setCompanyName("Tours Bolivia S.A.");
@@ -40,7 +43,7 @@ public class DatabaseFiller {
         }
     }
 
-    private void seedEvent(){
+    private void seedEvent() {
         EventService.getInstance().save(createEvent("Virgen de la Candelaria", "2020-02-02"));
         EventService.getInstance().save(createEvent("Día del Estado Plurinacional de Bolivia", "2020-01-23"));
         EventService.getInstance().save(createEvent("Aniversario de Tapacarí", "2020-01-26"));
@@ -55,28 +58,45 @@ public class DatabaseFiller {
         EventService.getInstance().save(createEvent("Festividad Perpetuo socorro", "2020-05-26"));
         EventService.getInstance().save(createEvent("Año nuevo andino", "2020-06-21"));
         EventService.getInstance().save(createEvent("Virgen del carmen", "2020-07-16"));
-        EventService.getInstance().save(createEvent("Aniversario de Bolivia", "2020-08-06"));        
+        EventService.getInstance().save(createEvent("Aniversario de Bolivia", "2020-08-06"));
     }
 
-    private Event createEvent(String title, String date){
+    private Event createEvent(String title, String date) {
         Event ev = new Event();
         ev.setTitle(title);
         ev.setDate(date);
         return ev;
     }
 
-    private void seedRestaurants(){
-        RestaurantService.getInstance().save(createNewRestaurant("Burger King", "Prado #1024", 4445566, "Comida rápida"
-        , "Lunes a Viernes de 11:15 a 23:00", 4));
-        RestaurantService.getInstance().save(createNewRestaurant("Miraflores", "Prado #1024", 45588666, "Restaurante"
-        , "Lunes Miercoles y Jueves de 10:30 a 20:00", 5));
-        RestaurantService.getInstance().save(createNewRestaurant("La cabaña de la torre", "Av. Test", 49756213, "Comida rápida"
-        , "Lunes a Viernes de 08:00 a 15:00", 3));
-        RestaurantService.getInstance().save(createNewRestaurant("Panchita", "Av. Libertador Esq. Humbolt", 41986565, "Comida rápida"
-        , "Sábado y Domingo de 15:00 a 23:00", 2));
+    private void seedAdventure() {
+        AdventureService.getInstance().save(createNewAdventure("Escalada de roca", "Miraflores", "30 min", "444444"));
+        AdventureService.getInstance().save(createNewAdventure("Ciclismo de montaña", "genius", "1 dia", "4444333"));
+        AdventureService.getInstance().save(createNewAdventure("Escalada en Roca", "Avantrip", "3 días", "45454333"));
+        AdventureService.getInstance().save(createNewAdventure("CicliRace", "Avantrip", "3 días", " 88667-77-66-77"));
     }
 
-    private RestaurantRegistration createNewRestaurant(String name, String direction, long phone, String description, String information, double qualification){
+    private Adventure createNewAdventure(String name, String nameA, String duration, String phoneNumber) {
+        Adventure ad = new Adventure();
+        ad.setName(name);
+        ad.setNameAgency(nameA);
+        ad.setDuration(duration);
+        ad.setPhoneNumber(phoneNumber);
+        return ad;
+    }
+
+    private void seedRestaurants() {
+        RestaurantService.getInstance().save(createNewRestaurant("Burger King", "Prado #1024", 4445566, "Comida rápida",
+                "Lunes a Viernes de 11:15 a 23:00", 4));
+        RestaurantService.getInstance().save(createNewRestaurant("Miraflores", "Prado #1024", 45588666, "Restaurante",
+                "Lunes Miercoles y Jueves de 10:30 a 20:00", 5));
+        RestaurantService.getInstance().save(createNewRestaurant("La cabaña de la torre", "Av. Test", 49756213,
+                "Comida rápida", "Lunes a Viernes de 08:00 a 15:00", 3));
+        RestaurantService.getInstance().save(createNewRestaurant("Panchita", "Av. Libertador Esq. Humbolt", 41986565,
+                "Comida rápida", "Sábado y Domingo de 15:00 a 23:00", 2));
+    }
+
+    private RestaurantRegistration createNewRestaurant(String name, String direction, long phone, String description,
+            String information, double qualification) {
         RestaurantRegistration rest = new RestaurantRegistration();
         rest.setName(name);
         rest.setDirection(direction);
