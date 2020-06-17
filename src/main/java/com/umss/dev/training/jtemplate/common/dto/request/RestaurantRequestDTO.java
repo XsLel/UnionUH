@@ -1,12 +1,11 @@
 package com.umss.dev.training.jtemplate.common.dto.request;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.validation.constraints.*;
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 
-public class RegisterRestaurantRequestDTO{
+public class RestaurantRequestDTO{
 
 @NotBlank(message = "The name of the restaurant cannot be empty.")
 @Size (max = 50, message = "Name must have at most 50 characters.")
@@ -32,7 +31,7 @@ private String advertising;
 //@Size (max = 50, message = "Name must have at most 50 characters.")
 private String province;
 
-@NotBlank(message = " The restaurant phone cannot be empty")
+//@NotBlank(message = " The restaurant phone cannot be empty")
 @Size (max = 8, message = "Name must have at most 8 characters.")
 private String phone;
 
@@ -40,11 +39,11 @@ private String phone;
 @Size (max = 30, message = "Name must have at most 30 characters.")
 private String category;
 
-@NotBlank(message = "the restaurant description cannot be left empty")
+//@NotBlank(message = "the restaurant description cannot be left empty")
 @Size (max = 500, message = "Name must have at most 500 characters.")
 private String description;
 
-@NotBlank(message = "We suggest that you write an email address.")
+//@NotBlank(message = "We suggest that you write an email address.")
 @Size (max = 50, message = "Email must have at most 50 characters.")
 private String email;
 

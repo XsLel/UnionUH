@@ -1,7 +1,7 @@
 package com.umss.dev.training.jtemplate.service;
 
-import com.umss.dev.training.jtemplate.common.dto.request.RegisterRestaurantRequestDTO;
-import com.umss.dev.training.jtemplate.common.dto.response.RegisterRestaurantDto;
+import com.umss.dev.training.jtemplate.common.dto.request.RestaurantRequestDTO;
+import com.umss.dev.training.jtemplate.common.dto.response.RestaurantDto;
 import com.umss.dev.training.jtemplate.persistence.domain.RegisterRestaurant;
 import com.umss.dev.training.jtemplate.persistence.repository.RegisterRestaurantRepository;
 
@@ -20,11 +20,11 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
         this.modelMapper = modelMapper;
     }
-    public RegisterRestaurantDto save(RegisterRestaurantRequestDTO requestRestaurant) {
+    public RestaurantDto save(RestaurantRequestDTO requestRestaurant) {
 		RegisterRestaurant restaurant = modelMapper.map(requestRestaurant, RegisterRestaurant.class);
 		restaurant = restaurantRepository.save(restaurant);
 		
-		RegisterRestaurantDto response = modelMapper.map(restaurant, RegisterRestaurantDto.class);
+		RestaurantDto response = modelMapper.map(restaurant, RestaurantDto.class);
 		
         return response;
     }

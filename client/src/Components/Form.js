@@ -61,7 +61,7 @@ const RegisterRestaurant = () => {
     e.preventDefault();
     try {
       await http.request({
-        url: "cd/restaurant/save",
+        url: "/restaurant/save",
         method: "POST",
         data: values,
       });
@@ -91,11 +91,11 @@ const RegisterRestaurant = () => {
           <Form.Field
             required
             control={Input}
-            label="Nombre del Restaurante"
+            label="Nombre del restaurante"
             type="text"
             name="nameRestaurant"
             maxLength="50"
-            placeholder="Nombre del Restaurante"
+            placeholder="p.Ej: Dori Pollo"
             value={values.nameRestaurant}
             onChange={handleChange}
             style={{ width: 595 }}
@@ -107,11 +107,11 @@ const RegisterRestaurant = () => {
             <Form.Field
               required
               control={Input}
-              label="Dirección del Restaurante"
+              label="Dirección del restaurante"
               type="text"
               name="restaurantAddress"
               maxLength="50"
-              placeholder="Dirección del Restaurante"
+              placeholder="Dirección del restaurante"
               value={values.restaurantAddress}
               onChange={handleChange}
             />
@@ -124,7 +124,7 @@ const RegisterRestaurant = () => {
                 htmlFor: "form-select-control-gender",
               }}
               name="province"
-              placeholder="seleccione una provincia"
+              placeholder="Seleccione una provincia"
               value={values.province}
               onChange={(e, { value, name }) =>
                 handleChange({ target: { value, name } })
@@ -159,11 +159,11 @@ const RegisterRestaurant = () => {
             />
             <Form.Field
               control={Input}
-              label="Correo Electrónico"
+              label="Correo electrónico"
               type="email"
               name="email"
               maxLength="50"
-              placeholder="Correo Electrónico"
+              placeholder="email@example.com"
               value={values.email}
               onChange={handleChange}
             />
@@ -182,7 +182,7 @@ const RegisterRestaurant = () => {
               label="Dirección de su sitio web"
               name="webAddress"
               maxLength="100"
-              placeholder="Dirección de su sitio web"
+              placeholder="https://"
               value={values.webAddress}
               onChange={handleChange}
             />
@@ -212,7 +212,7 @@ const RegisterRestaurant = () => {
               label="Dirección página de publicidad"
               name="advertising"
               maxLength="100"
-              placeholder="Dirección página de publicidad"
+              placeholder="www.facebook.com/TuRestaurante"
               value={values.advertising}
               onChange={handleChange}
             />
@@ -224,11 +224,11 @@ const RegisterRestaurant = () => {
               control={Select}
               options={genderOptionsCategoria}
               label={{
-                children: "categoria",
+                children: "Categoria",
                 htmlFor: "form-select-control-gender",
               }}
               name="category"
-              placeholder="seleccione una categoria"
+              placeholder="Seleccione una categoria"
               value={values.category}
               onChange={(e, { value, name }) =>
                 handleChange({ target: { value, name } })
@@ -259,7 +259,7 @@ const RegisterRestaurant = () => {
               name="description"
               type="text"
               maxLength="600"
-              placeholder="Descripción del Restaurante"
+              placeholder="Descripción del restaurante"
               value={values.description}
               onChange={handleChange}
               style={{ resize: "none" }}

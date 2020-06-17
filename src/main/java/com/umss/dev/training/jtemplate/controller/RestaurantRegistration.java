@@ -3,8 +3,8 @@ package com.umss.dev.training.jtemplate.controller;
 import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 
-import com.umss.dev.training.jtemplate.common.dto.request.RegisterRestaurantRequestDTO;
-import com.umss.dev.training.jtemplate.common.dto.response.RegisterRestaurantDto;
+import com.umss.dev.training.jtemplate.common.dto.request.RestaurantRequestDTO;
+import com.umss.dev.training.jtemplate.common.dto.response.RestaurantDto;
 import com.umss.dev.training.jtemplate.service.RestaurantService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,9 @@ public class RestaurantRegistration {
     }
     @PermitAll
     @PostMapping("/save")
-    public ResponseEntity<RegisterRestaurantDto> save(@Valid @RequestBody final RegisterRestaurantRequestDTO restaurantDto) {
+    public ResponseEntity<RestaurantDto> save(@Valid @RequestBody final RestaurantRequestDTO restaurantDto) {
 
-        RegisterRestaurantDto persistedUser = service.save(restaurantDto);
+        RestaurantDto persistedUser = service.save(restaurantDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(persistedUser);
     }
     @PermitAll

@@ -4,7 +4,7 @@ package com.umss.dev.training.jtemplate.common.dto.response;
 
 //import java.util.Set;
 
-public class RegisterRestaurantDto {
+public class RestaurantDto {
 
     private String nameRestaurant;
     private String restaurantAddress;
