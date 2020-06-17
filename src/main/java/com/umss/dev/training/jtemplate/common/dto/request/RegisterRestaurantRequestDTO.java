@@ -52,10 +52,7 @@ private String email;
 @Size (max = 50, message = "photo is jpg")
 private String fotoRestaurant;*/
 
-@JsonIgnore
-private Boolean isEnabled = false;
-@JsonIgnore
-private Boolean isDeleted = false;
+
 
     public String getnameRestaurant() {
         return nameRestaurant;

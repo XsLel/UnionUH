@@ -1,53 +1,48 @@
 package com.umss.dev.training.jtemplate.common.dto.response;
 
-import com.umss.dev.training.jtemplate.common.dto.request.RoleRegistrationDto;
+//import com.umss.dev.training.jtemplate.common.dto.request.RoleRegistrationDto;
 
-import java.util.Set;
+//import java.util.Set;
 
 public class RegisterRestaurantDto {
-    private String nombreRestaurante;
-    private String direccionRestaurante;
-    private String provincia;
-    private String informacionAdicional;
+
+    private String nameRestaurant;
+    private String restaurantAddress;
+    private String additionalInformation;
     private String email;
-    private String direccionWeb;
-    private Integer telefono;
-    private String publicidad;
-    private String categoria;
-    //private ImageIO fotoRestaurante;
-    private String descripción;
+    private String webAddress;
+    private Number phone;
+    private String advertising;
+    private String category;
+    private String description;
+    private String  province;
+
+  
 
 
-    public String getnombreRestaurante() {
-        return nombreRestaurante;
+
+    public String getnameRestaurant() {
+        return nameRestaurant;
     }
 
-    public void setnombreRestaurante(String nombreRestaurante) {
-        this.nombreRestaurante = nombreRestaurante;
+    public void setnameRestaurant(String nameRestaurant) {
+        this.nameRestaurant = nameRestaurant;
     }
 
-    public String getEdireccionRestaurante() {
-        return direccionRestaurante;
+    public String getrestaurantAddress() {
+        return restaurantAddress;
     }
 
-    public void setdireccionRestaurante(String direccionRestaurante) {
-        this.direccionRestaurante = direccionRestaurante;
+    public void setrestaurantAddress(String restaurantAddress) {
+        this.restaurantAddress = restaurantAddress;
     }
 
-    public String getprovincia() {
-        return provincia;
+    public String getadditionalInformation() {
+        return additionalInformation;
     }
 
-    public void setprovincia(String provincia) {
-        this.provincia = provincia;
-    }
-
-    public String getinformacionAdicional() {
-        return informacionAdicional;
-    }
-
-    public void setinformacionAdicional(String informacionAdicional) {
-        this.informacionAdicional = informacionAdicional;
+    public void setadditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
 
     public String getemail() {
@@ -58,40 +53,51 @@ public class RegisterRestaurantDto {
         this.email = email;
     }
 
-    public String getdireccionWeb() {
-        return direccionWeb;
+    public String getwebAddress() {
+        return webAddress;
     }
 
-    public void setdireccionWeb(String direccionWeb) {
-        this.direccionWeb = direccionWeb;
+    public void setwebAddress(String webAddress) {
+        this.webAddress = webAddress;
     }
 
-    public Integer gettelefono() {
-        return telefono;
+    public Number getphone() {
+        return phone;
     }
 
-    public void settelefono(Integer telefono) {
-        this.telefono = telefono;
+    public void setphone(Number phone) {
+        this.phone = phone;
     }
-    public String getpublicidad() {
-        return publicidad;
-    }
-
-    public void setpublicidad(String publicidad) {
-        this.publicidad = publicidad;
-    }
-    public String getcategoria() {
-        return categoria;
+    public String getadvertising() {
+        return advertising;
     }
 
-    public void setcategoria(String categoria) {
-        this.categoria = categoria;
-    }
-    public String getdescripción() {
-        return descripción;
+    public void setadvertising(String advertising) {
+        this.advertising = advertising;
     }
 
-    public void setdescripción(String descripción) {
-        this.descripción = descripción;
+    
+    public String getcategory() {
+        return category;
     }
+
+    public void setcategory(String category) {
+        this.category = category;
+    
+    }
+    public String getdescription() {
+        return description;
+    }
+
+    public void setdescription(String description) {
+        this.description = description;
+
+    }
+    public String getprovince() {
+        return province;
+    }
+
+    public void setprovince(String province) {
+        this.province = province; 
+    }       
 }

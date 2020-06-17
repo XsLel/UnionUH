@@ -6,49 +6,36 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "restaurante")
+@Table(name = "restaurant")
 
 public class RegisterRestaurant {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
-    private String nombreRestaurante;
+    private String nameRestaurant;
     @Column(nullable = false)
-    private String direccionRestaurante;
+    private String restaurantAddress;
     @Column(nullable = false)
-    private String informacionAdicional;
+    private String additionalInformation;
     @Column(nullable = false)
-    private String provincia;
+    private String province;
     @Column(nullable = false)
-    private String direccionWeb;
+    private String webAddress;
     @Column(nullable = false)
-    private String telefono;;
+    private String phone;
     @Column(nullable = false)
-    private String publicidad;
+    private String advertising;
     @Column(nullable = false)
-    private String categoria;
+    private String category;
     @Column(nullable = false)
-    private String descripción;
+    private String description;
 
     //public ImageIO logo;
     
     @Column(nullable = false, unique = true, length = 50)
     private String email;
     
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable
-    (
-        name = "UserRoles",
-        joinColumns = @JoinColumn(name = "userId"),
-        inverseJoinColumns = @JoinColumn(name = "roleId")
-    )
-    private Set<Role> roles = new HashSet<>();
-    @Column(nullable = false)
-    private Boolean isEnabled;
-    @Column(nullable = false)
-    private Boolean isDeleted;
-
     public Long getId() {
         return id;
     }
@@ -65,99 +52,75 @@ public class RegisterRestaurant {
         this.email = email;
     }
 
-    public String getDescripción() {
-        return descripción;
+    public String getdescription() {
+        return description;
     }
 
-    public void setDescripción(String descripción) {
-        this.descripción = descripción;
+    public void setdescription(String description) {
+        this.description = description;
     }
 
-    public String getNombreRestaurante() {
-        return nombreRestaurante;
+    public String getnameRestaurant() {
+        return nameRestaurant;
     }
 
-    public void setNombreRestaurante(String nombreRestaurante) {
-        this.nombreRestaurante = nombreRestaurante;
+    public void setnameRestaurant(String nameRestaurant) {
+        this.nameRestaurant = nameRestaurant;
     }
 
-    public String getDireccionRestaurante() {
-        return direccionRestaurante;
+    public String restaurantAddress() {
+        return restaurantAddress;
     }
 
-    public void setDireccionRestaurante(String direccionRestaurante) {
-        this.direccionRestaurante = direccionRestaurante;
+    public void setrestaurantAddress(String restaurantAddress) {
+        this.restaurantAddress = restaurantAddress;
     }
 
-    public String getProvincia() {
-        return provincia;
+    public String getprovince() {
+        return province;
     }
 
-    public void setProvincia(String provincia) {
-        this.provincia = provincia;
+    public void setprovince(String province) {
+        this.province = province;
     }
 
-    public String getInformacionAdicional() {
-        return informacionAdicional;
+    public String getadditionalInformation() {
+        return additionalInformation;
     }
 
-    public void setInformacionAdicional(String informacionAdicional) {
-        this.informacionAdicional = informacionAdicional;
+    public void setadditionalInformation(String additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
 
-    public String getDireccionWeb() {
-        return direccionWeb;
+    public String getwebAddress() {
+        return webAddress;
     }
 
-    public void setDireccionWeb(String direccionWeb) {
-        this.direccionWeb = direccionWeb;
+    public void setwebAddress(String webAddress) {
+        this.webAddress = webAddress;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String phone() {
+        return phone;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setphone(String phone) {
+        this.phone = phone;
     }
 
-    public String getPublicidad() {
-        return publicidad;
+    public String getadvertising() {
+        return advertising;
     }
 
-    public void setPublicidad(String publicidad) {
-        this.publicidad = publicidad;
+    public void setadvertising(String advertising) {
+        this.advertising = advertising;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getcategory() {
+        return category;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public Boolean getEnabled() {
-        return isEnabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        isEnabled = enabled;
-    }
-
-    public Boolean getDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
+    public void setcategory(String category) {
+        this.category = category;
     }
 }

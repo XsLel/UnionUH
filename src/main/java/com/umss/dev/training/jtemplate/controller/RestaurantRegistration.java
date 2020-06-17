@@ -7,8 +7,10 @@ import com.umss.dev.training.jtemplate.common.dto.request.RegisterRestaurantRequ
 import com.umss.dev.training.jtemplate.common.dto.response.RegisterRestaurantDto;
 import com.umss.dev.training.jtemplate.service.RestaurantService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/restaurant")
 public class RestaurantRegistration {
     
-
+@Autowired
     private RestaurantService service;
-
+    public RestaurantRegistration(RestaurantService service) {
+        this.service = service;
+    }
     @PermitAll
     @PostMapping("/save")
     public ResponseEntity<RegisterRestaurantDto> save(@Valid @RequestBody final RegisterRestaurantRequestDTO restaurantDto) {
@@ -28,5 +32,11 @@ public class RestaurantRegistration {
         RegisterRestaurantDto persistedUser = service.save(restaurantDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(persistedUser);
     }
+    @PermitAll
+    @GetMapping
+    public ResponseEntity<Object> findAll() {
+        return ResponseEntity.ok(service.findAll());
+    }
+	
 
 }
