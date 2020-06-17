@@ -6,7 +6,8 @@ public class LugaresTuristicoResponse {
 	private String nombrelugarturistico;
 	private String direccionlugarturistico;
 	private String descripcionlugarturistico;
-	private byte[] foto;
+	private String foto;
+	private String link;
 	
 	public Long getIdlugarturistico() {
 		return idlugarturistico;
@@ -32,10 +33,18 @@ public class LugaresTuristicoResponse {
 	public void setDescripcionlugarturistico(String descripcionlugarturistico) {
 		this.descripcionlugarturistico = descripcionlugarturistico;
 	}
-	public byte[] getFoto() {
+	public String getFoto() {
 		return foto;
 	}
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 }

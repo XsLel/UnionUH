@@ -22,19 +22,23 @@ public class LugaresTuristico {
 	private String descripcionlugarturistico;
 	
 	@Column(name = "foto")
-	private byte[] foto;
+	private String foto;
+
+	@Column(name= "link")
+	private String link;
 	
 	
 	public LugaresTuristico() {}
 
 	public LugaresTuristico(Long idlugarturistico, String nombrelugarturistico, String direccionlugarturistico,
-			String descripcionlugarturistico, byte[] foto) {
+			String descripcionlugarturistico, String foto, String link) {
 		super();
 		this.idlugarturistico = idlugarturistico;
 		this.nombrelugarturistico = nombrelugarturistico;
 		this.direccionlugarturistico = direccionlugarturistico;
 		this.descripcionlugarturistico = descripcionlugarturistico;
 		this.foto = foto;
+		this.link = link;
 	}
 
 	public Long getIdlugarturistico() {
@@ -69,12 +73,20 @@ public class LugaresTuristico {
 		this.descripcionlugarturistico = descripcionlugarturistico;
 	}
 
-	public byte[] getFoto() {
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 }
