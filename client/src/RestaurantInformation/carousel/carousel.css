@@ -1,0 +1,13 @@
+.carousel {
+  width: 80%;
+}
+
+.group {
+  position: relative;
+}
+.data {
+  top: calc(100% / 2);
+  transform: translateY(-50%);
+
+  position: absolute;
+}
