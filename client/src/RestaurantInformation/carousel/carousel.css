@@ -1,18 +1,14 @@
-.carousel {
-  width: 80%;
-}
-
-.group {
+.group-restaurant {
   position: relative;
 }
-.data {
+.data-restaurant {
   top: calc(100% / 2);
   transform: translateY(-50%);
 
   position: absolute;
 }
 
-.title {
+.title-restaurant {
   font-size: 6em;
   -webkit-text-stroke: 0.9px rgba(168, 205, 223, 0.801);
   color: rgba(255, 255, 255, 0.685);
@@ -20,7 +16,7 @@
   text-shadow: -5px 5px #558abb;
 }
 
-.description {
+.description-restaurant {
   font-size: 1.6em;
   -webkit-text-stroke: 0.3px rgba(128, 194, 238, 0.747);
   color: rgba(231, 238, 248, 0.836);

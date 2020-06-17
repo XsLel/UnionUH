@@ -1,5 +1,7 @@
 package com.umss.dev.training.jtemplate.controller;
 
+import java.util.List;
+
 import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
 
@@ -58,5 +60,12 @@ public class RestaurantRestController {
 	public ResponseEntity<PhotoResponseDto> savePhoto(@PathVariable("id") int id, @Valid @RequestBody final PhotoRegistration photo) {
 		PhotoResponseDto persistedPhoto = restaurantService.savePhoto(id,photo);
 		return ResponseEntity.status(HttpStatus.CREATED).body(persistedPhoto);
+	}
+	
+	@PermitAll
+	@GetMapping("{id}/restaurant-gallery")
+	public ResponseEntity<List<String>> getRestaurantGallery(@PathVariable("id") int id) {
+		List<String> restaurantGallery = restaurantService.getRestaurantGallery(id);
+		return ResponseEntity.ok(restaurantGallery);
 	}
 }

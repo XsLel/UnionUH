@@ -58,4 +58,9 @@ public class PhotoService {
 		return photoRepository.getByRestaurant(idRestaurant);
 	}
 
+	public List<String> getRestaurantGallery(int id) {
+		List<String> restaurantGallery = photoRepository.getRestaurantGallery(id);
+		return restaurantGallery;
+	}
 }
+

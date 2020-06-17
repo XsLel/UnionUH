@@ -21,9 +21,7 @@ const Send = (props) => {
             }
           } else {
             if (!props.Outcome.visitDate) {
-              alert(
-                "Seleccion el año y mes de su visita. Es un campo obligatorio"
-              );
+              alert("Seleccion el año y mes de su visita. Es un campo obligatorio");
             } else {
               http
                 .request({

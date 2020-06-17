@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import { useRouteMatch } from "react-router-dom";
 import { Grid, GridRow, GridColumn, ListContent, Divider } from "semantic-ui-react";
@@ -26,7 +28,6 @@ const Inforestaurant = (props) => {
       <Grid columns={3} divided>
         <GridRow>
           <GridColumn>
-           
             <ListContent>
               <h4>Provincia:</h4> {province}
             </ListContent>
@@ -39,7 +40,7 @@ const Inforestaurant = (props) => {
             <ListContent>
               <h4>Comercial:</h4> {commercial}
             </ListContent>
-            
+
             <ListContent>
               <h4>Direccion:</h4> {direction}
             </ListContent>
@@ -54,7 +55,6 @@ const Inforestaurant = (props) => {
               <h4>Telefono:</h4> {phone}
             </ListContent>
           </GridColumn>
-
           <GridColumn>
             <Link to={`${url}/food-gallery`}>ver Comida</Link>
           </GridColumn>

@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 200px;
+}
+img {
+  cursor: pointer;
+  max-width: 100%;
+  transition: all 0.8s;
+}
+
+img:hover {
+  transform: scale(1.1);
+}

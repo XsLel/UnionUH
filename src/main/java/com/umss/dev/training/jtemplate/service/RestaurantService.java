@@ -99,4 +99,14 @@ public class RestaurantService {
 		PhotoResponseDto response = photoService.save(requestPhoto, res);
 		return response;
 	}
+	
+	public List<String> getRestaurantGallery(int id) {
+		Restaurant res = restaurantRepository.findById(id).orElse(null);
+		if (res == null) {
+			String message = "El restaurante con ID=%s no fue encontrado";
+			throw new RestaurantNotFoundException(String.format(message, id));
+		}
+		List<String> restaurantGallery = photoService.getRestaurantGallery(id);
+		return restaurantGallery;
+	}
 }

@@ -56,8 +56,7 @@ class Commentary extends Component {
                 (this.state.count === 230 && this.state.count > 0)
                   ? "counter-error"
                   : "counter"
-              }
-            >
+              }>
               {this.state.count}
               <label>
                 {this.state.count === 230 ? " llegaste  al maximo de " : "-"}
