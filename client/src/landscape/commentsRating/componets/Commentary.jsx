@@ -1,26 +1,40 @@
 import React, { Component } from "react";
-import { Comment, Form, GridColumn, Input } from "semantic-ui-react";
+import { Comment, Form, GridColumn, Input, TextArea } from "semantic-ui-react";
 import "./css/Commentary.css";
 class Commentary extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      comment: " ",
       count: 0,
     };
+    this.handleChangeInput = this.handleChangeInput.bind(this);
   }
-  updateCount(event){
-    this.setState({   
-      count: event.target.value.length,
+
+  updateCount(n) {
+    this.setState({
+      count: n,
     });
-    console.log("desde comentary ", event.target.value.length);
   }
+
   handleChangeTitle = (event) => {
     this.props.newTitle(event.target.value);
   };
-  onInputComen = (event, { value }) => {
-    this.props.newCount(event.target.value.length);
-    this.props.newDescription(value);
-  };
+
+  handleChangeInput(evento) {
+    const { name, value } = evento.target;
+    let regex = new RegExp("^[a-zA-Z .,]+$");
+
+    if (regex.test(value)) {
+      this.setState({
+        [name]: value,
+      });
+      this.props.newDescription(value);
+      this.updateCount(value.length - 1);
+      this.props.newCount(value.length - 1);
+    }
+  }
 
   render() {
     return (
@@ -38,7 +52,11 @@ class Commentary extends Component {
           </div>
           <Form reply>
             <h3>Tu comentario</h3>
-            <Form.TextArea
+            <TextArea
+              name="comment"
+              type="text"
+              value={this.state.comment}
+              onChange={this.handleChangeInput}
               maxLength="230"
               placeholder="Escribe tu comentario..."
               className={
@@ -48,8 +66,6 @@ class Commentary extends Component {
                   : ""
               }
               rows="2"
-              onChange={this.updateCount.bind(this)}
-              onInput={this.onInputComen}
             />
             <div
               className={

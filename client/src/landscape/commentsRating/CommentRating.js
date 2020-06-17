@@ -16,7 +16,6 @@ const CommentRating = () => {
     description: "",
     generalRating: 0,
     visitDate: "",
-
     serviceRating: 0,
     locationRating: 0,
     priceRating: 0,
@@ -29,22 +28,18 @@ const CommentRating = () => {
 
   const serviceRating1 = (Cali) => {
     Outcome.serviceRating = Cali;
-    console.log(Outcome.serviceRating);
   };
 
   const locationRating2 = (Cali) => {
     Outcome.locationRating = Cali;
-    console.log(Outcome.locationRating);
   };
 
   const priceRating3 = (Cali) => {
     Outcome.priceRating = Cali;
-    console.log(Outcome.priceRating);
   };
 
   const attentionclient4 = (Cali) => {
     Outcome.attentionclient = Cali;
-    console.log(Outcome.attentionclient);
   };
 
   const answerOne = (answer) => {
@@ -79,7 +74,6 @@ const CommentRating = () => {
   };
   const newCount = (count) => {
     states.count = count;
-    console.log("desde comment rating", states.count);
   };
   const acceptPolicies = (stat) => {
     states.politicalTerms = stat;
@@ -106,6 +100,7 @@ const CommentRating = () => {
               newDescription={newDescription}
               newCount={newCount}
             />
+
             <VisitDate visitDate={visitDate} />
             <Questionnaire
               answerOne={answerOne}
