@@ -1,70 +1,116 @@
-import React from "react";
-import { useRouteMatch } from "react-router-dom";
-import { Grid, GridRow, GridColumn, ListContent, Divider } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import React, { Component, Fragment } from "react";
+import { Redirect, withRouter } from "react-router-dom";
+import { http } from "../../services";
+import { Container, Segment } from "semantic-ui-react";
+import Carousel from "../carousel/carousel"; //// carrusel >>Carousel
+import Information from "../../components/Information";
 
-const Inforestaurant = (props) => {
-  const {
-    name,
-    province,
-    information,
-    email,
-    commercial,
-    description,
-    direction,
-    category,
-    website,
-    phone,
-  } = props;
 
-  let { url } = useRouteMatch();
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: true, found: true, carousel: [], home: [] }; //// carrusel >>Carousel
+  }
 
-  return (
-    <>
-      <Divider />
+  componentDidMount() {
+    const {
+      match: {
+        params: { restaurantId },
+      },
+    } = this.props;
+    this.getDataRestaurant(restaurantId);
+  }
 
-      <Grid columns={3} divided>
-        <GridRow>
-          <GridColumn>
-            <ListContent>
-              <h4>Provincia:</h4> {province}
-            </ListContent>
-            <ListContent>
-              <h4>Informacion:</h4> {information}
-            </ListContent>
-            <ListContent>
-              <h4>e-mail:</h4> {email}
-            </ListContent>
-            <ListContent>
-              <h4>Comercial:</h4> {commercial}
-            </ListContent>
+  getDataRestaurant(id) {
+    Promise.resolve(http.request({ url: `/restaurantes/${id}` }))
+      .then(
+        ({
+          name,
+          province,
+          information,
+          email,
+          commercial,
+          description,
+          direction,
+          category,
+          website,
+          phone,
+          photos,
+        }) => {
+          const home = photos.filter(({ home }) => home).map(({ url }) => url);
+          const carousel = photos
+            .filter(({ carousel }) => carousel)
+            .map(({ url }) => url);
+          this.setState({
+            name: name,
+            province: province,
+            information: information,
+            email: email,
+            commercial: commercial,
+            description: description,
+            direction: direction,
+            category: category,
+            website: website,
+            phone: phone,
+            home: home,
+            carousel: carousel,
+          });
+          this.setState({ found: true });
+        }
+      )
+      .catch((error) => {
+        console.error(error);
+        this.setState({ found: false });
+      })
+      .finally(this.setState({ loading: false }));
+  }
 
-            <ListContent>
-              <h4>Direccion:</h4> {direction}
-            </ListContent>
-            <ListContent>
-              <h4>Categoria</h4> {category}
-            </ListContent>
-            <ListContent>
-              <h4>Sitio Web:</h4>
-              {website}
-            </ListContent>
-            <ListContent>
-              <h4>Telefono:</h4> {phone}
-            </ListContent>
-          </GridColumn>
-          <GridColumn>
-            <Link to={`${url}/food-gallery`}>ver Comida</Link>
-          </GridColumn>
+  render() {
+    const {
+      found,
+      loading,
+      name,
+      province,
+      information,
+      email,
+      commercial,
+      description,
+      direction,
+      category,
+      website,
+      phone,
+      carousel, //// carrusel >>Carousel
+      home,
+    } = this.state;
 
-          <GridColumn>
-            {" "}
-            <Link to={`${url}/restaurant-gallery`}> ver Restaurante</Link>{" "}
-          </GridColumn>
-        </GridRow>
-      </Grid>
-    </>
-  );
-};
+    return (
+      <Fragment>
+        <Carousel 
+        carousel={carousel} 
+        name={name}
+        description={description} />
+        <Container>
+          <Segment loading={loading}>
+            <Information
+              name={name}
+              description={description}
+              province={province}
+              information={information}
+              email={email}
+              commercial={commercial}
+              direction={direction}
+              category={category}
+              website={website}
+              phone={phone}
+              linkPhotos={home}
+            />
+            {!found && <Redirect to="/404" />}
+          </Segment>
+        </Container>
+      
+      </Fragment>
+    );
+  }
+}
 
-export default Inforestaurant;
+export default withRouter(Home);
