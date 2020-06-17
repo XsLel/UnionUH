@@ -23,7 +23,7 @@ const Inforestaurant = (props) => {
     <>
       <Divider />
 
-      <Grid columns={2} divided>
+      <Grid columns={3} divided>
         <GridRow>
           <GridColumn>
             <ListContent>

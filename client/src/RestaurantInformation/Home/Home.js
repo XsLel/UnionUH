@@ -86,7 +86,10 @@ class Home extends Component {
 
     return (
       <Fragment>
-        <Carousel carousel={carousel} name={name} description={description} />
+        <Carousel 
+        carousel={carousel} 
+        name={name}
+        description={description} />
         <Container>
           <Segment loading={loading}>
             <Information
