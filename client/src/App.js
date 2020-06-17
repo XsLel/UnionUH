@@ -13,6 +13,7 @@ import RestaurantInformation from "./RestaurantInformation/RestaurantInformation
 import Start from "./start";
 import StartM from "./startMosaico";
 import Restaurants from "./Restaurants/Restaurants";
+import { AdventurePage } from "./SearchPages/AdventurePage";
 import { TourPage } from "./SearchPages/TourPage";
 import { EventCalendarPage } from "./SearchPages/EventCalendarPage";
 import { RestaurantPage } from "./SearchPages/RestaurantPage";
@@ -23,6 +24,7 @@ function App() {
       <HashRouter history={history}>
         <Switch>
           <Route exact path="/" component={Admin} />
+          <Route exact path="/search-adventure" component={AdventurePage} />
           <Route exact path="/search-tour" component={TourPage} />
           <Route exact path="/calendar" component={EventCalendarPage}></Route>
           <Route exact path="/search-restaurant" component={RestaurantPage} />

@@ -54,23 +54,12 @@ const Inforestaurant = (props) => {
             </ListContent>
           </GridColumn>
           <GridColumn>
-            <Grid columns={2} divided>
-              <GridRow>
-                <GridColumn>
-                  <button class="ui fluid button">
-                    <i class=" massive food icon"></i>
-                  </button>
-                  <Link to={`${url}/food-gallery`}>Galeria Comida</Link>
-                </GridColumn>
+            <Link to={`${url}/food-gallery`}>ver Comida</Link>
+          </GridColumn>
 
-                <GridColumn>
-                  <button class="ui fluid button">
-                    <i class="massive file image icon"></i>
-                  </button>
-                  <Link to={`${url}/restaurant-gallery`}>Galeria Restaurante</Link>
-                </GridColumn>
-              </GridRow>
-            </Grid>
+          <GridColumn>
+            {" "}
+            <Link to={`${url}/restaurant-gallery`}> ver Restaurante</Link>{" "}
           </GridColumn>
         </GridRow>
       </Grid>
