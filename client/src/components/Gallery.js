@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./styles/Gallery.css";
+import { Grid, GridColumn, Image } from "semantic-ui-react";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+
 const Gallery = (props) => {
   let { images } = props;
 
@@ -18,13 +20,15 @@ const Gallery = (props) => {
   function viewImages(images) {
     if (typeof images !== "undefined") {
       return (
-        <div className="images">
+        <Grid>
           {images.map((c, i) => (
-            <div key={i} className="image-container">
-              <img id={i} src={c} alt={c} onClick={change} />
-            </div>
+            <GridColumn computer={4} tablet={8} mobile={16}>
+              <div key={i} className="image-container">
+                <img id={i} src={c} alt={c} onClick={change} />
+              </div>
+            </GridColumn>
           ))}
-        </div>
+        </Grid>
       );
     }
   }
