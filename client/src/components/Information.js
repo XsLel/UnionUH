@@ -26,9 +26,7 @@ const Inforestaurant = (props) => {
       <Grid columns={3} divided>
         <GridRow>
           <GridColumn>
-            <center>
-              <h3>{name}</h3>
-            </center>
+           
             <ListContent>
               <h4>Provincia:</h4> {province}
             </ListContent>
@@ -41,9 +39,7 @@ const Inforestaurant = (props) => {
             <ListContent>
               <h4>Comercial:</h4> {commercial}
             </ListContent>
-            <ListContent>
-              <h4>Descripcion:</h4> {description}
-            </ListContent>
+            
             <ListContent>
               <h4>Direccion:</h4> {direction}
             </ListContent>
