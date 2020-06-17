@@ -7,12 +7,7 @@ import { Carousel } from "react-responsive-carousel"; /////npm install react-res
 function showUrl(list, description, name) {
   return (
     <div className="group">
-      <Carousel
-        autoPlay
-        autoPlay
-        dynamicHeight={true}
-        showThumbs={false}
-        showStatus={false}>
+      <Carousel autoPlay dynamicHeight={true} showThumbs={false} showStatus={false}>
         {list.map((url, i) => (
           <div key={i}>
             <img alt="" src={url} />
