@@ -55,23 +55,25 @@ const ModifyRestaurant = () => {
 
   const history = useHistory();
 
-  async function submit() {
+  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(
+    false
+  );
+
+  async function submit(e) {
+    debugger;
+    e.preventDefault();
     try {
       await http.request({
-        url: "/touristic-places",
+        url: "/restaurant/save",
         method: "POST",
         data: values,
       });
       console.log("Submitted Succesfully");
-      history.push("/lugares-turisticos");
     } catch (error) {
       console.log(error);
     }
     console.log("Submitted Succesfully");
   }
-  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(
-    false
-  );
 
   return (
     <div className="container mt-5">

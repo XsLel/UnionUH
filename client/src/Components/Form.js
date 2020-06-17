@@ -61,7 +61,7 @@ const RegisterRestaurant = () => {
     e.preventDefault();
     try {
       await http.request({
-        url: "cd/restaurant/save",
+        url: "/restaurant/save",
         method: "POST",
         data: values,
       });

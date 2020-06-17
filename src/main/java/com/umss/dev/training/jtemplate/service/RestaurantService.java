@@ -38,4 +38,16 @@ public class RestaurantService {
         return allUsersResponse;
     }
 
+    public List<RegisterRestaurant> getAll() {
+		return restaurantRepository.findAll();
+    }
+    
+
+	public RegisterRestaurantDto findById(long id) {
+        RegisterRestaurant res = restaurantRepository.findById(id).orElse(null);
+        
+		RegisterRestaurantDto response = modelMapper.map(res, RegisterRestaurantDto.class);
+        return response;
+	}
+
 }

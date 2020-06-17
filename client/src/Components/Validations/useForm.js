@@ -13,6 +13,7 @@ const useForm = (callback, validate) => {
     description: "",
     province: "",
   });
+
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
