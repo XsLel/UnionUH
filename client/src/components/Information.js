@@ -1,12 +1,6 @@
 import React from "react";
 import { useRouteMatch } from "react-router-dom";
-import {
-  Grid,
-  GridRow,
-  GridColumn,
-  ListContent,
-  Divider,
-} from "semantic-ui-react";
+import { Grid, GridRow, GridColumn, ListContent, Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const Inforestaurant = (props) => {
@@ -63,21 +57,17 @@ const Inforestaurant = (props) => {
             <Grid columns={2} divided>
               <GridRow>
                 <GridColumn>
-                  <Link to={`${url}/food-gallery`}>
-                    <button class="ui fluid button">
-                      <i class=" massive food icon"></i>
-                      <div> food-gallery </div>
-                    </button>
-                  </Link>
+                  <button class="ui fluid button">
+                    <i class=" massive food icon"></i>
+                  </button>
+                  <Link to={`${url}/food-gallery`}>Galeria Comida</Link>
                 </GridColumn>
 
                 <GridColumn>
-                  <Link to={`${url}/restaurant-gallery`}>
-                    <button class="ui fluid button">
-                      <i class="massive file image icon"></i>
-                      <div>restaurant-gallery</div>
-                    </button>
-                  </Link>
+                  <button class="ui fluid button">
+                    <i class="massive file image icon"></i>
+                  </button>
+                  <Link to={`${url}/restaurant-gallery`}>Galeria Restaurante</Link>
                 </GridColumn>
               </GridRow>
             </Grid>
