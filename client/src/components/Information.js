@@ -26,6 +26,9 @@ const Inforestaurant = (props) => {
       <Grid columns={3} divided>
         <GridRow>
           <GridColumn>
+            <center>
+              <h3>{name}</h3>
+            </center>
             <ListContent>
               <h4>Provincia:</h4> {province}
             </ListContent>
@@ -38,7 +41,9 @@ const Inforestaurant = (props) => {
             <ListContent>
               <h4>Comercial:</h4> {commercial}
             </ListContent>
-
+            <ListContent>
+              <h4>Descripcion:</h4> {description}
+            </ListContent>
             <ListContent>
               <h4>Direccion:</h4> {direction}
             </ListContent>
@@ -55,12 +60,12 @@ const Inforestaurant = (props) => {
           </GridColumn>
 
           <GridColumn>
-            <Link to={`${url}/food-gallery`}>Galeria Comida</Link>
+            <Link to={`${url}/food-gallery`}>ver Comida</Link>
           </GridColumn>
 
           <GridColumn>
             {" "}
-            <Link to={`${url}/restaurant-gallery`}> Galeria Restaurante</Link>{" "}
+            <Link to={`${url}/restaurant-gallery`}> ver Restaurante</Link>{" "}
           </GridColumn>
         </GridRow>
       </Grid>
