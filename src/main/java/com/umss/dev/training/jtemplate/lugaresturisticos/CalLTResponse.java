@@ -1,12 +1,13 @@
 package com.umss.dev.training.jtemplate.lugaresturisticos;
 
-public class CalLTResponse {
+public class CalLTResponse implements Comparable<CalLTResponse>{
 
 	private Long idlugarturistico;
 	private String nombrelugarturistico;
 	private String direccionlugarturistico;
 	private String descripcionlugarturistico;
-	private byte[] foto;
+	private String foto;
+	private String link;
 	private Long promedio;
 	
 	public CalLTResponse() {}
@@ -35,10 +36,10 @@ public class CalLTResponse {
 	public void setDescripcionlugarturistico(String descripcionlugarturistico) {
 		this.descripcionlugarturistico = descripcionlugarturistico;
 	}
-	public byte[] getFoto() {
+	public String getFoto() {
 		return foto;
 	}
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 	public Long getPromedio() {
@@ -46,6 +47,19 @@ public class CalLTResponse {
 	}
 	public void setPromedio(Long promedio) {
 		this.promedio = promedio;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+	
+	@Override
+	public int compareTo(CalLTResponse clt) {
+		return getPromedio().compareTo(clt.getPromedio());
 	}
 	
 }
