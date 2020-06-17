@@ -86,7 +86,6 @@ class Home extends Component {
 
     return (
       <Fragment>
-        <Menu />
         <Carousel carousel={carousel} name={name} description={description} />
         <Container>
           <Segment loading={loading}>
