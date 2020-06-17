@@ -5,7 +5,12 @@ import { Carousel } from "react-responsive-carousel"; /////npm install react-res
 
 function showUrl(list) {
   return (
-    <Carousel autoPlay>
+    <Carousel
+      autoPlay
+      showStatus={false}
+      showThumbs={false}
+      dynamicHeight={true}
+    >
       {list.map((url, i) => (
         <div key={i}>
           <img alt="" src={url} />

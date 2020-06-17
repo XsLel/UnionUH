@@ -66,6 +66,7 @@ const Inforestaurant = (props) => {
                   <Link to={`${url}/food-gallery`}>
                     <button class="ui fluid button">
                       <i class=" massive food icon"></i>
+                      <div> food-gallery </div>
                     </button>
                   </Link>
                 </GridColumn>
@@ -74,6 +75,7 @@ const Inforestaurant = (props) => {
                   <Link to={`${url}/restaurant-gallery`}>
                     <button class="ui fluid button">
                       <i class="massive file image icon"></i>
+                      <div>restaurant-gallery</div>
                     </button>
                   </Link>
                 </GridColumn>
