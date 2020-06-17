@@ -12,6 +12,11 @@ import CommentRating from "./landscape/commentsRating/CommentRating";
 import RestaurantInformation from "./RestaurantInformation/RestaurantInformation";
 import Start from "./start";
 import StartM from "./startMosaico";
+import Restaurants from "./Restaurants/Restaurants";
+import { AdventurePage } from "./SearchPages/AdventurePage";
+import { TourPage } from "./SearchPages/TourPage";
+import { EventCalendarPage } from "./SearchPages/EventCalendarPage";
+import { RestaurantPage } from "./SearchPages/RestaurantPage";
 
 function App() {
   return (
@@ -19,7 +24,12 @@ function App() {
       <HashRouter history={history}>
         <Switch>
           <Route exact path="/" component={Admin} />
+          <Route exact path="/search-adventure" component={AdventurePage} />
+          <Route exact path="/search-tour" component={TourPage} />
+          <Route exact path="/calendar" component={EventCalendarPage}></Route>
+          <Route exact path="/search-restaurant" component={RestaurantPage} />
           <Route exact path="/commentrating" component={CommentRating} />
+          <Route exact path="/restaurants" component={Restaurants} />
           <Route
             exact
             path="/lugares-turisticos/registro"

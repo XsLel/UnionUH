@@ -34,6 +34,13 @@ public class RestaurantRestController {
 		return restaurantService.getAll();
 	}
 
+	@PermitAll	
+    @GetMapping("/filter/{reviewValue}")	
+    public ResponseEntity<Iterable<Restaurant>> filterByReviewValue(@PathVariable("reviewValue") double reviewValue) {	
+        Iterable<Restaurant> restaurantsResponse = restaurantService.filterByReviewValue(reviewValue);
+		return ResponseEntity.ok(restaurantsResponse);
+	}
+
 	@PermitAll
 	@GetMapping("/{id}")
 	public ResponseEntity<RestaurantResponseDto> findById(@PathVariable("id") int id) {
