@@ -13,13 +13,16 @@ const Send = (props) => {
         if (!props.Outcome.title) {
           alert("El campo título del comentario es obligatorio");
         } else {
-          if (props.states.count < 21) {
-            if (props.states.count > 0) {
-              alert("El comentario es muy corto");
-            } else {
-              alert("El campo comentario es obligatorio");
-            }
-          } else {
+          if (props.states.count === 0) {
+
+            alert("El campo comentario es obligatorio");
+
+          }else if(props.states.count < 20){
+            alert("El comentario es muy corto");
+          }else{
+            
+           
+        
             if (!props.Outcome.visitDate) {
               alert("Seleccione el año y mes de su visita. Es un campo obligatorio");
             } else {

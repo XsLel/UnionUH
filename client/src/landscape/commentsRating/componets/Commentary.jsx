@@ -8,17 +8,17 @@ class Commentary extends Component {
       count: 0,
     };
   }
-  updateCount(event) {
-    this.setState({
+  updateCount(event){
+    this.setState({   
       count: event.target.value.length,
     });
-    console.log("desde comentary ", this.state.count);
+    console.log("desde comentary ", event.target.value.length);
   }
   handleChangeTitle = (event) => {
     this.props.newTitle(event.target.value);
   };
   onInputComen = (event, { value }) => {
-    this.props.newCount(this.state.count);
+    this.props.newCount(event.target.value.length);
     this.props.newDescription(value);
   };
 
