@@ -1,7 +1,7 @@
 import React from "react";
 import "semantic-ui-css/semantic.min.css";
 import { ToastProvider } from "react-toast-notifications";
-import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import { history } from "./services";
 import { Admin } from "./Admin/Admin";
 import { FoodGallery } from "./components/FoodGallery";
@@ -14,6 +14,7 @@ import Start from "./start";
 import StartM from "./startMosaico";
 import Restaurants from "./Restaurants/Restaurants";
 import { EventCalendarPage } from "./SearchPages/EventCalendarPage";
+import { RestaurantPage } from "./SearchPages/RestaurantPage";
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
       <HashRouter history={history}>
         <Switch>
           <Route exact path="/" component={Admin} />
-          <Redirect from="/#/calendar" to="/calendar" />
           <Route exact path="/calendar" component={EventCalendarPage}></Route>
+          <Route exact path="/search-restaurant" component={RestaurantPage} />
           <Route exact path="/commentrating" component={CommentRating} />
           <Route exact path="/restaurants" component={Restaurants} />
           <Route
