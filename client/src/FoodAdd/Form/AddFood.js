@@ -1,6 +1,6 @@
 ﻿import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "../style/AddCom.css";
 
 const AddComidas = () => {
@@ -283,9 +283,13 @@ const AddComidas = () => {
           &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button className="ui primary button" type="submit">
+          <Link
+            className="ui primary button"
+            to="/prueba/administraador"
+            type="submit"
+          >
             Guardar{" "}
-          </button>
+          </Link>
         </form>
       </div>
     </div>

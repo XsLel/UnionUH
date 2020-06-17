@@ -10,7 +10,9 @@ const PaginaProximamente = () => {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3003/comidas");
+    const result = await axios.get(
+      "http://localhost:8585/restaurants/Food/allFoods"
+    );
     setUser(result.data.reverse());
     //console.log(result);
   };

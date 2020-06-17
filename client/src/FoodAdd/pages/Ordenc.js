@@ -10,7 +10,9 @@ const Ordenc = () => {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:3003/comidas");
+    const result = await axios.get(
+      "http://localhost:8585/restaurants/Food/allFoods"
+    );
     setUser(result.data.reverse());
     //console.log(result);
   };
@@ -20,7 +22,7 @@ const Ordenc = () => {
 
   for (let index = 0; index < users.length; index++) {
     let element = users[index].name;
-    let patron = users[index].categoria;
+    let patron = users[index].category;
     if (patron == "Comida") {
       // cat1.push(element)
       vector.push(element);
