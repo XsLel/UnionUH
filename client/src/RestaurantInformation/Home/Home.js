@@ -91,6 +91,8 @@ class Home extends Component {
         <Container>
           <Segment loading={loading}>
             <Information
+              name={name}
+              description={description}
               province={province}
               information={information}
               email={email}
