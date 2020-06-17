@@ -29,7 +29,7 @@ const Inforestaurant = (props) => {
     <>
       <Divider />
 
-      <Grid columns={3} divided>
+      <Grid columns={2} divided>
         <GridRow>
           <GridColumn>
             <ListContent>
@@ -59,17 +59,28 @@ const Inforestaurant = (props) => {
               <h4>Telefono:</h4> {phone}
             </ListContent>
           </GridColumn>
-
           <GridColumn>
-            <Link to={`${url}/food-gallery`}>Galeria Comida</Link>
-          </GridColumn>
+            <Grid columns={2} divided>
+              <GridRow>
+                <GridColumn>
+                  <Link to={`${url}/food-gallery`}>
+                    <button class="ui fluid button">
+                      <i class=" massive food icon"></i>
+                      <div> food-gallery </div>
+                    </button>
+                  </Link>
+                </GridColumn>
 
-          <GridColumn>
-            {" "}
-            <Link to={`${url}/restaurant-gallery`}>
-              {" "}
-              Galeria Restaurante
-            </Link>{" "}
+                <GridColumn>
+                  <Link to={`${url}/restaurant-gallery`}>
+                    <button class="ui fluid button">
+                      <i class="massive file image icon"></i>
+                      <div>restaurant-gallery</div>
+                    </button>
+                  </Link>
+                </GridColumn>
+              </GridRow>
+            </Grid>
           </GridColumn>
         </GridRow>
       </Grid>

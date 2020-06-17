@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Segment } from "semantic-ui-react";
 import { http } from "../services";
 import Gallery from "./Gallery";
+import { withRouter } from "react-router-dom";
 
 class RestaurantGallery extends Component {
   constructor(props) {
@@ -31,9 +32,21 @@ class RestaurantGallery extends Component {
   };
 
   render() {
+    const { history } = this.props;
     let { loading, gallery } = this.state;
     return (
       <Segment loading={loading}>
+        <div>
+          <button
+            class="ui right floated button"
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            <i class="left chevron icon"></i>
+            volver
+          </button>
+        </div>
         <h1>Galería del restaurante</h1>
         <Gallery images={gallery} />
       </Segment>
@@ -41,4 +54,4 @@ class RestaurantGallery extends Component {
   }
 }
 
-export default RestaurantGallery;
+export default withRouter(RestaurantGallery);
