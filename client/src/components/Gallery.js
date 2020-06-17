@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./styles/Gallery.css";
-
 import { Grid, GridColumn, Image } from "semantic-ui-react";
-
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 
@@ -26,7 +24,7 @@ const Gallery = (props) => {
           {images.map((c, i) => (
             <GridColumn computer={4} tablet={8} mobile={16}>
               <div key={i} className="image-container">
-                <Image id={i} src={c} alt={c} onClick={change} />
+                <img id={i} src={c} alt={c} onClick={change} />
               </div>
             </GridColumn>
           ))}
