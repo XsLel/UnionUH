@@ -100,7 +100,7 @@ const ModifyRestaurant = () => {
             type="text"
             name="nameRestaurant"
             maxLength="50"
-            placeholder="Nombre del Restaurante"
+            placeholder={getData()}
             value={values.nameRestaurant}
             onChange={handleChange}
             style={{ width: 595 }}

@@ -4,7 +4,7 @@ import { history } from "./services";
 import { Admin } from "./Admin/Admin";
 import { PageNotFound } from "./common";
 import RegisterRestaurant from "./Components/Form";
-import Modificar from "./Components/Modificar";
+import Modify from "./Components/Modify";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           path="/RegisterRestaurant"
           component={RegisterRestaurant}
         />
-        <Route exact path="/modifyRestaurant" component={Modificar} />
+        <Route exact path="/ModifyRestaurant" component={Modify} />
         <Route exact path="/404" component={PageNotFound} />
         <Route component={PageNotFound} />
       </Switch>
