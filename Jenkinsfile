@@ -72,7 +72,7 @@ pipeline {
                 '''
                 sh "docker pull ${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
                 sh "docker run --name ${CONTAINER_NAME} --env CERT_KEY=${CERT_KEY} --env MYSQL_HOST=${MYSQL_HOST} --env DB_NAME=${DB_NAME} " +
-                    "--env DB_PORT=${DB_PORT} --env DB_USER=${DB_CREDENTIALS_USR} --env DB_PASSWORD=${DB_CREDENTIALS_PSW}" +
+                    "--env DB_PORT=${DB_PORT} --env DB_USER=${DB_CREDENTIALS_USR} --env DB_PASSWORD=${DB_CREDENTIALS_PSW} " +
                     "--env REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY} -d -p ${HOST_PORT}:${API_PORT} " +
                     "${DOCKER_REPO}/${DOCKER_IMAGE_DEV}:${env.BUILD_NUMBER}"
             }
