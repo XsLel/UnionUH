@@ -6,6 +6,7 @@ import globalStyles from "../../index.module.css";
 import localStyles from "./TouristicPlaceForm.module.css";
 import useForm from "./useForm";
 import validate from "./validate";
+import { Client } from "@googlemaps/google-maps-services-js";
 import { http } from "../../services";
 import { Form, Icon, Modal } from "semantic-ui-react";
 import { MAIN_SQUARE_COORDINATES } from "../../services/constants";
@@ -17,16 +18,20 @@ const globalCx = classNames.bind(globalStyles);
 const localCx = classNames.bind(localStyles);
 
 export default function TouristicPlaceForm() {
-  const [isOpenConfirmationModal, setIsOpenConfirmationModal] = useState(false);
-  const [isOpenMapModal, setIsOpenMapModal] = useState(false);
+  const [areCoordinatesChanged, setAreCoordinatesChanged] = useState(false);
   const [center, setCenter] = useState(MAIN_SQUARE_COORDINATES);
   const [coordinates, setCoordinates] = useState(null);
+  const [isOpenConfirmationModal, setIsOpenConfirmationModal] = useState(false);
+  const [isOpenMapModal, setIsOpenMapModal] = useState(false);
+  const [places, setPlaces] = useState([]);
+  const [placeValue, setPlaceValue] = useState("");
   const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
   const { addToast } = useToasts();
   const history = useHistory();
-  const refMap = createRef();
-
+  const client = new Client({});
   const errorClassNames = classNames(globalCx("text-red"), localCx("small"));
+  const refMap = createRef();
+  const tempKey = "temp";
 
   async function submit() {
     try {
@@ -59,8 +64,66 @@ export default function TouristicPlaceForm() {
     }
   }
 
+  function handleAddAddress({ value }) {
+    if (places.length > 0 && places[0].key === tempKey) {
+      setPlaces((prevPlaces) => {
+        prevPlaces[0].text = value;
+        return prevPlaces;
+      });
+    } else {
+      setPlaces((prevPlaces) => [
+        { key: tempKey, value: tempKey, text: value },
+        ...prevPlaces,
+      ]);
+    }
+    setPlaceValue(tempKey);
+  }
+
+  function handleChangeAddress({ target: { textContent } }, { name, value }) {
+    if (!textContent) {
+      textContent = value;
+      value = tempKey;
+    }
+    setPlaceValue(value);
+    handleChange({ target: { name, value: textContent } });
+  }
+
+  async function handleCloseMapModal() {
+    setIsOpenMapModal(false);
+    if (coordinates && areCoordinatesChanged) {
+      const { REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
+      try {
+        const {
+          data: { results },
+        } = await client.reverseGeocode({
+          params: {
+            key: REACT_APP_GOOGLE_MAPS_API_KEY,
+            language: "es-419",
+            latlng: coordinates,
+          },
+        });
+        const places = results.map(({ place_id, formatted_address }) => ({
+          key: place_id,
+          value: place_id,
+          text: formatted_address,
+        }));
+        setPlaces(places);
+        if (places.length > 0) {
+          setPlaceValue(places[0].value);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    setAreCoordinatesChanged(false);
+  }
+
   function putMarker({ latLng }) {
     setCoordinates({ lat: latLng.lat(), lng: latLng.lng() });
+    setAreCoordinatesChanged(true);
+    if (places.length > 0 && places[0].key === tempKey) {
+      setPlaces((prevPlaces) => prevPlaces.slice(1));
+    }
   }
 
   return (
@@ -96,17 +159,25 @@ export default function TouristicPlaceForm() {
         />
         {errors.description && <p className={errorClassNames}>{errors.description}</p>}
         <Form.Group>
-          <Form.TextArea
-            error={errors.address !== undefined}
-            label="Dirección"
-            id="address"
-            name="address"
-            rows="1"
-            placeholder="Dirección del lugar turístico"
-            width="15"
-            value={values.address}
-            onChange={handleChange}
+          <Form.Dropdown
+            allowAdditions
+            fluid
             required
+            search
+            selection
+            additionLabel="Agregar: "
+            error={errors.address !== undefined}
+            id="address"
+            disabled={!coordinates}
+            label="Dirección"
+            name="address"
+            noResultsMessage="No se encontraron direcciones cercanas"
+            placeholder="Dirección del lugar turístico"
+            value={placeValue}
+            width="15"
+            options={places}
+            onAddItem={(_, data) => handleAddAddress(data)}
+            onChange={handleChangeAddress}
           />
           <Modal
             closeOnDimmerClick
@@ -114,7 +185,7 @@ export default function TouristicPlaceForm() {
             dimmer="inverted"
             open={isOpenMapModal}
             size="large"
-            onClose={() => setIsOpenMapModal(false)}
+            onClose={handleCloseMapModal}
             trigger={
               <Form.Button icon type="button" onClick={() => setIsOpenMapModal(true)}>
                 <Icon name="map marker alternate" />
