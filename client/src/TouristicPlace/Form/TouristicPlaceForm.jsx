@@ -1,29 +1,40 @@
-import React from "react";
+import React, { createRef, useCallback, useState } from "react";
 import classNames from "classnames/bind";
+import Map from "../../components/Map";
 import MessageBox from "../../components/MessageBox";
-import useForm from "./useForm";
-import validate from "./validate";
-import { useToasts } from "react-toast-notifications";
-import { useHistory } from "react-router-dom";
-import { Form, Icon } from "semantic-ui-react";
-import { http } from "../../services";
 import globalStyles from "../../index.module.css";
 import localStyles from "./TouristicPlaceForm.module.css";
+import useForm from "./useForm";
+import validate from "./validate";
+import { http } from "../../services";
+import { Form, Icon, Modal } from "semantic-ui-react";
+import { MAIN_SQUARE_COORDINATES } from "../../services/constants";
+import { Marker } from "@react-google-maps/api";
+import { useHistory } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 const globalCx = classNames.bind(globalStyles);
 const localCx = classNames.bind(localStyles);
 
 export default function TouristicPlaceForm() {
-  const [openConfirmationModal, setOpenConfirmationModal] = React.useState(false);
+  const [isOpenConfirmationModal, setIsOpenConfirmationModal] = useState(false);
+  const [isOpenMapModal, setIsOpenMapModal] = useState(false);
+  const [center, setCenter] = useState(MAIN_SQUARE_COORDINATES);
+  const [coordinates, setCoordinates] = useState(null);
   const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
   const { addToast } = useToasts();
   const history = useHistory();
+  const refMap = createRef();
 
   const errorClassNames = classNames(globalCx("text-red"), localCx("small"));
 
   async function submit() {
     try {
-      await http.request({ url: "/touristic-places", method: "POST", data: values });
+      await http.request({
+        url: "/touristic-places",
+        method: "POST",
+        data: { ...values, ...coordinates },
+      });
       addToast("Se ha registrado correctamente", { appearance: "success" });
       history.push("/lugares-turisticos");
     } catch (error) {
@@ -39,6 +50,17 @@ export default function TouristicPlaceForm() {
       }
       addToast(errorMessage, { appearance: "error" });
     }
+  }
+
+  function handleCenterChanged() {
+    if (refMap.current) {
+      const { center } = refMap.current.state.map;
+      setCenter({ lat: center.lat(), lng: center.lng() });
+    }
+  }
+
+  function putMarker({ latLng }) {
+    setCoordinates({ lat: latLng.lat(), lng: latLng.lng() });
   }
 
   return (
@@ -86,9 +108,33 @@ export default function TouristicPlaceForm() {
             onChange={handleChange}
             required
           />
-          <Form.Button icon disabled>
-            <Icon name="map marker alternate" />
-          </Form.Button>
+          <Modal
+            closeOnDimmerClick
+            closeOnEscape
+            dimmer="inverted"
+            open={isOpenMapModal}
+            size="large"
+            onClose={() => setIsOpenMapModal(false)}
+            trigger={
+              <Form.Button icon type="button" onClick={() => setIsOpenMapModal(true)}>
+                <Icon name="map marker alternate" />
+              </Form.Button>
+            }>
+            <Modal.Header>Dirección</Modal.Header>
+            <Modal.Content>
+              <Map
+                center={center}
+                height="720px"
+                ref={refMap}
+                zoom={14}
+                onCenterChanged={useCallback(handleCenterChanged)}
+                onClick={putMarker}>
+                {coordinates && (
+                  <Marker draggable position={coordinates} onDragEnd={putMarker} />
+                )}
+              </Map>
+            </Modal.Content>
+          </Modal>
         </Form.Group>
         {errors.address && <p className={errorClassNames}>{errors.address}</p>}
         <Form.TextArea
@@ -106,7 +152,7 @@ export default function TouristicPlaceForm() {
         <Form.Group widths="equal">
           <MessageBox
             centeredContent
-            open={openConfirmationModal}
+            open={isOpenConfirmationModal}
             trigger={
               <Form.Button
                 fluid
@@ -114,14 +160,14 @@ export default function TouristicPlaceForm() {
                 type="button"
                 floated="left"
                 size="large"
-                onClick={(_e, _d) => setOpenConfirmationModal(true)}>
+                onClick={() => setIsOpenConfirmationModal(true)}>
                 Cancelar
               </Form.Button>
             }
             content="¿Estás seguro de cancelar el registro?"
-            onCancel={() => setOpenConfirmationModal(false)}
+            onCancel={() => setIsOpenConfirmationModal(false)}
             onOK={() => {
-              setOpenConfirmationModal(false);
+              setIsOpenConfirmationModal(false);
               history.push("/lugares-turisticos");
             }}
           />
