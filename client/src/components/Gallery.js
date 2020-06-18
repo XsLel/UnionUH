@@ -39,10 +39,11 @@ const Gallery = (props) => {
       {isOpen && (
         <Lightbox
           mainSrc={images[photoIndex]}
+          nextSrc={images[(photoIndex + 1) % images.length]}
+          prevSrc={images[(photoIndex + images.length - 1) % images.length]}
           onCloseRequest={() => setIsOpen(false)}
           onMovePrevRequest={() => {
-            let newPhotoIndex =
-              (photoIndex + images.length - 1) % images.length;
+            let newPhotoIndex = (photoIndex + images.length - 1) % images.length;
             setPhotoIndex(newPhotoIndex);
           }}
           onMoveNextRequest={() => {
