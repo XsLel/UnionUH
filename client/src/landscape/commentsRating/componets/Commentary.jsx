@@ -24,7 +24,7 @@ class Commentary extends Component {
 
   handleChangeInput(evento) {
     const { name, value } = evento.target;
-    let regex = new RegExp("^[a-zA-Z .,]+$");
+    let regex = new RegExp("^[a-zA-Z .,:;!0123456789]+$");
 
     if (regex.test(value)) {
       this.setState({
