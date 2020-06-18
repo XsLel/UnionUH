@@ -18,6 +18,10 @@ public class TouristicPlaceRegistrationDto {
     @NotBlank(message = "Schedules can not be empty.")
     private String schedules;
 
+    private double lat;
+
+    private double lng;
+
     public String getName() {
         return name;
     }
@@ -48,5 +52,21 @@ public class TouristicPlaceRegistrationDto {
 
     public void setSchedules(String schedules) {
         this.schedules = schedules;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }

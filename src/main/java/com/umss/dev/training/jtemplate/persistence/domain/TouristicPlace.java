@@ -17,6 +17,10 @@ public class TouristicPlace {
     private String address;
     @Column(nullable = false)
     private String schedules;
+    @Column(nullable = false)
+    private double lat;
+    @Column(nullable = false)
+    private double lng;
 
     public Long getId() {
         return id;
@@ -56,5 +60,21 @@ public class TouristicPlace {
 
     public void setSchedules(String schedules) {
         this.schedules = schedules;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }

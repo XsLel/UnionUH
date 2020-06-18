@@ -6,6 +6,8 @@ public class TouristicPlaceResponseDto {
     private String description;
     private String address;
     private String schedules;
+    private double lat;
+    private double lng;
 
     public Long getId() {
         return id;
@@ -45,5 +47,21 @@ public class TouristicPlaceResponseDto {
 
     public void setSchedules(String schedules) {
         this.schedules = schedules;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 }
