@@ -8,6 +8,11 @@ const serviceOptions = [
     text: "Búsqueda de Restaurantes",
     value: "search-restaurant",
   },
+  {
+    key: "2",
+    text: "Búsqueda por Alojamiento",
+    value: "search-accommodation",
+  },
 ];
 
 class SearchServiceOption extends Component {
