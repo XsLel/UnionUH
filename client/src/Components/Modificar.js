@@ -1,13 +1,6 @@
 import React from "react";
 import CenteredLayout from "../common/centeredLayout";
-import {
-  Button,
-  Form,
-  Select,
-  Input,
-  TextArea,
-  Image,
-} from "semantic-ui-react";
+import { Button, Form, Select, Input, TextArea } from "semantic-ui-react";
 import UseForm from "./Validations/useForm";
 import validate from "./Validations/validateForm";
 import Message from "./Validations/Message";
@@ -59,9 +52,20 @@ const ModifyRestaurant = () => {
     false
   );
 
+  async function getData(e) {
+    try {
+      const date = await http.request({
+        url: "/restaurant/1",
+        method: "GET",
+      });
+      console.log(JSON.stringify(date) + "hola");
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("Submitted Succesfully");
+  }
+
   async function submit(e) {
-    debugger;
-    e.preventDefault();
     try {
       await http.request({
         url: "/restaurant/save",
@@ -83,6 +87,7 @@ const ModifyRestaurant = () => {
       <br></br>
       <CenteredLayout>
         <Form
+          action={getData()}
           onSubmit={handleSubmit}
           noValidate
           autoComplete="off"

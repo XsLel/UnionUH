@@ -1,14 +1,6 @@
 import React from "react";
 import CenteredLayout from "../common/centeredLayout";
-import {
-  Button,
-  Form,
-  Select,
-  Input,
-  TextArea,
-  Image,
-  SearchCategory,
-} from "semantic-ui-react";
+import { Button, Form, Select, Input, TextArea } from "semantic-ui-react";
 import UseForm from "./Validations/useForm";
 import validate from "./Validations/validateForm";
 import Message from "./Validations/Message";

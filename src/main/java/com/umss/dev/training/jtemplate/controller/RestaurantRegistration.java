@@ -9,8 +9,6 @@ import javax.validation.Valid;
 import com.umss.dev.training.jtemplate.common.dto.request.RestaurantRequestDTO;
 import com.umss.dev.training.jtemplate.common.dto.response.RestaurantDto;
 import com.umss.dev.training.jtemplate.persistence.domain.Restaurant;
-import com.umss.dev.training.jtemplate.common.dto.request.RestaurantRequestDTO;
-import com.umss.dev.training.jtemplate.common.dto.response.RestaurantDto;
 
 import com.umss.dev.training.jtemplate.service.RestaurantService;
 
@@ -51,8 +49,8 @@ public class RestaurantRegistration {
 	@GetMapping("/modify") 
 	public List<Restaurant> listRestaurants() {
 		return service.getAll();
-	}
- 
+	} 
+
     @PermitAll
 	@GetMapping("/{id}")
 	public ResponseEntity<RestaurantDto> findById(@PathVariable("id") Long id) {

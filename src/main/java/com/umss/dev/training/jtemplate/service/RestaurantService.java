@@ -46,7 +46,7 @@ public class RestaurantService {
 	public RestaurantDto findById(long id) {
         Restaurant res = restaurantRepository.findById(id).orElse(null);
         
-		RestaurantDto response = modelMapper.map(res, RestaurantDto.class);
+		RestaurantDto response = modelMapper.map(res,RestaurantDto.class);
         return response;
 	}
 
