@@ -103,8 +103,8 @@ const Questionnaire = (props) => {
   };
   return (
     <GridColumn>
-      <h2>Cuestionario (opcional)</h2>
-
+      <br></br>
+      <h2>Cuestionario (Opcional)</h2>
       <Grid columns={2}>
         <GridRow>
           <p>Este lugar turístico es una joya oculta ?</p>

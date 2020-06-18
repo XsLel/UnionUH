@@ -20,7 +20,6 @@ public class Comment {
 	@Column(nullable = false)
 	private int landscapeId;
 	
-	
 	@Column(nullable = false, length = 45)
 	private String title;
 	
