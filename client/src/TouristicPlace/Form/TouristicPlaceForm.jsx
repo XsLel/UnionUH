@@ -12,6 +12,7 @@ import { MAIN_SQUARE_COORDINATES } from "../../services/constants";
 import { Marker } from "@react-google-maps/api";
 import { useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
+import verifyFile from "./imageValidate";
 
 const globalCx = classNames.bind(globalStyles);
 const localCx = classNames.bind(localStyles);
@@ -21,12 +22,16 @@ export default function TouristicPlaceForm() {
   const [isOpenMapModal, setIsOpenMapModal] = useState(false);
   const [center, setCenter] = useState(MAIN_SQUARE_COORDINATES);
   const [coordinates, setCoordinates] = useState(null);
-  const { handleSubmit, handleChange, values, errors } = useForm(submit, validate);
+  const { handleSubmit, handleChange, onImageChange, values, errors, images } = useForm(
+    submit,
+    validate,
+    verifyFile
+  );
   const { addToast } = useToasts();
   const history = useHistory();
   const refMap = createRef();
-
   const errorClassNames = classNames(globalCx("text-red"), localCx("small"));
+  const acceptedFileTypes = "image/x-png, image/png, image/jpg, image/jpeg, image/gif";
 
   async function submit() {
     try {
@@ -35,6 +40,7 @@ export default function TouristicPlaceForm() {
         method: "POST",
         data: { ...values, ...coordinates },
       });
+
       addToast("Se ha registrado correctamente", { appearance: "success" });
       history.push("/lugares-turisticos");
     } catch (error) {
@@ -149,6 +155,17 @@ export default function TouristicPlaceForm() {
           required
         />
         {errors.schedules && <p className={errorClassNames}>{errors.schedules}</p>}
+        <Form.Input
+          type="file"
+          label="Imágenes"
+          multiple="multiple"
+          class="dz-hidden-input"
+          maxFiles={3}
+          accept={acceptedFileTypes}
+          onChange={onImageChange}
+          on
+          required
+        />
         <Form.Group widths="equal">
           <MessageBox
             centeredContent
