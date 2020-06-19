@@ -13,6 +13,7 @@ const AddComidas = () => {
     ingredients: "",
     days: "",
     servings: "",
+    image: "",
   });
   const {
     name,
@@ -22,6 +23,7 @@ const AddComidas = () => {
     ingredients,
     days,
     servings,
+    image,
   } = user;
 
   const onInputChange = (e) => {
@@ -36,7 +38,36 @@ const AddComidas = () => {
   const onClickChange = (e) => {
     botonGuardar();
   };
+  const eventImage = (e) => {
+    var fotoLabel = document.getElementById("idLabelFoto");
+    controlImage();
+    if (fotoLabel.style.color == "green") {
+      setUser({ ...user, [e.target.name]: e.target.value });
+    } else {
+      alert("Elija una imagen jpg, o png por favor");
+    }
+  };
+  function controlImage(obj) {
+    var imageInput = document.getElementById("idImage");
+    var fotoLabel = document.getElementById("idLabelFoto");
+    var submitFoto = document.getElementById("submitFoto");
+    var regexABC = new RegExp("^.*.(jpg|JPG|png|PNG)$");
 
+    if (imageInput.value != "") {
+      if (
+        !regexABC.test(imageInput.value) ||
+        imageInput.files[0].size > 240000
+      ) {
+        alert(imageInput.value + "La imagen no es correcta");
+        imageInput.style.color = "red";
+        fotoLabel.style.color = "red";
+        imageInput.style.color = "blue";
+      } else {
+        fotoLabel.style.color = "green";
+        imageInput.style.color = "green";
+      }
+    }
+  }
   function botonGuardar() {
     var campo = document.getElementById("idLabelCantidad");
     if (campo.style.color == "green") {
@@ -321,13 +352,26 @@ const AddComidas = () => {
           </div>
           <br />
           <br />
-          <form
-            encType="multipart/form-data"
-            action="uploader.php"
-            method="POST"
-          >
-            <input name="uploadedfile" type="file" />
-          </form>
+          <br />
+          <div className="ui input">
+            <label id="idLabelFoto">Foto *</label>
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <form encType="multipart/form-data" method="post"></form>
+            <input
+              id="idImage"
+              name="image"
+              type="file"
+              value={image}
+              pattern="^.*\.(jpg|JPG|png|PNG)$"
+              required
+              formnovalidate="true"
+              //onChange={(e) => onInputChange(e)}
+              onChange={(e) => eventImage(e)}
+              onClick={(e) => onInputChange(e)}
+            />
+          </div>
           <br />
           <br />
           <button className="ui second button">Cancelar </button>
