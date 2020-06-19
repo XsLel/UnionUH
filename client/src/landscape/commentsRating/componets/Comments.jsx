@@ -57,7 +57,7 @@ export default class Comments extends React.Component {
               <Comment.Author as="a">{comment.title}</Comment.Author>
               <Comment.Metadata>
                 <Rating defaultRating={comment.generalRating} maxRating={5} disabled />
-                <div> at {comment.actualDate}</div>
+                <div> en {comment.actualDate}</div>
               </Comment.Metadata>
               <Comment.Text>{comment.description}</Comment.Text>
               <Comment.Author as="a">

@@ -110,13 +110,13 @@ const Questionnaire = (props) => {
           <p>Este lugar turístico es una joya oculta ?</p>
           <Button.Group size="smoll">
             <Button color={colorOne} onClick={questionOneButtonOne}>
-              SI
+              Si
             </Button>
             <Button color={colorTwo} onClick={questionOneButtonTwo}>
-              NO
+              No
             </Button>
             <Button color={colorThree} onClick={questionOneButtonThree}>
-              NO SE
+              No Se
             </Button>
           </Button.Group>
         </GridRow>
@@ -126,13 +126,13 @@ const Questionnaire = (props) => {
           <p>En este lugar o actividad se aceptan tarjetas de crédito ?</p>
           <Button.Group size="smoll">
             <Button color={colorOne2} onClick={questionTwoButtonOne}>
-              SI
+              Si
             </Button>
             <Button color={colorTwo2} onClick={questionTwoButtonTwo}>
-              NO
+              No
             </Button>
             <Button color={colorThree2} onClick={questionTwoButtonThree}>
-              NO SE
+              No Se
             </Button>
           </Button.Group>
         </GridRow>
@@ -142,13 +142,13 @@ const Questionnaire = (props) => {
           <p>Consideras peligroso el lugar turístico ?</p>
           <Button.Group size="smoll">
             <Button color={colorOne3} onClick={questionThreeButtonOne}>
-              SI
+              Si
             </Button>
             <Button color={colorTwo3} onClick={questionThreeButtonTwo}>
-              NO
+              No
             </Button>
             <Button color={colorThree3} onClick={questionThreeButtonThree}>
-              NO SE
+              No Se
             </Button>
           </Button.Group>
         </GridRow>
@@ -158,13 +158,13 @@ const Questionnaire = (props) => {
           <p>Recomendarías este lugar turístico ?</p>
           <Button.Group size="smoll">
             <Button color={colorOne4} onClick={questionFourButtonOne}>
-              SI
+              Si
             </Button>
             <Button color={colorTwo4} onClick={questionFourButtonTwo}>
-              NO
+              No
             </Button>
             <Button color={colorThree4} onClick={questionFourButtonThree}>
-              NO SE
+              No Se
             </Button>
           </Button.Group>
         </GridRow>
