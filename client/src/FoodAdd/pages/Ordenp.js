@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Administrador = () => {
+const Ordenp = () => {
   const [users, setUser] = useState([]);
 
   useEffect(() => {
@@ -17,19 +17,16 @@ const Administrador = () => {
     //console.log(result);
   };
 
-  //const vec = [{name:"lucas"},{name:"pedro"}];
-  const array = [];
-  for (let index = 0; index < users.length; index++) {
-    const element = users[index].name;
-    array.push({ name: element });
-  }
-
   const vector = [];
   const temp = [];
 
   for (let index = 0; index < users.length; index++) {
     let element = users[index].name;
-    vector.push(element);
+    let patron = users[index].category;
+    if (patron == "Postre") {
+      // cat1.push(element)
+      vector.push(element);
+    }
   }
   //metodo para ordenar los elementos de un array
   vector.sort((a, b) => {
@@ -39,7 +36,7 @@ const Administrador = () => {
   });
 
   //copiando elmentos de un array solo con el atribuoto name
-  for (let index = 0; index < users.length; index++) {
+  for (let index = 0; index < vector.length; index++) {
     let element = vector[index];
     temp.push({ name: element });
   }
@@ -110,7 +107,7 @@ const Administrador = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
+              {temp.map((user, index) => (
                 <tr>
                   <th scope="row">{index + 1}</th>
                   <td>{user.name}</td>
@@ -153,7 +150,7 @@ const Administrador = () => {
             id="botonesprincipales"
             to="/restaurants/Comida"
           >
-            Registrar
+            Resgistrar
           </Link>
           <br />
           <br />
@@ -171,4 +168,4 @@ const Administrador = () => {
   );
 };
 
-export default Administrador;
+export default Ordenp;

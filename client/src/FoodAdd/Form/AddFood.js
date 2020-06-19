@@ -79,7 +79,10 @@ const AddComidas = () => {
           if (campo.style.color == "green") {
             campo = document.getElementById("idLabelIngredientes");
             if (campo.style.color == "green") {
-              alert("muchas gracias por su registro");
+              campo = document.getElementById("idLabelFoto");
+              if (campo.style.color == "green") {
+                alert("muchas gracias por su registro");
+              }
             }
           }
         }
@@ -275,7 +278,7 @@ const AddComidas = () => {
               value={ingredients}
               maxLength="500"
               minLength="0"
-              pattern="^[a-zA-Zs ]{1,500}"
+              pattern="^{1,500}"
               required
               onChange={(e) => onInputChange(e)}
               onClick={(e) => onInputChange(e)}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Administrador = () => {
+const Orden = () => {
   const [users, setUser] = useState([]);
 
   useEffect(() => {
@@ -18,11 +18,6 @@ const Administrador = () => {
   };
 
   //const vec = [{name:"lucas"},{name:"pedro"}];
-  const array = [];
-  for (let index = 0; index < users.length; index++) {
-    const element = users[index].name;
-    array.push({ name: element });
-  }
 
   const vector = [];
   const temp = [];
@@ -68,7 +63,7 @@ const Administrador = () => {
           <br />
           <div className="ui simple dropdown item">
             &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;Lista Por
-            Categoría
+            Categoria
             <i className="dropdown icon"></i>
             <div className="menu">
               <Link
@@ -110,7 +105,7 @@ const Administrador = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
+              {temp.map((user, index) => (
                 <tr>
                   <th scope="row">{index + 1}</th>
                   <td>{user.name}</td>
@@ -153,7 +148,7 @@ const Administrador = () => {
             id="botonesprincipales"
             to="/restaurants/Comida"
           >
-            Registrar
+            Resgistrar
           </Link>
           <br />
           <br />
@@ -171,4 +166,4 @@ const Administrador = () => {
   );
 };
 
-export default Administrador;
+export default Orden;
