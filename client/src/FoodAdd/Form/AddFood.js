@@ -370,7 +370,6 @@ const AddComidas = () => {
               pattern="^.*\.(jpg|JPG|png|PNG)$"
               required
               formnovalidate="true"
-              //onChange={(e) => onInputChange(e)}
               onChange={(e) => eventImage(e)}
               onClick={(e) => onInputChange(e)}
             />
